@@ -56,7 +56,7 @@ const Nav = () => {
 
     return ( 
         <>
-            <div className="flex w-full py-8 px-3 md:py-10 lg:px-20 border border-gray-700 border-opacity-20 fixed justify-between bg-transparent z-20">
+            <div className="flex w-full py-8 px-3 md:py-10 lg:px-20 border border-gray-700 border-opacity-20 justify-between bg-transparent z-20">
                 <div className="flex gap-x-5">
                     <button onClick={handleMenu} className="md:hidden flex" >
                         <i className="text-lg fa-solid fa-bars"></i>
@@ -71,7 +71,7 @@ const Nav = () => {
                 </div>
                 <div className="flex gap-x-5">
                     <div className="lg:flex gap-x-2 hidden">
-                        <p className="text-black text-opacity-60 text-lg">Call us:</p>
+                        <p className="text-black text-opacity-60 text-lg italic">Call us:</p>
                         <span className="text-lg mr-2 text-orange-500">555-7777</span>
                     </div>
                     <button className="text-black text-opacity-60 hover:text-orange-500 transition-colors text-lg" >Login</button>
