@@ -9,8 +9,8 @@ import Logo from "./Logo"
 const ResponsiveMenu = () => {
     return (
         <>
-            <div className="bg-zinc-100 w-screen h-screen absolute z-10">
-               <div className='mt-28 md:mt-36 pl-8'>
+            <div className="bg-zinc-100 w-screen h-screen absolute z-50">
+               <div className='mt-24 md:mt-36 pl-8'>
                     <ul className='flex flex-col gap-y-4 text-lg opacity-80'>
                         <a href='/'>
                             <li>Shop</li>
@@ -56,7 +56,7 @@ const Nav = () => {
 
     return ( 
         <>
-            <div className="flex w-full py-8 px-3 md:py-10 lg:px-20 border border-gray-700 border-opacity-20 justify-between bg-transparent z-20">
+            <div className="flex fixed top-0 w-full py-8 px-3 lg:px-20  justify-between bg-white z-20">
                 <div className="flex gap-x-5">
                     <button onClick={handleMenu} className="md:hidden flex" >
                         <i className="text-lg fa-solid fa-bars"></i>

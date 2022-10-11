@@ -13,11 +13,11 @@ const Cart = () => {
 
     return ( 
         <>
-            <div onClick={handleCart} className='bg-gray-700 bg-opacity-20 w-screen h-screen z-30'>
-                <div onClick={ e => e.stopPropagation() }className="bg-white h-full w-full md:w-3/4 lg:w-1/2 absolute right-0 z-30">
+            <div onClick={handleCart} className='bg-gray-700 bg-opacity-20 fixed z-50 top-0 h-fit w-screen overflow-auto'>
+                <div onClick={ e => e.stopPropagation() } className="bg-white h-full w-full md:w-3/4 lg:w-1/2 fixed overflow-auto right-0 z-30">
                     <div className='p-6 h-full w-full flex flex-col'>
                         <button onClick={ handleCart } className='absolute top-10 right-10 lg:right-20'><i className="fa-lg fa-solid fa-xmark"></i></button>
-                        <div className='text-center mt-16  lg:mt-28'>
+                        <div className='text-center mt-16 lg:mt-28'>
                             <h2 className='text-slate-800 text-2xl lg:text-4xl font-serif mb-2 lg:mb-4'>Your Cart is Empty!</h2>
                             <p className='text-slate-800/60 lg:text-lg font-medium'>There's no comparison in quality, strength, and care.</p>
                         </div>
