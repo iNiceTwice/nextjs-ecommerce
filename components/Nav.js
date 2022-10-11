@@ -9,9 +9,9 @@ import Logo from "./Logo"
 const ResponsiveMenu = () => {
     return (
         <>
-            <div className="bg-zinc-100 w-screen h-screen absolute z-50">
-               <div className='mt-24 md:mt-36 pl-8'>
-                    <ul className='flex flex-col gap-y-4 text-lg opacity-80'>
+            <div className="bg-zinc-100 w-screen h-screen fixed z-50">
+               <div className='mt-16 pl-8'>
+                    <ul className='flex flex-col gap-y-4 font-medium text-lg opacity-80'>
                         <a href='/'>
                             <li>Shop</li>
                         </a>
