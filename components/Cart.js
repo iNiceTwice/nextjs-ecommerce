@@ -13,7 +13,7 @@ const Cart = () => {
 
     return ( 
         <>
-            <div onClick={handleCart} className='bg-gray-700 bg-opacity-20 fixed z-50 top-0 h-fit w-screen overflow-auto'>
+            <div onClick={handleCart} className='bg-gray-700 bg-opacity-20 fixed z-50 top-0 h-screen w-screen overflow-auto'>
                 <div onClick={ e => e.stopPropagation() } className="bg-white h-full w-full md:w-3/4 lg:w-1/2 fixed overflow-auto right-0 z-30">
                     <div className='p-6 h-full w-full flex flex-col'>
                         <button onClick={ handleCart } className='absolute top-10 right-10 lg:right-20'><i className="fa-lg fa-solid fa-xmark"></i></button>
