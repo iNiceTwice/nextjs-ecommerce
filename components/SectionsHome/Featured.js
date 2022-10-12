@@ -3,7 +3,7 @@ import Image from "next/image"
 const Featured = () => {
     return ( 
         <>
-            <section className=" border-t  mt-20 lg:mt-44 mx-6 lg:mx-20 xl:mx-40">
+            <section className=" border-t mt-20 lg:mt-44 mx-6 lg:mx-20 xl:mx-40">
                 <h4 className="font-bold text-sm text-center mb-10 mt-20 tracking-wider text-black/60">FEATURED IN</h4>
                 <div className="h-full grid grid-cols-1 md:grid-cols-4">
                     <div className="px-4 py-6 flex flex-col items-center">
