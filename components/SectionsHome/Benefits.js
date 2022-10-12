@@ -5,7 +5,7 @@ const Benefits = () => {
         <>
             <section className="flex justify-center items-center flex-col mt-32 lg:mt-20 text-center">
                 <div className="max-w-5xl px-10 lg:px-9 ">
-                    <h2 className="text-black/70 font-serif text-2xl lg:text-3xl xl:text-4xl">Our CBD is award-winning and triple-tested for quality. Try for 30 days & love it or send it back—no questions asked.</h2>
+                    <h2 className="text-black/80 font-serif text-2xl lg:text-3xl xl:text-4xl">Our CBD is award-winning and triple-tested for quality. Try for 30 days & love it or send it back—no questions asked.</h2>
                     <ul className="grid gap-x-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-center lg:flex-row w-full mt-14">
                         <li className="p-2 border-t flex items-center">
                             <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/flag_small.png?v=1613531243" height={70} width={70}/>   

@@ -27,24 +27,24 @@ const Cart = () => {
                                     src="https://cdn.shopify.com/s/files/1/1737/2201/files/Thirty_rgb_orangex2_9b767b53-6442-4462-b54f-ea511c5fd010_500x500.png"
                                     height={90} width={90}     
                                 />
-                                <p className='text-black/70 font-serif text-2xl'>30 Days Risk Free</p>
-                                <p className='text-slate-800/90 font-medium mt-3 text-lg'>Industry leading 100% quality guarantee.</p>
+                                <p className='text-black/80 font-serif text-2xl'>30 Days Risk Free</p>
+                                <p className='text-black/70 font-medium mt-3 text-lg'>Industry leading 100% quality guarantee.</p>
                             </div>
                             <div>
                                 <Image 
                                     src="https://cdn.shopify.com/s/files/1/1737/2201/files/Hexagon_rgb_orangex2_500x500.png?v=1613582144"
                                     height={90} width={90}     
                                 />
-                                <p className='text-black/70 font-serif text-2xl'>Shop Safely</p>
-                                <p className='text-slate-800/90 font-medium mt-3 text-lg'>We're PCI compliant & fully encrypted.</p>
+                                <p className='text-black/80 font-serif text-2xl'>Shop Safely</p>
+                                <p className='text-black/70 font-medium mt-3 text-lg'>We're PCI compliant & fully encrypted.</p>
                             </div>
                             <div>
                                 <Image 
                                     src="https://cdn.shopify.com/s/files/1/1737/2201/files/Zen_orange_2x_964a9da3-e182-42da-9093-d9a57ec6d138_500x500.png?v=1613583730"
                                     height={90} width={90}     
                                 />
-                                <p className='text-black/70 font-serif text-2xl'>Personalized Support</p>
-                                <p className='text-slate-800/90 font-medium mt-3 text-lg'>We're committed to your satisfaction.</p>
+                                <p className='text-black/80 font-serif text-2xl'>Personalized Support</p>
+                                <p className='text-black/70 font-medium mt-3 text-lg'>We're committed to your satisfaction.</p>
                             </div>
                         </div>
                         <div className='h-full flex flex-col-reverse'>
