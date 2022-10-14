@@ -3,6 +3,7 @@ import Intro from "../components/SectionsHome/Intro"
 import Featured from "../components/SectionsHome/Featured"
 import Benefits from "../components/SectionsHome/Benefits"
 import Favorites from "../components/SectionsHome/Favorites"
+import InteractivePref from "../components/SectionsHome/InteractivePref"
 
 const fa = {
   cdn:"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css",
@@ -20,6 +21,7 @@ const Home = () => {
         <Featured/>
         <Benefits/>
         <Favorites/> 
+        <InteractivePref/>
       </div>
     </>
   )

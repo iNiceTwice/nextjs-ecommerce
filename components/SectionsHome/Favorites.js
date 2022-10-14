@@ -1,16 +1,8 @@
 import ShopItem from "../ShopItem";
 
 const shop = [
-    {
-        title:"Full-Spectrum Hemp CBD Oil",
-        img:"https://cdn.shopify.com/s/files/1/1737/2201/products/250mgnewfeaturev5_1300x.jpg?v=1661911210",
-        rating:4,
-        totalRating:689,
-        price:"47.20",
-        commentary:"Signature CBD drops with a delicious orange flavor",
-        url:"/"
-    },
-    {
+    {   
+        id:1,
         title:"Full-Spectrum Hemp CBD Oil",
         img:"https://cdn.shopify.com/s/files/1/1737/2201/products/250mgnewfeaturev5_1300x.jpg?v=1661911210",
         rating:4,
@@ -20,6 +12,17 @@ const shop = [
         url:"/"
     },
     {   
+        id:2,
+        title:"Full-Spectrum Hemp CBD Oil",
+        img:"https://cdn.shopify.com/s/files/1/1737/2201/products/250mgnewfeaturev5_1300x.jpg?v=1661911210",
+        rating:4,
+        totalRating:689,
+        price:"47.20",
+        commentary:"Signature CBD drops with a delicious orange flavor",
+        url:"/"
+    },
+    {   
+        id:3,  
         title:"Full-Spectrum Hemp CBD Oil",
         img:"https://cdn.shopify.com/s/files/1/1737/2201/products/250mgnewfeaturev5_1300x.jpg?v=1661911210",
         rating:4,

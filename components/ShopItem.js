@@ -28,7 +28,7 @@ const ShopItem = ({ id, title, rating, price, img, totalRatings, url, commentary
                     </p>
                     {
                       showCommentary && 
-                      <p className="mt-1 italic text-black/80 font-semibold">{ commentary }</p>  
+                      <p className="mt-1 italic text-black/70 font-medium">{ commentary }</p>  
                     }
                 </div>
             </div>
