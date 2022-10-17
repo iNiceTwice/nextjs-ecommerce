@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from "next/link"
 import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from "../utils/useMediaQuery"
 import { cartToggle } from '../redux/actions/cartActions';
@@ -74,7 +75,9 @@ const Nav = () => {
                         <p className="text-black text-opacity-60 text-lg italic">Call us:</p>
                         <span className="text-lg mr-2 text-orange-500">555-7777</span>
                     </div>
-                    <button className="text-black text-opacity-60 hover:text-orange-500 transition-colors text-lg" >Login</button>
+                    <Link href="/account/register">
+                        <button className="text-black text-opacity-60 hover:text-orange-500 transition-colors text-lg">Login</button>
+                    </Link>
                     <button>
                         <i className="text-xl hover:text-orange-500 transition-colors fa-solid fa-bell"></i>
                     </button>

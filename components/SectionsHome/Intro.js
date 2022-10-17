@@ -12,7 +12,7 @@ const Intro = () => {
                     </div>
                 </div>
                 <div className="relative lg:absolute right-0 w-full lg:w-[54vw] h-[67vw] lg:h-[48vw] lg:mr-[3vw]">
-                    <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/populum-orange_1400x.webp?v=1662465868" objectFit="cover" layout="fill" />
+                    <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/populum-orange_1400x.webp?v=1662465868" objectFit="cover" layout="fill" priority />
                 </div>
             </section>
         </>

@@ -1,17 +1,6 @@
 import Link from "next/link"
 import Logo from "./Logo"
 
-
-/*
-
- <div className="mb-10">
-    <Logo/>
-    <p className="font-medium text-white/70">Populum,</p>
-    <p className="font-medium text-white/70">315 W Elliot Rd #107-430</p>
-    <p className="font-medium text-white/70">Tempe, AZ 85284</p>
-    <p className="font-medium text-white/70">United States</p>
-</div>
-*/
 const Footer = () => {
     return ( 
         <>
