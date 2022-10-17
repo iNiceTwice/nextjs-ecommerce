@@ -1,7 +1,7 @@
-const Logo = () => {
+const Logo = ({color}) => {
     return ( 
         <>
-            <a href="/" className="hover:fill-orange-500 transition-colors">
+            <a href="/" className={`${color} hover:fill-orange-500 transition-colors`}>
                 <svg height="28" viewBox="0 0 106 24" width="106" aria-label="Populum Logo" xmlns="http://www.w3.org/2000/svg">
                     <g transform="">
                         <title>Populum Logo</title>
