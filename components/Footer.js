@@ -5,7 +5,7 @@ const Footer = () => {
     return ( 
         <>
             <section className="flex justify-center flex-col lg:flex-row-reverse py-32 px-5 bg-slate-800">
-                     <div className="mb-10 lg:ml-32 flex flex-col items-start lg:items-end gap-4">
+                    <div className="mb-10 lg:ml-32 flex flex-col items-start lg:items-end gap-4">
                         <Logo color="fill-white"/>
                         <div className="w-full text-left lg:text-right flex justify-between flex-row lg:flex-col gap-4">
                             <div>

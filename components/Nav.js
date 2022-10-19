@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from "next/link"
 import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from "../utils/useMediaQuery"
@@ -10,8 +10,8 @@ import Logo from "./Logo"
 const ResponsiveMenu = () => {
     return (
         <>
-            <div className="bg-zinc-100 w-screen h-screen fixed z-50">
-               <div className='mt-16 pl-8'>
+            <div className="bg-zinc-100 w-screen h-screen fixed top-12 z-30">
+               <div className='mt-20 pl-8'>
                     <ul className='flex flex-col gap-y-4 font-medium text-lg opacity-80'>
                         <a href='/'>
                             <li>Shop</li>
@@ -35,7 +35,14 @@ const ResponsiveMenu = () => {
 const Nav = () => {
     
     const [ showMenu, setShowMenu ] = useState(false)
+    const [ position, setPosition ] = useState()
     
+    useEffect(()=>{
+        //setPosition(window.pageYOffset)
+    },[])
+
+
+
     const isCartOpen = useSelector(state => state.cart.isOpen)
     const matches = useMediaQuery('(min-width: 768px)')
     const dispatch = useDispatch()
@@ -57,7 +64,7 @@ const Nav = () => {
 
     return ( 
         <>
-            <div className="flex fixed top-0 w-full py-8 px-3 lg:px-20  justify-between bg-white z-20">
+            <div className={`flex fixed top-0 w-full py-8 px-3 lg:px-20 justify-between bg-white z-50`}>
                 <div className="flex gap-x-5">
                     <button onClick={handleMenu} className="md:hidden flex" >
                         <i className="text-lg fa-solid fa-bars"></i>
@@ -75,7 +82,7 @@ const Nav = () => {
                         <p className="text-black text-opacity-60 text-lg italic">Call us:</p>
                         <span className="text-lg mr-2 text-orange-500">555-7777</span>
                     </div>
-                    <Link href="/account/register">
+                    <Link href="/account/login">
                         <button className="text-black text-opacity-60 hover:text-orange-500 transition-colors text-lg">Login</button>
                     </Link>
                     <button>
@@ -94,6 +101,4 @@ const Nav = () => {
      );
 }
 
-
- 
 export default Nav;
