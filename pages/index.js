@@ -5,8 +5,8 @@ import Favorites from "../components/SectionsHome/Favorites"
 import InteractivePref from "../components/SectionsHome/InteractivePref"
 import Footer from "../components/Footer"
 
-
 const Home = () => {
+
   return (
     <>
       <main>

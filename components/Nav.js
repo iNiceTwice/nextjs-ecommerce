@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Link from "next/link"
 import { useDispatch, useSelector } from 'react-redux';
-import useMediaQuery from "../utils/useMediaQuery"
 import { cartToggle } from '../redux/actions/cartActions';
+import { userActions } from '../redux/actions/userActions';
+import useMediaQuery from "../utils/useMediaQuery"
+import Link from "next/link"
+import axios from "axios"
 import Cart from "./Cart"
 import Logo from "./Logo"
-
 
 const ResponsiveMenu = () => {
     return (
@@ -32,20 +33,29 @@ const ResponsiveMenu = () => {
     )
 }
 
+
 const Nav = () => {
     
     const [ showMenu, setShowMenu ] = useState(false)
-    const [ position, setPosition ] = useState()
-    
-    useEffect(()=>{
-        //setPosition(window.pageYOffset)
-    },[])
-
-
+    const [ isLogged, setIsLogged ] = useState(false)
 
     const isCartOpen = useSelector(state => state.cart.isOpen)
     const matches = useMediaQuery('(min-width: 768px)')
     const dispatch = useDispatch()
+    
+    useEffect(()=>{
+        
+        if(!isLogged){
+            axios.get("http://localhost:3000/api/auth")
+                .then(data => {
+                    setIsLogged(data.data.auth)
+                    dispatch(userActions(data.data.payload))
+                })
+                .catch(err => console.log(err))
+        }
+    
+    },[])
+
 
     const handleMenu = () => {
         if(!showMenu){
@@ -82,9 +92,15 @@ const Nav = () => {
                         <p className="text-black text-opacity-60 text-lg italic">Call us:</p>
                         <span className="text-lg mr-2 text-orange-500">555-7777</span>
                     </div>
-                    <Link href="/account/login">
-                        <button className="text-black text-opacity-60 hover:text-orange-500 transition-colors text-lg">Login</button>
-                    </Link>
+                    {
+                        isLogged
+                        ? <Link href="/account/profile">
+                            <button className="text-black text-opacity-60 hover:text-orange-500 transition-colors text-lg">Account</button>
+                        </Link>
+                        : <Link href="/account/login">
+                            <button className="text-black text-opacity-60 hover:text-orange-500 transition-colors text-lg">Login</button>
+                        </Link>
+                    }
                     <button>
                         <i className="text-xl hover:text-orange-500 transition-colors fa-solid fa-bell"></i>
                     </button>

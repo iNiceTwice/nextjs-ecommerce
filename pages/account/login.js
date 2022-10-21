@@ -13,9 +13,9 @@ const SignupSchema = yup.object().shape({
 
 const Login = ({ apiUrl }) => {
 
+    const router = useRouter()
     const [ passChange, setPassChange ] = useState(false)
     const [ badCredentials, setBadCredentials ] = useState(false)
-    const router = useRouter()
     const { values, errors, touched, handleChange, handleSubmit } = useFormik({
 
     initialValues:{
@@ -27,8 +27,7 @@ const Login = ({ apiUrl }) => {
             email:values.email,
             password:values.password
         }).then(data=>{ 
-            localStorage.setItem("token",JSON.stringify(data.data.token))
-            router.push("/") 
+           // router.push("/") 
         }).catch(err=>{
             console.log(err)
             if(err.response.status === 401){
@@ -46,10 +45,10 @@ const Login = ({ apiUrl }) => {
             ?   <div className="flex justify-center w-full h-screen min-h-fit bg-red-100/70">
                     <div className=" w-11/12 lg:w-1/2 xl:w-1/3 my-auto h-fit bg-white border py-16 px-10 lg:px-16 border-red-200">
                         <h3 className="text-4xl text-center font-serif text-black/75 mb-2">Reset Password</h3>
-                        <p className="text-center text-black/75" >We will send you an email to reset your password, or <Link href="/account/login"><a className="font-medium text-orange-600/80">Login Here</a></Link>.</p>
+                        <p className="text-center text-black/75" >We will send you an email to reset your password, or <a onClick={()=>setPassChange(false)} className="cursor-pointer font-medium text-orange-600/80">Login Here</a>.</p>
                         <form onSubmit={ handleSubmit } className="flex flex-col justify-center gap-3 mt-10">
                             <label className="-mb-3 font-medium text-slate-800/90" htmlFor="name">Email</label>
-                            <input 
+                            <input
                                 className="h-10 outline-none border-b border-b-black/40 focus:border-b-orange-600/80"
                                 onChange={ handleChange } 
                                 value={values.email} 
