@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Stars from "./RatingStars";
 import { useState } from "react"
+
 const ShopItem = ({ id, title, rating, price, img, totalRatings, url, commentary }) => {
 
     const [ showCommentary, setShowCommentary] = useState(false)
@@ -13,7 +14,7 @@ const ShopItem = ({ id, title, rating, price, img, totalRatings, url, commentary
                 onMouseLeave={()=>setShowCommentary(false)}
             >
                 <div className="relative h-96 md:h-52 lg:h-96 w-full min-w-2xl">
-                    <Image src={ img } layout="fill" objectFit="cover" objectPosition="center"/>
+                    <Image src={ img } layout="fill" objectFit="cover" objectPosition="center" loading="lazy"/>
                 </div>
                 <Link href={ url }>
                     <button className="transition-colors w-full py-5 bg-orange-600/80 hover:bg-slate-800 text-white font-semibold">SHOP NOW</button>

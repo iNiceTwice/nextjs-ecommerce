@@ -14,7 +14,7 @@ const ResponsiveMenu = () => {
             <div className="bg-zinc-100 w-screen h-screen fixed top-12 z-30">
                <div className='mt-20 pl-8'>
                     <ul className='flex flex-col gap-y-4 font-medium text-lg opacity-80'>
-                        <a href='/'>
+                        <a href='/shop/all'>
                             <li>Shop</li>
                         </a>
                         <a href='/'>
@@ -81,7 +81,9 @@ const Nav = () => {
                     </button>
                     <Logo/>
                     <div className="md:flex ml-5 gap-x-5 hidden ">
-                        <a href="/" className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">Shop</a>
+                        <Link href="/shop/all">
+                            <a  className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">Shop</a>
+                        </Link>
                         <a href="/" className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">Subscribe</a>
                         <a href="/" className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">30 Day Trial</a>
                         <a href="/" className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">Reviews</a>
