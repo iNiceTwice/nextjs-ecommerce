@@ -1,7 +1,7 @@
 import axios from "axios"
 import Image from "next/image";
 import { useState } from "react";
-import { Gift } from "react-feather";
+import { IoMdGift } from "react-icons/io";
 import Stars from "../../components/RatingStars";
 
 const Product = ({ product }) => {
@@ -17,8 +17,6 @@ const Product = ({ product }) => {
             setImgCount(0)
         }
     }
-
-    console.log(imgCount)
 
     return ( 
         <>
@@ -106,7 +104,7 @@ const Product = ({ product }) => {
                                         {   
                                             product[0].price[0].price > 10 &&
                                             <div className="flex items-center">
-                                                <Gift strokeWidth={0.5}/>
+                                                <IoMdGift size="20" className="-mb-1 text-slate-800/90"/>
                                                 <p className="mt-2 ml-2 text-sm text-slate-800/80 font-medium">Free shipping on all orders!</p>
                                             </div>
                                         }

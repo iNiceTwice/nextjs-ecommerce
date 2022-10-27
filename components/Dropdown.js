@@ -1,6 +1,5 @@
-import { Children, useState } from "react"
-import { PlusCircle, MinusCircle } from "react-feather"
-
+import { useState } from "react"
+import { CiCirclePlus, CiCircleMinus } from "react-icons/ci"
 const Dropdown = ({ children, title }) => {
     const [ open, setOpen ] = useState(false)
     
@@ -19,8 +18,8 @@ const Dropdown = ({ children, title }) => {
                 <div className="flex items-center">
                     {
                         open
-                        ? <MinusCircle className="ml-4 text-slate-800/60 group-hover:text-orange-600/80 transition-colors" strokeWidth={0.7} size={25}/> 
-                        : <PlusCircle className="ml-4 text-slate-800/60 group-hover:text-orange-600/80 transition-colors" strokeWidth={0.7} size={25}/>
+                        ? <CiCircleMinus size="30" className="ml-4 text-slate-800/60 group-hover:text-orange-600/80 transition-colors"/> 
+                        : <CiCirclePlus size="30" className="ml-4 text-slate-800/60 group-hover:text-orange-600/80 transition-colors"/>
                     }
                 </div>
             </div>

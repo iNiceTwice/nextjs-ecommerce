@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Provider store={ store }>
         <Head>
-          <link rel="stylesheet" href={fa.cdn} integrity={fa.integrity} crossorigin="anonymous" referrerpolicy="no-referrer"/>
+          <title>Populum</title>
         </Head>
         <Nav/>  
         <Component {...pageProps} />

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cartToggle } from '../redux/actions/cartActions';
 import { userActions } from '../redux/actions/userActions';
 import useMediaQuery from "../utils/useMediaQuery"
-import { Menu, ShoppingCart, Bell } from "react-feather"
+import { IoCart, IoNotifications, IoMenu } from "react-icons/io5"
 import Link from "next/link"
 import axios from "axios"
 import Cart from "./Cart"
@@ -78,7 +78,7 @@ const Nav = () => {
             <div className={`flex fixed top-0 w-full py-8 px-3 lg:px-20 justify-between bg-white z-50`}>
                 <div className="flex gap-x-5">
                     <button onClick={handleMenu} className="md:hidden flex" >
-                        <Menu/>
+                        <IoMenu size="25"/>
                     </button>
                     <Logo/>
                     <div className="md:flex ml-5 gap-x-5 hidden ">
@@ -105,10 +105,10 @@ const Nav = () => {
                         </Link>
                     }
                     <button>
-                        <Bell className="text-xl hover:text-orange-500 transition-colors fa-solid fa-bell"/>
+                        <IoNotifications size="24" className="text-xl hover:text-orange-500 transition-colors"/>
                     </button>
-                    <button onClick={handleCart}>
-                        <ShoppingCart className="text-xl hover:text-orange-500 transition-colors fa-solid fa-cart-shopping"/>
+                    <button className='flex' onClick={handleCart}>
+                        <IoCart size="25" className="text-xl hover:text-orange-500 transition-colors"/>
                         <span className='ml-2 text-lg'>0</span>
                     </button>
                 </div>
