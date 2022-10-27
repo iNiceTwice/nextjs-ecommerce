@@ -80,7 +80,7 @@ const Shop = ({ products }) => {
                         </div>
                     </>
                 }
-                <div className={`grid grid-cols-1 lg:grid-cols-3 gap-6 w-full md:w-4/6 lg:w-2/3 mr-0 md:mr-10 lg:mr-[13vw] px-5 lg:px-0 mb-16 mt-${current === "all" ? "60" : "16"}`}>
+                <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-16 w-full md:w-4/6 lg:w-2/3 mr-0 md:mr-10 lg:mr-[13vw] px-5 lg:px-0 mb-16 mt-${current === "all" ? "60" : "16"}`}>
                     {
                         current === "all"
                         ? products?.map((product)=>(

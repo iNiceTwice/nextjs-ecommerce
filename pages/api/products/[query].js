@@ -11,6 +11,9 @@ const handler = async (req,res) => {
     connectDB()
 
      switch (req.method) {
+        case "GET":
+            getProduct(req,res)
+        break
         case "POST":
             postProduct(req,res)
         break
@@ -26,6 +29,10 @@ const handler = async (req,res) => {
  
 }
 
+const getProduct = async (req,res) => {
+    const product = await PRODUCTS_DB.find({url:req.query.query})
+    res.status(200).send(product)
+}
 const postProduct = async (req,res) => {
     try {
         const newProduct = new PRODUCTS_DB(req.body)

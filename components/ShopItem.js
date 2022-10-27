@@ -13,10 +13,10 @@ const ShopItem = ({ id, title, rating, price, img, totalRatings, url, commentary
                 onMouseOver={()=>setShowCommentary(true)} 
                 onMouseLeave={()=>setShowCommentary(false)}
             >
-                <div className="relative h-96 md:h-52 lg:h-96 w-full min-w-2xl">
+                <div className="relative h-96 md:h-[20rem] lg:h-[28rem] w-full min-w-2xl">
                     <Image src={ img } layout="fill" objectFit="cover" objectPosition="center" loading="lazy"/>
                 </div>
-                <Link href={ url }>
+                <Link href={ `/products/${url}` }>
                     <button className="transition-colors w-full py-5 bg-orange-600/80 hover:bg-slate-800 text-white font-semibold">SHOP NOW</button>
                 </Link>
                 <div className="h-20">
