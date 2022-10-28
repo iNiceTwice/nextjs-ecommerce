@@ -7,7 +7,7 @@ import Stars from "../../components/RatingStars";
 const Product = ({ product }) => {
 
     const [ pucharse, setPucharse ] = useState("subscription")
-    const [ concentration, setConsentration ] = useState(product[0].price[0].size)
+    const [ concentration, setConcentration ] = useState(0)
     const [ imgCount, setImgCount ] = useState(0)
 
     const handleClick = () => {
@@ -60,10 +60,10 @@ const Product = ({ product }) => {
                                                 </div>
                                             </div>
                                             <div className="flex flex-col lg:flex-row">
-                                                <p className="-mt-2 line-through font-medium text-slate-800/30">${ product[0].price[0].price }</p>
+                                                <p className="-mt-2 line-through font-medium text-slate-800/30">${ product[0].price[concentration].price }</p>
                                                 {
                                                     product[0].price[0].price > 10 &&
-                                                    <p className="text-xl font-medium text-slate-800">${ (product[0].price[0].price - product[0].price[0].price*0.20).toFixed(2).toLocaleString() }</p>
+                                                    <p className="text-xl font-medium text-slate-800">${ (product[0].price[concentration].price - product[0].price[concentration].price*0.20).toFixed(2).toLocaleString() }</p>
                                                 }
                                             </div>
                                         </button>
@@ -77,13 +77,13 @@ const Product = ({ product }) => {
                                                     <p className="font-medium text-lg text-slate-800">Get Once</p>
                                                 </div>
                                             </div>
-                                            <p className="text-xl font-medium text-slate-800">${ product[0].price[0].price.toFixed(2).toLocaleString() }</p>
+                                            <p className="text-xl font-medium text-slate-800">${ product[0].price[concentration].price.toFixed(2).toLocaleString() }</p>
                                         </button>
                                         {   
                                             product[0].price[0].price < 10 &&
                                             <div className="flex items-center bg-slate-100 justify-between p-5">
                                                 <p className="font-medium">Just Pay For Shipping</p>
-                                                <p className="text-xl font-medium text-slate-800">${product[0].price[0].price.toFixed(2).toLocaleString()}</p>
+                                                <p className="text-xl font-medium text-slate-800">${product[0].price[concentration].price.toFixed(2).toLocaleString()}</p>
                                             </div>
                                         }
                                         {
@@ -93,8 +93,8 @@ const Product = ({ product }) => {
                                                     product[0].price.map((item,index)=>(
                                                         <button 
                                                             key={item.size}
-                                                            onClick={()=> setConsentration(item.size)} 
-                                                            className={`py-5 font-medium text-slate-800 border rounded ${concentration === item.size && "border-orange-600/80 bg-orange-500/20"}`}
+                                                            onClick={()=> setConcentration(index)} 
+                                                            className={`py-5 font-medium text-slate-800 border rounded ${concentration === index && "border-orange-600/80 bg-orange-500/20"}`}
                                                         >{item.size}</button>
                                                     ))
                                                 }

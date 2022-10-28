@@ -18,9 +18,9 @@ const ResponsiveMenu = () => {
                         <Link href='/shop/all'>
                             <a>Shop</a>
                         </Link>
-                        <a href='/'>
-                            Subscribe
-                        </a>
+                        <Link href='/pages/subscription'>
+                            <a>Subscribe</a>
+                        </Link>
                         <a href='/'>
                             30 Day Trial
                         </a>
@@ -85,7 +85,9 @@ const Nav = () => {
                         <Link href="/shop/all">
                             <a  className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">Shop</a>
                         </Link>
-                        <a href="/" className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">Subscribe</a>
+                        <Link href="/pages/subscription">
+                            <a  className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">Subscribe</a>
+                        </Link>
                         <a href="/" className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">30 Day Trial</a>
                         <a href="/" className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">Reviews</a>
                     </div>
