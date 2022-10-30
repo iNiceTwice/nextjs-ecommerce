@@ -13,6 +13,7 @@ const Product = ({ product }) => {
     const [ purchase, setPurchase ] = useState("subscription")
     const [ imgCount, setImgCount ] = useState(0)
     const cartItems = useSelector(state => state.cart.cartItems)
+    const itemIndex = 0
 
     const handleClick = () => {
         if(imgCount < product[0].img.length -1){
@@ -22,26 +23,31 @@ const Product = ({ product }) => {
         }
     }
 
-    console.log("cartItems", cartItems)
-
     const handleAddToCart = ()  => {
         let cartItem = {
             item: {
                 title:product[0].title,
-                price: purchase === "subscription" ? product[0].price[priceIndex].price - product[0].price[priceIndex].price *0.20 : product[0].price[priceIndex].price, 
+                img:product[0].img[0],
+                price: purchase === "subscription" && product[0].price[priceIndex].price > 10 ? product[0].price[priceIndex].price - product[0].price[priceIndex].price *0.20 : product[0].price[priceIndex].price, 
                 size:product[0].price[priceIndex].size,
                 purchase 
             },
             quantity:1
         }
 
-        let itemExist = cartItems.find(item => JSON.stringify(item.item) === JSON.stringify(cartItem.item))
+        let itemExist = cartItems.find((item, index) => {
+            if(JSON.stringify(item.item) === JSON.stringify(cartItem.item)){
+                itemIndex = index
+                return item
+            }
+            
+        })
       
         if(cartItems.length !== 0){
             if(!itemExist){
                 dispatch(addProduct(cartItem))
             } else {
-                dispatch(incrementProduct(itemExist))
+                dispatch(incrementProduct(itemIndex))
             }
         } else {
             dispatch(addProduct(cartItem))
@@ -116,20 +122,22 @@ const Product = ({ product }) => {
                                                 <p className="text-xl font-medium text-slate-800">${ product[0].price[priceIndex].price.toFixed(2).toLocaleString() }</p>
                                             </div>
                                         }
-                                        <p className="mt-6 text-sm text-slate-800/90 font-medium">Concentration</p>
                                         {
-                                            product[0].price[0].size ?        
-                                            <div className={`flex w-1/${product[0].price.length} gap-x-2`}>
-                                                {
-                                                    product[0].price.map((item,index)=>(
-                                                        <button 
-                                                            key={item.size}
-                                                            onClick={()=> setPriceIndex(index)} 
-                                                            className={`py-5 w-full font-medium text-slate-800 border rounded ${ priceIndex === index && "border-orange-600/80 bg-orange-500/20" }`}
-                                                        >{ item.size }</button>
-                                                    ))
-                                                }
-                                            </div> : null
+                                            product[0].price[0].size ?
+                                            <>
+                                                <p className="mt-6 text-sm text-slate-800/90 font-medium">Concentration</p>
+                                                <div className={`flex w-1/${product[0].price.length} gap-x-2`}>
+                                                    {
+                                                        product[0].price.map((item,index)=>(
+                                                            <button 
+                                                                key={item.size}
+                                                                onClick={()=> setPriceIndex(index)} 
+                                                                className={`py-5 w-full font-medium text-slate-800 border rounded ${ priceIndex === index && "border-orange-600/80 bg-orange-500/20" }`}
+                                                            >{ item.size }</button>
+                                                        ))
+                                                    }
+                                                </div> 
+                                            </> : null      
                                         }
                                         <button onClick={handleAddToCart} className="mt-4 py-4 w-full font-medium transition-colors text-white bg-orange-600/80 hover:bg-slate-800">ADD TO CART</button>
                                         {   

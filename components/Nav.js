@@ -7,6 +7,7 @@ import Link from "next/link"
 import Image from "next/image"
 import axios from "axios"
 import Logo from "./Logo"
+import CartItem from './CartItem';
 
 const ResponsiveMenu = () => {
     return (
@@ -43,6 +44,15 @@ const Nav = () => {
     const matches = useMediaQuery('(min-width: 768px)')
     const dispatch = useDispatch()
     const cartItems = useSelector(state => state.cart.cartItems)
+    const totalItems = 0
+    const totalPrice = 0
+
+    cartItems.map((item)=>{
+        totalItems = item.quantity + totalItems
+        totalPrice = totalPrice + item.quantity * item.item.price
+    })
+
+    console.log(cartItems)
     
     useEffect(()=>{
         
@@ -72,7 +82,6 @@ const Nav = () => {
             setOpenCart(false)
         }
     }
-    //console.log(cartItems)
 
     return ( 
         <>
@@ -160,7 +169,7 @@ const Nav = () => {
                                     <div className='h-full flex flex-col-reverse'>
                                         <button 
                                             onClick={ handleCart } 
-                                            className=' py-4 w-full text-white font-medium hover:bg-slate-700 bg-slate-800'>
+                                            className=' py-4 w-full text-white font-medium hover:bg-slate-700 bg-slate-800 transition-colors'>
                                                 CONTINUE SHOPPING
                                         </button>
                                     </div>
@@ -172,20 +181,35 @@ const Nav = () => {
                     <>
                         <div onClick={ handleCart } className='bg-gray-700 bg-opacity-20 fixed z-50 top-0 h-screen w-screen overflow-auto'>
                             <div onClick={ e => e.stopPropagation() } className="bg-white h-full w-full md:w-3/4 lg:w-1/2 fixed overflow-auto right-0 z-30">
-                                <div className='p-6 h-full w-full flex flex-col'>
-                                    <div className='py-8 border-b flex justify-between'>
+                                <div className='pt-2 pb-4 px-10 h-full w-full flex flex-col'>
+                                    <div className='py-8 border-b mb-6 flex justify-between'>
                                         <div className='flex items-baseline'>
                                             <h2 className='text-slate-800 text-2xl lg:text-4xl font-serif'>Your Cart</h2>
-                                            <p className='text-slate-800/80 ml-8 '>{ cartItems.length } Items</p>
+                                            <p className='text-slate-800/80 ml-8 '>{ totalItems } Items</p>
                                         </div>
-                                    <button onClick={ handleCart } className=''><IoClose className='text-slate-800' size={25}/></button>
+                                        <button onClick={ handleCart } className=''><IoClose className='text-slate-800' size={25}/></button>
                                     </div>
-                                    
+                                    <div className='flex flex-col'>
+                                        {
+                                            cartItems.map( (item,index) => (
+                                                <CartItem 
+                                                    key={ item.item.title + index } 
+                                                    quantity={ item.quantity } 
+                                                    index={ index }
+                                                    product={ item.item }
+                                                />
+                                            ))
+                                        }
+                                    </div>
                                     <div className='h-full flex flex-col-reverse'>
                                         <button 
                                             onClick={ handleCart } 
-                                            className=' py-4 w-full text-white font-medium hover:bg-slate-700 bg-slate-800'>
+                                            className=' py-4 mt-2 w-full text-slate-800 hover:text-white font-medium border border-slate-800 hover:bg-slate-800 transition-colors'>
                                                 CONTINUE SHOPPING
+                                        </button>
+                                        <button 
+                                            className=' py-4 w-full text-white font-medium bg-orange-600/80 hover:bg-slate-800 transition-colors'>
+                                                CHECKOUT - ${ totalPrice.toFixed(2) }
                                         </button>
                                     </div>
                                 </div>
