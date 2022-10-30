@@ -9,22 +9,22 @@ import axios from "axios"
 import Logo from "./Logo"
 import CartItem from './CartItem';
 
-const ResponsiveMenu = () => {
+const ResponsiveMenu = ({ open }) => {
     return (
         <>
             <div className="bg-zinc-100 w-screen h-screen fixed top-12 z-30">
                <div className='mt-20 pl-8'>
                     <ul className='flex flex-col gap-y-4 font-medium text-lg opacity-80'>
                         <Link href='/shop/all'>
-                            <a>Shop</a>
+                            <a onClick={ open }>Shop</a>
                         </Link>
                         <Link href='/pages/subscription'>
-                            <a>Subscribe</a>
+                            <a onClick={ open }>Subscribe</a>
                         </Link>
-                        <a href='/'>
-                            30 Day Trial
-                        </a>
-                        <a href='/'>
+                        <Link href='/pages/riskfreetrial'>
+                            <a onClick={ open }>30 Day Trial</a>
+                        </Link>
+                        <a onClick={ open } href='/'>
                             Reviews
                         </a>
                     </ul>
@@ -93,39 +93,41 @@ const Nav = () => {
                     <Logo/>
                     <div className="md:flex ml-5 gap-x-5 hidden ">
                         <Link href="/shop/all">
-                            <a  className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">Shop</a>
+                            <a  className="text-black hover:text-orange-600 text-opacity-60 text-lg transition-colors">Shop</a>
                         </Link>
                         <Link href="/pages/subscription">
-                            <a  className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">Subscribe</a>
+                            <a  className="text-black hover:text-orange-600 text-opacity-60 text-lg transition-colors">Subscribe</a>
                         </Link>
-                        <a href="/" className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">30 Day Trial</a>
-                        <a href="/" className="text-black hover:text-orange-500 text-opacity-60 text-lg transition-colors">Reviews</a>
+                        <Link href="/pages/riskfreetrial">
+                             <a className="text-black hover:text-orange-600 text-opacity-60 text-lg transition-colors">30 Day Trial</a>
+                        </Link>
+                        <a href="/" className="text-black hover:text-orange-600 text-opacity-60 text-lg transition-colors">Reviews</a>
                     </div>
                 </div>
                 <div className="flex gap-x-5">
                     <div className="lg:flex gap-x-2 hidden">
                         <p className="text-slate-900 text-opacity-60 text-lg italic">Call us:</p>
-                        <span className="text-lg mr-2 text-orange-500">555-7777</span>
+                        <span className="text-lg mr-2 text-orange-600">555-7777</span>
                     </div>
                     {
                         isLogged
                         ? <Link href="/account/profile">
-                            <button className="text-slate-900 text-opacity-60 hover:text-orange-500 transition-colors text-lg">Account</button>
+                            <button className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Account</button>
                         </Link>
                         : <Link href="/account/login">
-                            <button className="text-slate-900 text-opacity-60 hover:text-orange-500 transition-colors text-lg">Login</button>
+                            <button className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Login</button>
                         </Link>
                     }
                     <button>
-                        <IoNotifications size="24" className="text-xl hover:text-orange-500 transition-colors"/>
+                        <IoNotifications size="24" className="text-xl hover:text-orange-600 transition-colors"/>
                     </button>
                     <button className='flex' onClick={ handleCart }>
-                        <IoCart size="25" className="text-xl hover:text-orange-500 transition-colors"/>
+                        <IoCart size="25" className="text-xl hover:text-orange-600 transition-colors"/>
                         <span className='ml-2 text-lg'>{ cartItems.length }</span>
                     </button>
                 </div>
             </div>
-            { ( showMenu && !matches ) && <ResponsiveMenu/> }
+            { ( showMenu && !matches ) && <ResponsiveMenu open={ handleMenu }/> }
             {
             openCart && 
                 <>

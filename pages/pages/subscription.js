@@ -31,7 +31,7 @@ const Subscription = ({ products }) => {
                                     <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Leaf_rgb_orangex2_e8a555ee-8a3c-43e5-a9d0-975daf2f11e8_small.png?v=1613584118" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                     </spam>
-                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-lg">20% off all orders</p>
+                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">20% off all orders</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">
                                    We'll reward your commitment to wellness with a 20% discount on all orders. 
@@ -42,7 +42,7 @@ const Subscription = ({ products }) => {
                                     <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Cycle_rgb_orangex2_small.png?v=1613569550" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                     </spam>
-                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-lg">Cancel or skip anytime</p>
+                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Cancel or skip anytime</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">
                                    We make it easy to receive Populum on your schedule. You can cancel anytime.  
@@ -53,7 +53,7 @@ const Subscription = ({ products }) => {
                                     <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Thirty_rgb_orangex2_9b767b53-6442-4462-b54f-ea511c5fd010_small.png?v=1613583968" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                     </spam>
-                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-lg">Risk Free Trial</p>
+                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Risk Free Trial</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">        
                                     First time trying Populum or CBD? Our subscription comes with a 30-day risk-free trial & 100% guarantee. 
@@ -64,7 +64,7 @@ const Subscription = ({ products }) => {
                                     <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Wallet_rgb_orangex2_d2a8cc6b-955a-45cd-bb5a-d47fba3ede49_small.png?v=1613578195" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                     </spam>
-                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-lg">Free US shipping</p>
+                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Free US shipping</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">
                                    We ship every order to you free, at the cadence you want.  
@@ -75,7 +75,7 @@ const Subscription = ({ products }) => {
                                     <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Leaf_rgb_orangex2_e8a555ee-8a3c-43e5-a9d0-975daf2f11e8_small.png?v=1613584118" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                     </spam>
-                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-lg">Quality guaranteed</p>
+                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Quality guaranteed</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">
                                    We triple test for quality & purity, and use a proprietary formulation to deliver the most effective CBD products on the market.   
@@ -86,7 +86,7 @@ const Subscription = ({ products }) => {
                                     <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Parcel_rgb_orangex2_991c179c-21ed-4288-a0bd-66eca90330e9_small.png?v=1613578195" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                     </spam>
-                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-lg">Exclusive rewards</p>
+                                    <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Exclusive rewards</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">   
                                     Your happiness is our priority which is why we'll send free products, gifts, and rewards to say thank you. 
@@ -96,7 +96,7 @@ const Subscription = ({ products }) => {
                     </div>
                 </section>
                 <section className="mb-32">
-                    <Benefits title="Who is it best for?" benefits={benefitsItems} />
+                    <Benefits title="Who is it best for?" benefits={ benefitsItems } />
                 </section>
                 <section className="mb-32 lg:px-16 xl:px-40">
                     <hr/>
