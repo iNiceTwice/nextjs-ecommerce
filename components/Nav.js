@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartToggle } from '../redux/actions/cartActions';
 import { userActions } from '../redux/actions/userActions';
 import useMediaQuery from "../utils/useMediaQuery"
-import { IoCart, IoNotifications, IoMenu } from "react-icons/io5"
+import { IoCart, IoNotifications, IoMenu, IoClose } from "react-icons/io5"
 import Link from "next/link"
+import Image from "next/image"
 import axios from "axios"
-import Cart from "./Cart"
 import Logo from "./Logo"
 
 const ResponsiveMenu = () => {
@@ -39,25 +38,26 @@ const Nav = () => {
     
     const [ showMenu, setShowMenu ] = useState(false)
     const [ isLogged, setIsLogged ] = useState(false)
-
-    const isCartOpen = useSelector(state => state.cart.isOpen)
+    const [openCart, setOpenCart ] = useState(false)
+    
     const matches = useMediaQuery('(min-width: 768px)')
     const dispatch = useDispatch()
+    const cartItems = useSelector(state => state.cart.cartItems)
     
     useEffect(()=>{
         
         if(!isLogged){
             axios.get("http://localhost:3000/api/auth")
-                .then(data => {
-                    setIsLogged(data.data.auth)
-                    dispatch(userActions(data.data.payload))
-                })
-                .catch(err => console.log(err))
+            .then(data => {
+                setIsLogged(data.data.auth)
+                dispatch(userActions(data.data.payload))
+            })
+            .catch(err => console.log(err))
         }
-    
+        
     },[])
-
-
+    
+    
     const handleMenu = () => {
         if(!showMenu){
             setShowMenu(true)
@@ -66,18 +66,19 @@ const Nav = () => {
         }
     }
     const handleCart = () => {
-        if(!isCartOpen){
-            dispatch(cartToggle(true))
+        if(!openCart){
+            setOpenCart(true)
         }else{
-            dispatch(cartToggle(false))
+            setOpenCart(false)
         }
     }
+    //console.log(cartItems)
 
     return ( 
         <>
             <div className={`flex fixed top-0 w-full py-8 px-3 lg:px-20 justify-between bg-white z-50`}>
                 <div className="flex gap-x-5">
-                    <button onClick={handleMenu} className="md:hidden flex" >
+                    <button onClick={ handleMenu } className="md:hidden flex" >
                         <IoMenu size="25"/>
                     </button>
                     <Logo/>
@@ -109,14 +110,91 @@ const Nav = () => {
                     <button>
                         <IoNotifications size="24" className="text-xl hover:text-orange-500 transition-colors"/>
                     </button>
-                    <button className='flex' onClick={handleCart}>
+                    <button className='flex' onClick={ handleCart }>
                         <IoCart size="25" className="text-xl hover:text-orange-500 transition-colors"/>
-                        <span className='ml-2 text-lg'>0</span>
+                        <span className='ml-2 text-lg'>{ cartItems.length }</span>
                     </button>
                 </div>
             </div>
             { ( showMenu && !matches ) && <ResponsiveMenu/> }
-            { isCartOpen && <Cart/> }
+            {
+            openCart && 
+                <>
+                    {
+                    cartItems.length === 0 ?     
+                    <>
+                        <div onClick={ handleCart } className='bg-gray-700 bg-opacity-20 fixed z-50 top-0 h-screen w-screen overflow-auto'>
+                            <div onClick={ e => e.stopPropagation() } className="bg-white h-full w-full md:w-3/4 lg:w-1/2 fixed overflow-auto right-0 z-30">
+                                <div className='p-6 h-full w-full flex flex-col'>
+                                    <button onClick={ handleCart } className='absolute top-10 right-10 lg:right-20'><IoClose className='text-slate-800' size={25}/></button>
+                                    <div className='text-center mt-16 lg:mt-28'>
+                                        <h2 className='text-slate-800 text-2xl lg:text-4xl font-serif mb-2 lg:mb-4'>Your Cart is Empty!</h2>
+                                        <p className='text-slate-800/60 lg:text-lg font-medium'>There's no comparison in quality, strength, and care.</p>
+                                    </div>
+                                    <div className='text-center p-10 grid grid-cols-1 lg:grid-cols-3 lg:mt-16'>
+                                        <div>
+                                            <Image 
+                                                src="https://cdn.shopify.com/s/files/1/1737/2201/files/Thirty_rgb_orangex2_9b767b53-6442-4462-b54f-ea511c5fd010_500x500.png"
+                                                height={90} width={90}     
+                                            />
+                                            <p className='text-black/80 font-serif text-2xl'>30 Days Risk Free</p>
+                                            <p className='text-black/70 font-medium mt-3 text-lg'>Industry leading 100% quality guarantee.</p>
+                                        </div>
+                                        <div>
+                                            <Image 
+                                                src="https://cdn.shopify.com/s/files/1/1737/2201/files/Hexagon_rgb_orangex2_500x500.png?v=1613582144"
+                                                height={90} width={90}     
+                                            />
+                                            <p className='text-black/80 font-serif text-2xl'>Shop Safely</p>
+                                            <p className='text-black/70 font-medium mt-3 text-lg'>We're PCI compliant & fully encrypted.</p>
+                                        </div>
+                                        <div>
+                                            <Image 
+                                                src="https://cdn.shopify.com/s/files/1/1737/2201/files/Zen_orange_2x_964a9da3-e182-42da-9093-d9a57ec6d138_500x500.png?v=1613583730"
+                                                height={90} width={90}     
+                                            />
+                                            <p className='text-black/80 font-serif text-2xl'>Personalized Support</p>
+                                            <p className='text-black/70 font-medium mt-3 text-lg'>We're committed to your satisfaction.</p>
+                                        </div>
+                                    </div>
+                                    <div className='h-full flex flex-col-reverse'>
+                                        <button 
+                                            onClick={ handleCart } 
+                                            className=' py-4 w-full text-white font-medium hover:bg-slate-700 bg-slate-800'>
+                                                CONTINUE SHOPPING
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                    :
+                    <>
+                        <div onClick={ handleCart } className='bg-gray-700 bg-opacity-20 fixed z-50 top-0 h-screen w-screen overflow-auto'>
+                            <div onClick={ e => e.stopPropagation() } className="bg-white h-full w-full md:w-3/4 lg:w-1/2 fixed overflow-auto right-0 z-30">
+                                <div className='p-6 h-full w-full flex flex-col'>
+                                    <div className='py-8 border-b flex justify-between'>
+                                        <div className='flex items-baseline'>
+                                            <h2 className='text-slate-800 text-2xl lg:text-4xl font-serif'>Your Cart</h2>
+                                            <p className='text-slate-800/80 ml-8 '>{ cartItems.length } Items</p>
+                                        </div>
+                                    <button onClick={ handleCart } className=''><IoClose className='text-slate-800' size={25}/></button>
+                                    </div>
+                                    
+                                    <div className='h-full flex flex-col-reverse'>
+                                        <button 
+                                            onClick={ handleCart } 
+                                            className=' py-4 w-full text-white font-medium hover:bg-slate-700 bg-slate-800'>
+                                                CONTINUE SHOPPING
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                    }
+                </>
+            }
         </>
      );
 }

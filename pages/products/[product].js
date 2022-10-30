@@ -2,13 +2,17 @@ import axios from "axios"
 import Image from "next/image";
 import { useState } from "react";
 import { IoMdGift } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct, incrementProduct } from "../../redux/actions/cartActions";
 import Stars from "../../components/RatingStars";
 
 const Product = ({ product }) => {
 
-    const [ pucharse, setPucharse ] = useState("subscription")
-    const [ concentration, setConcentration ] = useState(0)
+    const dispatch = useDispatch()
+    const [ priceIndex, setPriceIndex ] = useState(0)
+    const [ purchase, setPurchase ] = useState("subscription")
     const [ imgCount, setImgCount ] = useState(0)
+    const cartItems = useSelector(state => state.cart.cartItems)
 
     const handleClick = () => {
         if(imgCount < product[0].img.length -1){
@@ -18,13 +22,39 @@ const Product = ({ product }) => {
         }
     }
 
+    console.log("cartItems", cartItems)
+
+    const handleAddToCart = ()  => {
+        let cartItem = {
+            item: {
+                title:product[0].title,
+                price: purchase === "subscription" ? product[0].price[priceIndex].price - product[0].price[priceIndex].price *0.20 : product[0].price[priceIndex].price, 
+                size:product[0].price[priceIndex].size,
+                purchase 
+            },
+            quantity:1
+        }
+
+        let itemExist = cartItems.find(item => JSON.stringify(item.item) === JSON.stringify(cartItem.item))
+      
+        if(cartItems.length !== 0){
+            if(!itemExist){
+                dispatch(addProduct(cartItem))
+            } else {
+                dispatch(incrementProduct(itemExist))
+            }
+        } else {
+            dispatch(addProduct(cartItem))
+        }
+    }
+
     return ( 
         <>
             <div className="flex w-full h-[80rem] mt-20 lg:mt-0 lg:py-32">
                 <div className="flex flex-col lg:flex-row w-full h-full">
-                    <div id="IMG" onClick={handleClick} className="relative group w-full lg:w-1/2 h-full cursor-pointer right-0 lg:-right-10 xl:-right-16">
+                    <div id="IMG" onClick={ handleClick } className="relative group w-full lg:w-1/2 h-full cursor-pointer right-0 lg:-right-10 xl:-right-16">
                         <div className="relative z-30 w-full h-full">
-                            <Image src={ product[0].img[imgCount] } loading="lazy" layout="fill" objectFit="cover" objectPosition="center"/>
+                            <Image src={ product[0].img[imgCount] } priority layout="fill" objectFit="cover" objectPosition="center"/>
                         </div>
                         <div className="absolute hidden lg:block bg-red-400/60 w-full h-full top-0 group-hover:rotate-3 transition-all"></div>
                         <div className="absolute hidden lg:block bg-red-400/50 w-full h-full top-0 group-hover:-rotate-3 transition-all"></div>
@@ -33,13 +63,13 @@ const Product = ({ product }) => {
                         <div className=" z-40 bg-white w-full -mt-12 lg:-mt-0 lg:h-[83%]">
                             <div className="w-full py-2 px-4 font-medium text-white text-center bg-slate-800">Try for 30 days & love it or send it back — no questions asked.</div>
                             <div className="flex flex-col py-12 px-[5%] lg:px-[10%] w-full h-full">
-                                <Stars filled={product[0].rating} />
+                                <Stars filled={ product[0].rating } />
                                 <h2 className="mt-4 text-3xl lg:text-4xl font-serif text-slate-800/90">{product[0].title}</h2>
                                 <p className="mt-6 text-slate-800/90 font-medium">{product[0].description}</p>
                                 <ul className="mt-6 text-slate-800 flex flex-col gap-1">
                                     {
                                         product[0].bonuses.map((bonus)=>(
-                                            <li key={bonus}>- {bonus}</li>
+                                            <li key={ bonus }>- { bonus }</li>
                                         ))
                                     }
                                 </ul>
@@ -47,11 +77,11 @@ const Product = ({ product }) => {
                                     <p className="mt-6 text-sm text-slate-800/90 font-medium">Purcharse</p>
                                     <div className="flex flex-col mt-2 gap-y-2">
                                         <button 
-                                            onClick={ () => setPucharse("subscription") } 
-                                            className={`flex justify-between items-center p-5 rounded border group ${pucharse === "subscription" && "border-orange-600/80"}`}
+                                            onClick={ () => setPurchase("subscription") } 
+                                            className={`flex justify-between items-center p-5 rounded border group ${ purchase === "subscription" && "border-orange-600/80" }`}
                                         >
                                             <div className="flex justify-start items-center">
-                                                <div className={`w-5 h-5 mr-4 border-2 rounded-full ${pucharse === "subscription" ? "border-orange-600/80" : "border-gray-400"}`}></div>
+                                                <div className={`w-5 h-5 mr-4 border-2 rounded-full ${ purchase === "subscription" ? "border-orange-600/80" : "border-gray-400" }`}></div>
                                                 <div className="text-start">
                                                     <p className="font-medium text-slate-800">Get Monthly & Save 20%</p>
                                                     <p>
@@ -60,47 +90,48 @@ const Product = ({ product }) => {
                                                 </div>
                                             </div>
                                             <div className="flex flex-col lg:flex-row">
-                                                <p className="-mt-2 line-through font-medium text-slate-800/30">${ product[0].price[concentration].price }</p>
+                                                <p className="-mt-2 line-through font-medium text-slate-800/30">${ product[0].price[priceIndex].price }</p>
                                                 {
                                                     product[0].price[0].price > 10 &&
-                                                    <p className="text-xl font-medium text-slate-800">${ (product[0].price[concentration].price - product[0].price[concentration].price*0.20).toFixed(2).toLocaleString() }</p>
+                                                    <p className="text-xl font-medium text-slate-800">${ (product[0].price[priceIndex].price - product[0].price[priceIndex].price*0.20).toFixed(2).toLocaleString() }</p>
                                                 }
                                             </div>
                                         </button>
                                         <button 
-                                            onClick={ () => setPucharse("once") } 
-                                            className={`flex justify-between items-center rounded p-5 border group ${pucharse === "once" && "border-orange-600/80"}`}
+                                            onClick={ () => setPurchase("once") } 
+                                            className={`flex justify-between items-center rounded p-5 border group ${ purchase === "once" && "border-orange-600/80"}` }
                                         >
                                             <div className="flex justify-start items-center">
-                                                <div className={`w-5 h-5 mr-4 border-2 rounded-full ${pucharse === "once" ? "border-orange-600/80" : "border-gray-400"}`}></div>
+                                                <div className={ `w-5 h-5 mr-4 border-2 rounded-full ${ purchase === "once" ? "border-orange-600/80" : "border-gray-400" }` }></div>
                                                 <div className="text-start">
                                                     <p className="font-medium text-lg text-slate-800">Get Once</p>
                                                 </div>
                                             </div>
-                                            <p className="text-xl font-medium text-slate-800">${ product[0].price[concentration].price.toFixed(2).toLocaleString() }</p>
+                                            <p className="text-xl font-medium text-slate-800">${ product[0].price[priceIndex].price.toFixed(2).toLocaleString() }</p>
                                         </button>
                                         {   
                                             product[0].price[0].price < 10 &&
                                             <div className="flex items-center bg-slate-100 justify-between p-5">
                                                 <p className="font-medium">Just Pay For Shipping</p>
-                                                <p className="text-xl font-medium text-slate-800">${product[0].price[concentration].price.toFixed(2).toLocaleString()}</p>
+                                                <p className="text-xl font-medium text-slate-800">${ product[0].price[priceIndex].price.toFixed(2).toLocaleString() }</p>
                                             </div>
                                         }
+                                        <p className="mt-6 text-sm text-slate-800/90 font-medium">Concentration</p>
                                         {
-                                            product[0].price[0].size &&        
-                                            <div className={` grid grid-cols-${product[0].price.length} gap-x-2`}>
+                                            product[0].price[0].size ?        
+                                            <div className={`flex w-1/${product[0].price.length} gap-x-2`}>
                                                 {
                                                     product[0].price.map((item,index)=>(
                                                         <button 
                                                             key={item.size}
-                                                            onClick={()=> setConcentration(index)} 
-                                                            className={`py-5 font-medium text-slate-800 border rounded ${concentration === index && "border-orange-600/80 bg-orange-500/20"}`}
-                                                        >{item.size}</button>
+                                                            onClick={()=> setPriceIndex(index)} 
+                                                            className={`py-5 w-full font-medium text-slate-800 border rounded ${ priceIndex === index && "border-orange-600/80 bg-orange-500/20" }`}
+                                                        >{ item.size }</button>
                                                     ))
                                                 }
-                                            </div>
+                                            </div> : null
                                         }
-                                        <button className="mt-4 py-4 w-full font-medium transition-colors text-white bg-orange-600/80 hover:bg-slate-800">ADD TO CART</button>
+                                        <button onClick={handleAddToCart} className="mt-4 py-4 w-full font-medium transition-colors text-white bg-orange-600/80 hover:bg-slate-800">ADD TO CART</button>
                                         {   
                                             product[0].price[0].price > 10 &&
                                             <div className="flex items-center">

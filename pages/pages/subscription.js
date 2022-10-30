@@ -219,7 +219,7 @@ const Subscription = ({ products }) => {
      );
 }
 
-export const getServerSideProps = async context => {
+export const getStaticProps = async context => {
     const API_HOST = process.env.API_HOST
     const response = await axios.get(`${API_HOST}/api/products/all`)
 
