@@ -126,13 +126,13 @@ const Product = ({ product }) => {
                                             product[0].price[0].size ?
                                             <>
                                                 <p className="mt-6 text-sm text-slate-800/90 font-medium">Concentration</p>
-                                                <div className={`flex w-1/${product[0].price.length} gap-x-2`}>
+                                                <div className={`grid grid-cols-${product[0].price.length} gap-x-2`}>
                                                     {
                                                         product[0].price.map((item,index)=>(
                                                             <button 
                                                                 key={item.size}
                                                                 onClick={()=> setPriceIndex(index)} 
-                                                                className={`py-5 w-full font-medium text-slate-800 border rounded ${ priceIndex === index && "border-orange-600/80 bg-orange-500/20" }`}
+                                                                className={`py-5 font-medium text-slate-800 rounded ${ priceIndex === index ? "border-orange-600/80 bg-orange-500/20 border" : "hover:border hover:border-slate-400 bg-slate-100 " }`}
                                                             >{ item.size }</button>
                                                         ))
                                                     }

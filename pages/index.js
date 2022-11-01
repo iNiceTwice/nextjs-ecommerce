@@ -22,9 +22,17 @@ const Home = () => {
         <Benefits 
           title="Our CBD is award-winning and triple-tested for quality. Try for 30 days & love it or send it back—no questions asked." benefits={ benefitsItems } 
         />
-        <div className="flex gap-4 mt-10 flex-col lg:flex-row w-full md:max-w-xl mx-auto">
-                      <button className="transition-colors w-full py-4 font-medium bg-slate-800 hover:bg-orange-500 text-white/90">SHOP CBD BESTSELLERS</button>
-                      <button className="transition-colors w-full py-4 hover:bg-slate-800 border border-black text-black/90 hover:text-white">READ REVIEWS</button>
+        <div className="flex gap-4 mt-10 flex-col lg:flex-row w-11/12 md:max-w-xl mx-auto">
+          <button 
+            className="transition-colors w-full py-4 font-medium bg-slate-800 hover:bg-orange-500 text-white/90"
+          >
+            SHOP CBD BESTSELLERS
+          </button>
+          <button 
+            className="transition-colors w-full py-4 hover:bg-slate-800 border border-black text-black/90 hover:text-white"
+          >
+            READ  REVIEWS
+          </button>
         </div>
         <Favorites/> 
         <InteractivePref/>

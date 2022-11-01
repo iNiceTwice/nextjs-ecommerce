@@ -89,7 +89,7 @@ const Subscription = ({ products }) => {
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Exclusive rewards</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">   
-                                    Your happiness is our priority which is why we'll send free products, gifts, and rewards to say thank you. 
+                                  Your happiness is our priority which is why we'll send free products, gifts, and rewards to say thank you. 
                                 </p>
                             </li>
                         </ul>

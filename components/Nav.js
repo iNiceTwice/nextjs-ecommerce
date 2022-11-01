@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../redux/actions/userActions';
 import useMediaQuery from "../utils/useMediaQuery"
-import { IoCart, IoNotifications, IoMenu, IoClose } from "react-icons/io5"
+import { IoCart, IoNotifications, IoMenu, IoClose, IoChevronDown } from "react-icons/io5"
 import Link from "next/link"
 import Image from "next/image"
 import axios from "axios"
@@ -39,8 +39,10 @@ const Nav = () => {
     
     const [ showMenu, setShowMenu ] = useState(false)
     const [ isLogged, setIsLogged ] = useState(false)
-    const [openCart, setOpenCart ] = useState(false)
-    
+    const [ openCart, setOpenCart ] = useState(false)
+    const [ openSupMenu, setOpenSupMenu ] = useState(false)
+    const [ imgSuppMenu, setImgSuppMenu ] = useState("https://cdn.shopify.com/s/files/1/1737/2201/files/populum-orange_1400x.webp?v=1662465868")
+
     const matches = useMediaQuery('(min-width: 768px)')
     const dispatch = useDispatch()
     const cartItems = useSelector(state => state.cart.cartItems)
@@ -51,8 +53,6 @@ const Nav = () => {
         totalItems = item.quantity + totalItems
         totalPrice = totalPrice + item.quantity * item.item.price
     })
-
-    console.log(cartItems)
     
     useEffect(()=>{
         
@@ -82,13 +82,20 @@ const Nav = () => {
             setOpenCart(false)
         }
     }
+    const handleSupportMenu = () => {
+        if(!openSupMenu){
+            setOpenSupMenu(true)
+        }else{
+            setOpenSupMenu(false)
+        }
+    }
 
     return ( 
         <>
             <div className={`flex fixed top-0 w-full py-8 px-3 lg:px-20 justify-between bg-white z-50`}>
                 <div className="flex gap-x-5">
                     <button onClick={ handleMenu } className="md:hidden flex" >
-                        <IoMenu size="25"/>
+                        <IoMenu className='text-slate-800/90' size="25"/>
                     </button>
                     <Logo/>
                     <div className="md:flex ml-5 gap-x-5 hidden ">
@@ -101,7 +108,74 @@ const Nav = () => {
                         <Link href="/pages/riskfreetrial">
                              <a className="text-black hover:text-orange-600 text-opacity-60 text-lg transition-colors">30 Day Trial</a>
                         </Link>
-                        <a href="/" className="text-black hover:text-orange-600 text-opacity-60 text-lg transition-colors">Reviews</a>
+                        <div onMouseEnter={ handleSupportMenu }>
+                            <a className="cursor-pointer flex items-center text-black hover:text-orange-600 text-opacity-60 text-lg transition-colors">
+                                Support
+                                <IoChevronDown className='ml-1' size={15}/>
+                            </a>
+                        </div>
+                            { openSupMenu &&
+                                <div
+                                    className='bg-white border absolute ml-28 shadow-md mt-10 flex w-96 rounded-sm h-fit' 
+                                    onMouseLeave={ handleSupportMenu }
+                                >
+                                    <div className='bg-white border-t border-l p-1 -top-[5px] right-[49%] ml-2 absolute z-10 rotate-45'></div>
+                                    <ul className='w-1/2 p-2 text-slate-800/90'>
+                                        <Link href="/pages/why">
+                                            <li  
+                                                onMouseEnter={() => setImgSuppMenu("https://cdn.shopify.com/s/files/1/1737/2201/files/populum-orange_1400x.webp?v=1662465868")}
+                                                className='w-fill p-1 rounded-sm hover:bg-sky-50 font-medium hover:text-orange-600 cursor-pointer'
+                                            >
+                                                Why Populum
+                                            </li>
+                                        </Link>
+                                        <Link href="/pages/faq">
+                                            <li  
+                                                onMouseEnter={() => setImgSuppMenu("https://cdn.shopify.com/s/files/1/1737/2201/files/FAQ_feature_300x.jpg?v=17136995942384895455")}
+                                                className='w-fill p-1 rounded-sm hover:bg-sky-50 font-medium hover:text-orange-600 cursor-pointer'
+                                            >
+                                                FAQ
+                                            </li>
+                                        </Link>
+                                        <Link href="/pages/stokist">
+                                            <li  
+                                                onMouseEnter={() => setImgSuppMenu("https://cdn.shopify.com/s/files/1/1737/2201/files/Stockist_feature_300x.jpg?v=13790474890464213931")}
+                                                className='w-fill p-1 rounded-sm hover:bg-sky-50 font-medium hover:text-orange-600 cursor-pointer'
+                                            >
+                                                    Find Us
+                                            </li>
+                                        </Link>
+                                        <Link href="/pages/contact">
+                                            <li  
+                                                onMouseEnter={() => setImgSuppMenu("https://cdn.shopify.com/s/files/1/1737/2201/files/Contact_us_feature_300x.jpg?v=12766680276813393902")}
+                                                className='w-fill p-1 rounded-sm hover:bg-sky-50 font-medium hover:text-orange-600 cursor-pointer'
+                                            >
+                                                Contact
+                                            </li>
+                                        </Link>
+                                        
+                                            <li 
+                                                onMouseEnter={() => setImgSuppMenu("https://cdn.shopify.com/s/files/1/1737/2201/files/Blog_feature_300x.jpg?v=14733919935349041970")}
+                                                className='w-fill p-1 rounded-sm hover:bg-sky-50 font-medium hover:text-orange-600 cursor-pointer'
+                                            >
+                                                <a target="_blank" href='https://www.facebook.com/groups/PopulumCommunity'>
+                                                    FB Community
+                                                </a>
+                                            </li>
+                                       
+                                    
+                                    </ul>
+                                    <div className='relative w-1/2'>
+                                        <Image 
+                                            src={ imgSuppMenu }
+                                            loading="lazy"
+                                            layout="fill" 
+                                            objectFit='cover' 
+                                            objectPosition="center"
+                                        />
+                                    </div>
+                                </div>
+                            }
                     </div>
                 </div>
                 <div className="flex gap-x-5">
@@ -119,10 +193,10 @@ const Nav = () => {
                         </Link>
                     }
                     <button>
-                        <IoNotifications size="24" className="text-xl hover:text-orange-600 transition-colors"/>
+                        <IoNotifications size="22" className="text-slate-800/90 text-xl hover:text-orange-600 transition-colors"/>
                     </button>
                     <button className='flex' onClick={ handleCart }>
-                        <IoCart size="25" className="text-xl hover:text-orange-600 transition-colors"/>
+                        <IoCart size="25" className="text-xl text-slate-800/90 hover:text-orange-600 transition-colors"/>
                         <span className='ml-2 text-lg'>{ cartItems.length }</span>
                     </button>
                 </div>
@@ -137,7 +211,7 @@ const Nav = () => {
                         <div onClick={ handleCart } className='bg-gray-700 bg-opacity-20 fixed z-50 top-0 h-screen w-screen overflow-auto'>
                             <div onClick={ e => e.stopPropagation() } className="bg-white h-full w-full md:w-3/4 lg:w-1/2 fixed overflow-auto right-0 z-30">
                                 <div className='p-6 h-full w-full flex flex-col'>
-                                    <button onClick={ handleCart } className='absolute top-10 right-10 lg:right-20'><IoClose className='text-slate-800' size={25}/></button>
+                                    <button onClick={ handleCart } className='absolute top-10 right-10 lg:right-20'><IoClose className='text-slate-800/90' size={25}/></button>
                                     <div className='text-center mt-16 lg:mt-28'>
                                         <h2 className='text-slate-800 text-2xl lg:text-4xl font-serif mb-2 lg:mb-4'>Your Cart is Empty!</h2>
                                         <p className='text-slate-800/60 lg:text-lg font-medium'>There's no comparison in quality, strength, and care.</p>
@@ -189,7 +263,7 @@ const Nav = () => {
                                             <h2 className='text-slate-800 text-2xl lg:text-4xl font-serif'>Your Cart</h2>
                                             <p className='text-slate-800/80 ml-8 '>{ totalItems } Items</p>
                                         </div>
-                                        <button onClick={ handleCart } className=''><IoClose className='text-slate-800' size={25}/></button>
+                                        <button onClick={ handleCart } className=''><IoClose className='text-slate-800/90' size={25}/></button>
                                     </div>
                                     <div className='flex flex-col'>
                                         {
