@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router"
+import Link from "next/link"
 import CartItem from "../../components/CartItem";
 import Logo from "../../components/Logo";
 import axios from "axios"
@@ -145,7 +146,7 @@ const Checkout = ({ apiUrl, purchaseStatus }) => {
                         <hr className="my-4"/>
                         {
                             purchaseOnce.length > 0 &&
-                            <div>
+                            <>
                                 <h2 className="text-slate-800/90 font-serif text-xl mb-2">Products</h2>
                                 {
                                     purchaseOnce.map((item, index)=>(
@@ -170,7 +171,7 @@ const Checkout = ({ apiUrl, purchaseStatus }) => {
                                 >
                                     CONTINUE
                                 </button>
-                            </div>
+                            </>
                         }
                         {
                             purchaseSub.length > 0 &&
@@ -200,6 +201,19 @@ const Checkout = ({ apiUrl, purchaseStatus }) => {
                                     CONTINUE
                                 </button>
                             </div>
+                        }
+                        {
+                            !purchaseSub.length  && !purchaseOnce.length &&
+                            <>
+                                <div className="mt-16 w-full h-full flex flex-col items-center">
+                                    <h3 className="text-3xl my-4 font-serif text-slate-800/90">Your Cart is empty!</h3>
+                                    <Link href="/shop/all">
+                                        <button className="py-4 px-10 bg-slate-800 hover:bg-orange-600/80 font-medium text-white">
+                                            SHOP
+                                        </button>
+                                    </Link>
+                                </div>
+                            </>
                         }  
                     </div>
                 </section>
