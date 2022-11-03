@@ -5,15 +5,24 @@ import Image from "next/image";
 import Link from "next/link";
 import ShopItem from "../../components/ShopItem";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 const Subscription = ({ products }) => {
 
     const withVariants = products.filter(product => product.price.length > 1 )
     const withoutVariants = products.filter(product => product.price.length === 1 )
+    const pageTransition = {
+        in:{
+            opacity:1
+        },
+        out:{
+            opacity:0
+        }
+    }
 
     return ( 
         <>
-            <div>
+            <motion.div initial="out" animate="in" exit="out" variants={pageTransition}>
                 <Intro
                     title="Wellness Made Easy"
                     text="All your favorite CBD products, delivered to your door with 20% monthly savings. Customize your delivery or cancel anytime."
@@ -214,7 +223,7 @@ const Subscription = ({ products }) => {
                         </div>
                     </div>
                 </section>
-            </div>
+            </motion.div>
         </>
      );
 }

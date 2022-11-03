@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../redux/actions/userActions';
 import useMediaQuery from "../utils/useMediaQuery"
@@ -8,6 +8,7 @@ import Image from "next/image"
 import axios from "axios"
 import Logo from "./Logo"
 import CartItem from './CartItem';
+import { setCart } from '../redux/actions/cartActions';
 
 const ResponsiveMenu = ({ open }) => {
     return (
@@ -45,7 +46,7 @@ const Nav = () => {
 
     const matches = useMediaQuery('(min-width: 768px)')
     const dispatch = useDispatch()
-    const cartItems = useSelector(state => state.cart.cartItems)
+    const cartItems = useSelector(state => state?.cart?.cartItems)
     const totalItems = 0
     const totalPrice = 0
 
@@ -64,7 +65,9 @@ const Nav = () => {
             })
             .catch(err => console.log(err))
         }
+
         
+
     },[])
     
     
@@ -183,22 +186,26 @@ const Nav = () => {
                         <p className="text-slate-900 text-opacity-60 text-lg italic">Call us:</p>
                         <span className="text-lg mr-2 text-orange-600">555-7777</span>
                     </div>
-                    {
-                        isLogged
-                        ? <Link href="/account/profile">
-                            <button className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Account</button>
-                        </Link>
-                        : <Link href="/account/login">
-                            <button className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Login</button>
-                        </Link>
-                    }
+                    <Suspense>
+                        {
+                            isLogged
+                            ? <Link href="/account/profile">
+                                <button className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Account</button>
+                            </Link>
+                            : <Link href="/account/login">
+                                <button className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Login</button>
+                            </Link>
+                        }
+                    </Suspense>
                     <button>
                         <IoNotifications size="22" className="text-slate-800/90 text-xl hover:text-orange-600 transition-colors"/>
                     </button>
-                    <button className='flex' onClick={ handleCart }>
-                        <IoCart size="25" className="text-xl text-slate-800/90 hover:text-orange-600 transition-colors"/>
-                        <span className='ml-2 text-lg'>{ cartItems.length }</span>
-                    </button>
+                    <Suspense>
+                        <button className='flex' onClick={ handleCart }>
+                            <IoCart size="25" className="text-xl text-slate-800/90 hover:text-orange-600 transition-colors"/>
+                            <span className='ml-2 text-lg'>{ cartItems.length }</span>
+                        </button>
+                    </Suspense>
                 </div>
             </div>
             { ( showMenu && !matches ) && <ResponsiveMenu open={ handleMenu }/> }
@@ -283,10 +290,13 @@ const Nav = () => {
                                             className=' py-4 mt-2 w-full text-slate-800 hover:text-white font-medium border border-slate-800 hover:bg-slate-800 transition-colors'>
                                                 CONTINUE SHOPPING
                                         </button>
-                                        <button 
-                                            className=' py-4 w-full text-white font-medium bg-orange-600/80 hover:bg-slate-800 transition-colors'>
-                                                CHECKOUT - ${ totalPrice.toFixed(2) }
-                                        </button>
+                                        <Link href="/shop/checkout">
+                                            <button 
+                                                onClick={ handleCart }
+                                                className=' py-4 w-full text-white font-medium bg-orange-600/80 hover:bg-slate-800 transition-colors'>
+                                                    CHECKOUT - ${ totalPrice.toFixed(2) }
+                                            </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

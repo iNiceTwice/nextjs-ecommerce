@@ -3,7 +3,7 @@ import { IoTrashOutline } from "react-icons/io5"
 import { useDispatch } from "react-redux"
 import { incrementProduct, decrementProduct, removeProduct } from "../redux/actions/cartActions"
 
-const CartItem = ({ product, quantity, index }) => {
+const CartItem = ({ product, quantity, index, checkout }) => {
 
     const dispatch = useDispatch()
 
@@ -11,7 +11,11 @@ const CartItem = ({ product, quantity, index }) => {
         dispatch(incrementProduct(index))
     }
     const handleDecrement = () => {
-        dispatch(decrementProduct(index))
+        if(quantity <= 1){
+            dispatch(removeProduct(index))
+        }else{
+            dispatch(decrementProduct(index))
+        }
     }
     const handleRemove = () => {
         dispatch(removeProduct(index))
@@ -34,28 +38,38 @@ const CartItem = ({ product, quantity, index }) => {
                                 <p className="font-medium text-slate-800/80">One-time purchase</p>
                             </div> 
                     }
-                <div className="border rounded-sm flex w-fit items-center">
-                    <button 
-                        className="px-3 py-2 w-full hover:bg-slate-50"
-                        onClick={ handleDecrement }
-                    >
-                        -
-                    </button>
-                    <p className="px-2 w-full text-center">{ quantity }</p>
-                    <button 
-                        className="px-3 py-2 w-full hover:bg-slate-50"
-                        onClick={ handleIncrement }
-                    >
-                        +
-                    </button>
+                    {
+                        !checkout &&
+                        <div className="border rounded-sm flex w-fit items-center">
+                            <button 
+                                className="px-3 py-2 w-full hover:bg-slate-50"
+                                onClick={ handleDecrement }
+                            >
+                                -
+                            </button>
+                            <p className="px-2 w-full text-center">{ quantity }</p>
+                            <button 
+                                className="px-3 py-2 w-full hover:bg-slate-50"
+                                onClick={ handleIncrement }
+                            >
+                                +
+                            </button>
+                        </div>
+                    }
                 </div>
-                </div>
-                <div className="h-full flex flex-col items-end justify-between">
-                    <button onClick={ handleRemove }>
-                        <IoTrashOutline className="text-orange-600" size={25}/>
-                    </button>
-                    <p>${ (product.price * quantity).toFixed(2) }</p>
-                </div>
+                {
+                    checkout ?
+                    <div className="h-full flex flex-col items-end justify-between">
+                        <p>${ (product.price * quantity).toFixed(2) }</p>
+                    </div>
+                    :
+                    <div className="h-full flex flex-col items-end justify-between">
+                        <button onClick={ handleRemove }>
+                            <IoTrashOutline className="text-orange-600" size={25}/>
+                        </button>
+                        <p>${ (product.price * quantity).toFixed(2) }</p>
+                    </div>
+                }
             </div>
         }
         </>

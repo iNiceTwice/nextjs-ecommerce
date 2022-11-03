@@ -1,0 +1,69 @@
+import { serialize } from "cookie"
+import axios from "axios"
+
+const MP_TOKEN = process.env.MP_TOKEN
+
+const handler = (req,res) => {
+   
+    switch (req.method) {
+        case "POST":
+            oncePayment(req,res)
+            break;
+        default:
+            break;
+    }
+
+}
+
+const oncePayment = async (req,res) => {
+
+    const { firstName, lastName, id, address, zip, phone, email } = req.body.payerData
+
+    const products = req.body.products.map( product => ({
+                title: `${product.item.title} - ${product.item.size}`,
+                picture_url: product.item.img,
+                quantity: product.quantity,
+                unit_price: product.item.price
+    }))
+
+    const url = "https://api.mercadopago.com/checkout/preferences";
+
+    const body = {
+      payer_email:"test_user_93452689@testuser.com",
+      items: products,
+      shipments: {
+        name: firstName,
+        surname: lastName,
+        email: email,
+        phone: {
+            area_code: 11,
+            number: phone
+        },
+        identification: {
+            type: "DNI",
+            number: id
+        },
+        address: {
+            street_name: address,
+            zip_code: zip
+        }
+      },
+      external_reference:"once",
+      back_urls: {
+        failure: "/failure",
+        pending: "/pending",
+        success: "http://localhost:3000/shop/checkout"
+      }
+    };
+
+    const payment = await axios.post(url, body, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${MP_TOKEN}`
+      }
+    });
+
+    res.send(payment.data.init_point)
+}
+
+export default handler

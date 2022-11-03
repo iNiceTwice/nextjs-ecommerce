@@ -10,7 +10,7 @@ const Table = () => {
                         <tr>
                             <th></th>
                             <th className="relative bg-red-50 ">
-                                <div className="absolute bg-red-50 -top-10 pt-10 w-full">
+                                <div className="absolute  bg-red-50 rounded-t-md -top-5 lg:-top-10 pt-5 lg:pt-10 w-full">
                                 </div>
                                 <div className=" w-full pt-10 flex justify-center">
                                     <div className="w-[1rem] lg:w-full lg:flex lg:justify-center overflow-hidden">
@@ -28,7 +28,6 @@ const Table = () => {
                             <td className="py-8 w-1/3">
                                 <div className="flex items-center">
                                     <h4 className="font-serif text-sm lg:text-xl">Full Spectrum CBD</h4>
-                                    <IoAlertCircleOutline className="ml-2" size={21}/>
                                 </div>
                             </td>
                             <td className="py-8 w-1/3 bg-red-50">
@@ -50,7 +49,6 @@ const Table = () => {
                             <td className="py-8 w-1/3">
                                 <div className="flex items-center">
                                     <h4 className="font-serif text-sm lg:text-xl">Concentration Promise</h4>
-                                    <IoAlertCircleOutline className="ml-2" size={21}/>
                                 </div>
                             </td>
                             <td className="py-8 w-1/3 bg-red-50">
@@ -72,7 +70,6 @@ const Table = () => {
                             <td className="py-8 w-1/3">
                                 <div className="flex items-center">
                                     <h4 className="font-serif text-sm lg:text-xl">3x Lab Tested</h4>
-                                    <IoAlertCircleOutline className="ml-2" size={21}/>
                                 </div>
                             </td>
                             <td className="py-8 w-1/3 bg-red-50">
@@ -94,7 +91,6 @@ const Table = () => {
                             <td className="py-8 w-1/3">
                                 <div className="flex items-center">
                                     <h4 className="font-serif text-sm lg:text-xl">Clean Ingredients</h4>
-                                    <IoAlertCircleOutline className="ml-2" size={21}/>
                                 </div>
                             </td>
                             <td className="py-8 w-1/3 bg-red-50">
@@ -116,7 +112,6 @@ const Table = () => {
                             <td className="py-8 w-1/3">
                                 <div className="flex items-center">
                                     <h4 className="font-serif text-sm lg:text-xl">Return Policy</h4>
-                                    <IoAlertCircleOutline className="ml-2" size={21}/>
                                 </div>
                             </td>
                             <td className="py-8 w-1/3 bg-red-50">
@@ -134,7 +129,6 @@ const Table = () => {
                             <td className="py-8 w-1/3">
                                 <div className="flex items-center">
                                     <h4 className="font-serif text-sm lg:text-xl">Free Shipping</h4>
-                                    <IoAlertCircleOutline className="ml-2" size={21}/>
                                 </div>
                             </td>
                             <td className="py-8 w-1/3 bg-red-50">
@@ -156,7 +150,6 @@ const Table = () => {
                             <td className="py-8 w-1/3">
                                 <div className="flex items-center">
                                     <h4 className="font-serif text-sm lg:text-xl">CBD Concierge</h4>
-                                    <IoAlertCircleOutline className="ml-2" size={21}/>
                                 </div>
                             </td>
                             <td className="py-8 w-1/3 bg-red-50">
@@ -174,7 +167,7 @@ const Table = () => {
                             <td></td>
                             <td className="bg-red-50 relative">
                                 <div className="py-4"></div>
-                                <div className="absolute bg-red-50 -bottom-10 pt-10 w-full"></div>
+                                <div className="absolute bg-red-50 rounded-t-md -bottom-5 lg:-bottom-10 pt-5 lg:pt-10 w-full"></div>
                             </td>
                             <td></td>
                         </tr>

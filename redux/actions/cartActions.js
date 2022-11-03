@@ -1,9 +1,20 @@
 import { 
+    SET_CART,
+    CLEAR_CART,
     ADD_PRODUCT,
     INCREMENT_PRODUCT,
     DECREMENT_PRODUCT,
-    REMOVE_PRODUCT
+    REMOVE_PRODUCT,
+    REMOVE_PRODUCTS,
 } from "../types"
+
+export const clearCart = () => {
+    return (dispatch) => {
+        dispatch({
+            type:CLEAR_CART
+        })
+    }
+}
 
 export const addProduct = (product) => {
    return (dispatch) => {
@@ -37,5 +48,12 @@ export const removeProduct = (index) => {
         })
     }
 }
-
+export const removeProducts = (purchase) => {
+   return (dispatch) => {
+        dispatch({
+            type: REMOVE_PRODUCTS,
+            purchase
+        })
+    }
+}
 

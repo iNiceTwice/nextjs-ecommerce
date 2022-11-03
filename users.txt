@@ -1,0 +1,8 @@
+
+Vendedor1
+user:TESTFJXC2O8Y
+pass:5ulPpGYuf5
+
+Comprador1 
+user: TETE4502154
+pass: EEnNMonX9e
