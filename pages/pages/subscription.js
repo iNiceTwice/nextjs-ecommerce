@@ -230,8 +230,8 @@ const Subscription = ({ products }) => {
 }
 
 export const getStaticProps = async context => {
-    const API_HOST = process.env.API_HOST
-    const response = await axios.get(`${API_HOST}/api/products/all`)
+    const url = process.env.HOST
+    const response = await axios.get(`${url}/api/products/all`)
 
     return {
         props:{

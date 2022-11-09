@@ -1,15 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IoArrowBack, IoFlowerOutline, IoMailOutline } from "react-icons/io5"
-import {VscSmiley} from "react-icons/vsc"
+import { VscSmiley } from "react-icons/vsc"
 import { motion } from "framer-motion";
 import Link from "next/link"
 import Image from "next/image"
+import { toast } from "react-toastify"
 import { RiFacebookFill, RiMessengerFill, RiLink } from "react-icons/ri"
 import { useState } from "react";
-
+import { FacebookShareButton, FacebookMessengerShareButton, EmailShareButton } from "react-share"
 //konigit986@adroh.com
 
-const Profile = () => {
+const Profile = ({ host }) => {
     const dispatch = useDispatch()
     const user = useSelector( state => state.user )
     const [ showModal, setShowModal ] = useState(false)
@@ -21,7 +22,11 @@ const Profile = () => {
         out:{
             opacity:0
         }
-    }  
+    }
+
+    const notify = () => toast.success("Copied to clipboard!",{
+        position: "bottom-right"
+    })    
 
     return ( 
         <>
@@ -41,19 +46,31 @@ const Profile = () => {
                                             Send a $10 coupon to your friends, and when they purchase, you&apos;ll get $10 off too!
                                         </p>
                                         <div className="flex flex-col gap-y-2 w-full mt-4">
-                                            <button className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-orange-600/80 hover:bg-orange-600/90">
-                                                <IoMailOutline className="mr-2" size={25}/>
-                                                Share via Email
-                                            </button>
-                                            <button className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-[#3b5998] hover:bg-[#385590]">
-                                                <RiFacebookFill className="mr-2" size={25}/>
-                                                Share on Facebook
-                                            </button>
-                                            <button className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-[#0084ff] hover:bg-[#007df2]">
-                                                <RiMessengerFill className="mr-2" size={25}/>
-                                                Send as Message
-                                            </button>
-                                            <button className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-slate-800/90 hover:bg-slate-800">
+                                            <EmailShareButton subject="Come to Populum and get the best CBD products!" url={ host }>
+                                                <button className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-orange-600/80 hover:bg-orange-600/90">
+                                                    <IoMailOutline className="mr-2" size={25}/>
+                                                    Share via Email
+                                                </button>
+                                            </EmailShareButton>
+                                            <FacebookShareButton url={ host }>
+                                                <button className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-[#3b5998] hover:bg-[#385590]">
+                                                    <RiFacebookFill className="mr-2" size={25}/>
+                                                    Share on Facebook
+                                                </button>
+                                            </FacebookShareButton>
+                                            <FacebookMessengerShareButton url={ host }>
+                                                <button className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-[#0084ff] hover:bg-[#007df2]">
+                                                    <RiMessengerFill className="mr-2" size={25}/>
+                                                    Send as Message
+                                                </button>
+                                            </FacebookMessengerShareButton>
+                                            <button 
+                                                onClick={() => {
+                                                    navigator.clipboard.writeText( host )
+                                                    notify()
+                                                }} 
+                                                className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-slate-800/90 hover:bg-slate-800"
+                                            >
                                                 <RiLink className="mr-2" size={25}/>
                                                 Share by Link
                                             </button>
@@ -106,5 +123,15 @@ const Profile = () => {
         </>
     );
 }
- 
+
+export const getServerSideProps = () => {
+    const url = process.env.HOST
+
+    return {
+        props:{
+            host:url
+        }
+    }
+}
+
 export default Profile;

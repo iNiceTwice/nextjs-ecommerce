@@ -1,12 +1,8 @@
-import { serialize } from "cookie"
-import USERS_DB from "../../../models/users"
 import connectDB from "../../../utils/dbConnection"
-import { decode, verify } from "jsonwebtoken"
 import axios from "axios"
 
 const MP_TOKEN = process.env.MP_TOKEN
 const JWT_SECRET = process.env.JWT_SECRET
-//?preapproval_id=2c9380848383e02f0184450bc5cb7d9c
 
 const handler = (req,res) => {
    
@@ -23,6 +19,7 @@ const handler = (req,res) => {
 }
 
 const monthlyPayment = async (req,res) => {
+
     const { firstName, lastName, id, address, zip, phone, email } = req.body.payerData
     const url = "https://api.mercadopago.com/preapproval";
 

@@ -1,7 +1,7 @@
-import { serialize } from "cookie"
 import axios from "axios"
 
 const MP_TOKEN = process.env.MP_TOKEN
+const HOST = process.env.HOST
 
 const handler = (req,res) => {
    
@@ -50,9 +50,9 @@ const oncePayment = async (req,res) => {
       },
       external_reference:"once",
       back_urls: {
-        failure: "/failure",
-        pending: "/pending",
-        success: "http://localhost:3000/shop/checkout"
+        failure: `${HOST}/shop/checkout`,
+        pending: `${HOST}/shop/checkout`,
+        success: `${HOST}/shop/checkout`
       }
     };
 

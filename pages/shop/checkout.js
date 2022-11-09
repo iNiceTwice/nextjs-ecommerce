@@ -20,7 +20,7 @@ const shippingSchema = yup.object().shape({
     phone:yup.number().typeError("Only numbers allowed").min(8,"At least 8 characters.").required("This field is required."),
 })
 
-const Checkout = ({ apiUrl, paymentResponse, preapproval }) => {
+const Checkout = ({ host, paymentResponse, preapproval }) => {
     
     const pageTransition = {
         in:{
@@ -59,7 +59,7 @@ const Checkout = ({ apiUrl, paymentResponse, preapproval }) => {
     onSubmit:(values)=>{
         if(submitAction === "once"){
             try {
-                axios.post(`${apiUrl}/api/payments/one-purchase`, {
+                axios.post(`${host}/api/payments/one-purchase`, {
                     products:purchaseOnce,
                     payerData:values
                 }).then(data => {
@@ -71,7 +71,7 @@ const Checkout = ({ apiUrl, paymentResponse, preapproval }) => {
             }   
         }else{
             try{
-                axios.post(`${apiUrl}/api/payments/subscription`, {
+                axios.post(`${host}/api/payments/subscription`, {
                     totalCost:totalPriceSub,
                     payerData:values
                 }).then(data => {
@@ -100,7 +100,7 @@ const Checkout = ({ apiUrl, paymentResponse, preapproval }) => {
             }) 
             if(purchaseSub.length !== 0){
                 try {
-                    axios.put(`${apiUrl}/api/user/subscriptions/add`, subsWithId)
+                    axios.put(`${host}/api/user/subscriptions/add`, subsWithId)
                         .then(data=> {
                             console.log(data.data)
                             dispatch(removeProducts("subscription"))
@@ -343,7 +343,7 @@ const Checkout = ({ apiUrl, paymentResponse, preapproval }) => {
 }
  
 export const getServerSideProps = async (context) => {
-    const url = process.env.API_HOST
+    const url = process.env.HOST
     const MP_TOKEN = process.env.MP_TOKEN
     let response
     if(context.query.preapproval_id){
@@ -356,7 +356,7 @@ export const getServerSideProps = async (context) => {
     }
     return {
         props:{
-            apiUrl: url,
+            host: url,
             paymentResponse: response ? response.data : context.query,
             preapproval:context.query.preapproval_id ? context.query.preapproval_id : null
         }

@@ -26,9 +26,11 @@ const deleteSubscription = async (req,res) => {
     const subId = req.query.delete_id
     const url = `https://api.mercadopago.com/preapproval/${subId}`;
     const checkToken = verify(token, JWT_SECRET)
+
     if(!token){
         res.status(500).json({ message: "No token provided" })
     }
+    
     if(!checkToken){
         res.status(401).json({message: "Unauthorized"})
     }

@@ -11,6 +11,7 @@ import CartItem from './CartItem';
 import { useRouter } from 'next/router';
 
 const ResponsiveMenu = ({ open }) => {
+
     return (
         <>
             <div className="bg-zinc-100 w-screen h-screen fixed top-14 z-40 overflow-auto">
@@ -32,7 +33,7 @@ const ResponsiveMenu = ({ open }) => {
                             <a onClick={ open }>Why Populum</a>
                         </Link>
                         <a>FAQ</a>
-                        <a onClick={ open }>Find Us</a>
+                        <a>Find Us</a>
                         <Link href='/pages/contact'>
                             <a onClick={ open }>Contact</a>
                         </Link>
@@ -150,7 +151,7 @@ const Nav = ({ refresh }) => {
                                                 Why Populum
                                             </li>
                                         </Link>
-                                        <Link href="/pages/faq">
+                                        <Link href="/">
                                             <li  
                                                 onMouseEnter={() => setImgSuppMenu("https://cdn.shopify.com/s/files/1/1737/2201/files/FAQ_feature_300x.jpg?v=17136995942384895455")}
                                                 className='w-fill p-1 rounded-sm hover:bg-sky-50 font-medium hover:text-orange-600 cursor-pointer'
@@ -158,7 +159,7 @@ const Nav = ({ refresh }) => {
                                                 FAQ
                                             </li>
                                         </Link>
-                                        <Link href="/pages/stokist">
+                                        <Link href="/">
                                             <li  
                                                 onMouseEnter={() => setImgSuppMenu("https://cdn.shopify.com/s/files/1/1737/2201/files/Stockist_feature_300x.jpg?v=13790474890464213931")}
                                                 className='w-fill p-1 rounded-sm hover:bg-sky-50 font-medium hover:text-orange-600 cursor-pointer'
@@ -174,7 +175,6 @@ const Nav = ({ refresh }) => {
                                                 Contact
                                             </li>
                                         </Link>
-                                        
                                             <li 
                                                 onMouseEnter={() => setImgSuppMenu("https://cdn.shopify.com/s/files/1/1737/2201/files/Blog_feature_300x.jpg?v=14733919935349041970")}
                                                 className='w-fill p-1 rounded-sm hover:bg-sky-50 font-medium hover:text-orange-600 cursor-pointer'
@@ -183,11 +183,10 @@ const Nav = ({ refresh }) => {
                                                     FB Community
                                                 </a>
                                             </li>
-                                       
-                                    
                                     </ul>
                                     <div className='relative w-1/2'>
                                         <Image 
+                                            alt=""
                                             src={ imgSuppMenu }
                                             loading="lazy"
                                             layout="fill" 
@@ -246,7 +245,8 @@ const Nav = ({ refresh }) => {
                                     </div>
                                     <div className='text-center p-10 grid grid-cols-1 lg:grid-cols-3 lg:mt-16'>
                                         <div>
-                                            <Image 
+                                            <Image
+                                                alt='' 
                                                 src="https://cdn.shopify.com/s/files/1/1737/2201/files/Thirty_rgb_orangex2_9b767b53-6442-4462-b54f-ea511c5fd010_500x500.png"
                                                 height={90} width={90}     
                                             />
@@ -254,7 +254,8 @@ const Nav = ({ refresh }) => {
                                             <p className='text-black/70 font-medium mt-3 text-lg'>Industry leading 100% quality guarantee.</p>
                                         </div>
                                         <div>
-                                            <Image 
+                                            <Image
+                                                alt="" 
                                                 src="https://cdn.shopify.com/s/files/1/1737/2201/files/Hexagon_rgb_orangex2_500x500.png?v=1613582144"
                                                 height={90} width={90}     
                                             />
@@ -263,6 +264,7 @@ const Nav = ({ refresh }) => {
                                         </div>
                                         <div>
                                             <Image 
+                                                alt=""
                                                 src="https://cdn.shopify.com/s/files/1/1737/2201/files/Zen_orange_2x_964a9da3-e182-42da-9093-d9a57ec6d138_500x500.png?v=1613583730"
                                                 height={90} width={90}     
                                             />

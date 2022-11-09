@@ -189,8 +189,8 @@ const Shop = ({ products }) => {
 
 export const getServerSideProps = async (context) => {
     
-    const API_HOST = process.env.API_HOST
-    const products = await axios.get(`${API_HOST}/api/products/all`)
+    const url = process.env.HOST
+    const products = await axios.get(`${url}/api/products/all`)
     
     return {
         props:{

@@ -12,7 +12,7 @@ const SignupSchema = object().shape({
     password: string().required("This field is required.")
 })
 
-const Login = ({ apiUrl }) => {
+const Login = ({ host }) => {
 
     const router = useRouter()
     const [ passChange, setPassChange ] = useState(false)
@@ -31,7 +31,7 @@ const Login = ({ apiUrl }) => {
         password:""
     },
     onSubmit:(values)=>{
-        axios.post(`${apiUrl}/api/auth`,{
+        axios.post(`${host}/api/auth`,{
             email:values.email,
             password:values.password
         }).then(data=>{ 
@@ -109,9 +109,12 @@ const Login = ({ apiUrl }) => {
 }
 
 export const getServerSideProps = context =>{
+
+    const url = process.env.HOST
+
     return {
         props:{
-            apiUrl:process.env.API_HOST
+            host:url
         }
     }
 }

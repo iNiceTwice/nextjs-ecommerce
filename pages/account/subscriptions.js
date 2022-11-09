@@ -7,7 +7,7 @@ import { IoCloseSharp } from "react-icons/io5"
 import { toast } from "react-toastify"
 import Intro from "../../components/Intro"
 
-const ManageSubscriptions = ({ user, apiUrl }) => {
+const ManageSubscriptions = ({ user, host }) => {
 
     const [ subId, setSubId ] = useState("")
     const [ modal, setModal ] = useState(false)
@@ -35,7 +35,7 @@ const ManageSubscriptions = ({ user, apiUrl }) => {
     }
 
     const handleCancelSub = async () => {
-        const res = await axios.delete(`${apiUrl}/api/user/subscriptions/${subId}`)
+        const res = await axios.delete(`${host}/api/user/subscriptions/${subId}`)
         if(res.status < 300){
             setModal(false)
             refreshData()
@@ -121,8 +121,9 @@ const ManageSubscriptions = ({ user, apiUrl }) => {
 }
 
 export const getServerSideProps = async (context) => {
-    const API_HOST = process.env.API_HOST
-    const response = await axios.get(`${API_HOST}/api/user/find`,{
+    
+    const url = process.env.HOST
+    const response = await axios.get(`${url}/api/user/find`,{
         withCredentials:true,
         headers:{
             Cookie:context.req.cookies.token
@@ -132,7 +133,7 @@ export const getServerSideProps = async (context) => {
     return {
         props:{
             user: response.data,
-            apiUrl:API_HOST
+            host:url
         }
     }
 }
