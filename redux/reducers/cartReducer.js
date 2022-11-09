@@ -51,7 +51,6 @@ const cartReducer = ( state = initalState, action ) => {
             }
         case REMOVE_PRODUCTS:
             const filtered = state.cartItems.filter(product => product.item.purchase !== action.purchase)
-            console.log(state.cartItems)
             return {
                 ...state,
                 cartItems:filtered

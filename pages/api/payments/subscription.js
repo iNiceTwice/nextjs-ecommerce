@@ -1,10 +1,17 @@
 import { serialize } from "cookie"
+import USERS_DB from "../../../models/users"
+import connectDB from "../../../utils/dbConnection"
+import { decode, verify } from "jsonwebtoken"
 import axios from "axios"
 
 const MP_TOKEN = process.env.MP_TOKEN
+const JWT_SECRET = process.env.JWT_SECRET
+//?preapproval_id=2c9380848383e02f0184450bc5cb7d9c
 
 const handler = (req,res) => {
    
+    connectDB()
+
     switch (req.method) {
         case "POST":
             monthlyPayment(req,res)
@@ -16,14 +23,7 @@ const handler = (req,res) => {
 }
 
 const monthlyPayment = async (req,res) => {
-
     const { firstName, lastName, id, address, zip, phone, email } = req.body.payerData
-    let totalPrice = 0
-
-    req.body.products.map( item => {
-        totalPrice = totalPrice + item.quantity * item.item.price
-    })
-
     const url = "https://api.mercadopago.com/preapproval";
 
     const body = {
@@ -31,7 +31,7 @@ const monthlyPayment = async (req,res) => {
         auto_recurring: {
             frequency: 1,
             frequency_type: "months",
-            transaction_amount: totalPrice,
+            transaction_amount: req.body.totalCost.toFixed(2),
             currency_id: "ARS"
         },
         payer: {
@@ -56,14 +56,18 @@ const monthlyPayment = async (req,res) => {
         payer_email:"test_user_93452689@testuser.com",
     };
 
-    const payment = await axios.post(url, body, {
-        headers: {
-            "Content-Type": "application/json",
-        Authorization: `Bearer ${MP_TOKEN}` 
-      }
-    });
+    try {
+        const payment = await axios.post(url, body, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${MP_TOKEN}` 
+          }
+        });
+        res.send(payment.data.init_point)
+    } catch (error) {
+        console.log(error)
+    }
 
-    res.send(payment.data.init_point)
 }
 
 export default handler

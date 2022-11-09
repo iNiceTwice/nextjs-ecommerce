@@ -2,10 +2,50 @@ import Image from "next/image"
 import Link from "next/link"
 import Stars from "./RatingStars";
 import { useState } from "react"
+import { toast } from "react-toastify"
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct, incrementProduct } from "../redux/actions/cartActions";
 
 const ShopItem = ({ id, title, rating, price, img, totalRatings, url, commentary, concentration, subscription }) => {
 
+    const itemIndex = 0
+    const dispatch = useDispatch()
+    const cartItems  = useSelector(state => state.cart.cartItems) 
     const [ showCommentary, setShowCommentary] = useState(false)
+    const notify = () => toast.success("Product added to cart",{
+        position: "bottom-right"
+    })
+
+    const handleSubscription = ()  => {
+        let cartItem = {
+            item: {
+                title,
+                img,
+                price: price > 10 ? (price - price*0.20).toFixed(2).toLocaleString() : price, 
+                size:concentration,
+                purchase:"subscription" 
+            },
+            quantity:1
+        }
+
+        let itemExist = cartItems.find((item, index) => {
+            if(JSON.stringify(item.item) === JSON.stringify(cartItem.item)){
+                itemIndex = index
+                return item
+            }
+        })
+      
+        if(cartItems.length !== 0){
+            if(!itemExist){
+                dispatch(addProduct(cartItem))
+                
+            } else {
+                dispatch(incrementProduct(itemIndex))
+            }
+        } else {
+            dispatch(addProduct(cartItem))
+        }
+    }
 
     return ( 
         <>
@@ -20,7 +60,10 @@ const ShopItem = ({ id, title, rating, price, img, totalRatings, url, commentary
                     subscription 
                     ?   <button 
                             className="transition-colors w-full py-5 bg-orange-600/80 hover:bg-slate-800 text-white font-semibold"
-                            onClick={()=>alert("subscribed")}
+                            onClick={() => {
+                                handleSubscription()
+                                notify()
+                            }}
                         >
                             SUBSCRIBE
                         </button>

@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { useFormik } from "formik"
+import { toast } from "react-toastify"
 import * as yup from "yup"
 import axios from "axios"
 
@@ -23,7 +24,10 @@ const Register = ({ apiUrl }) => {
         out:{
             opacity:0
         }
-    }      
+    }
+    const notify = () => toast.success("Account created.",{
+        position: "bottom-right"
+    })          
     const { values, errors, touched, handleChange, handleSubmit } = useFormik({
     initialValues:{
         name:"",
@@ -31,11 +35,12 @@ const Register = ({ apiUrl }) => {
         password:""
     },
     onSubmit:(values)=>{
-        axios.post(`${apiUrl}/api/users`,{
+        axios.post(`${apiUrl}/api/user/create`,{
             name:values.name,
             email:values.email,
             password:values.password
-        }).then(data=>{ 
+        }).then(data=>{
+            notify() 
             router.push("/account/login") 
         }).catch(err=>{
             console.log(err)
@@ -49,8 +54,8 @@ const Register = ({ apiUrl }) => {
     return ( 
         <>
             <motion.div initial="out" animate="in" exit="out" variants={pageTransition}>
-                <div className="flex justify-center w-full h-fit bg-red-100/70">
-                    <div className=" w-11/12 lg:w-1/2 xl:w-1/3 my-36 h-fit bg-white border py-16 px-10 lg:px-16 border-red-200">
+                <div className="flex justify-center w-full h-fit py-32 lg:py-48 bg-red-100/70">
+                    <div className=" w-11/12 lg:w-1/2 xl:w-1/3 h-fit bg-white border py-16 px-10 lg:px-16 border-red-200">
                         <h3 className="text-4xl text-center font-serif text-black/75 mb-2">Register</h3>
                         <p className="text-center text-black/75" >Returning Customer? <Link href="/account/login"><a className="font-medium text-orange-600/80">Login</a></Link>.</p>
                         <form onSubmit={ handleSubmit } className="flex flex-col justify-center gap-3 mt-10">

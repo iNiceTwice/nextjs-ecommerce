@@ -24,7 +24,7 @@ const Trial = () => {
 
     return ( 
         <>
-            <motion.div initial="out" animate="in" exit="out" variants={pageTransition}>
+            <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
                 <div className="w-full mt-24">
                     <div className="relative w-full lg:w-11/12 mx-auto h-[30rem] lg:h-[40rem]">
                         <Image 
@@ -47,7 +47,7 @@ const Trial = () => {
                                         <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Place an order</p>
                                     </span>
                                     <p className="w-full text-lg flex-grow flex-shrink">  
-                                        Buy any <Link href="/"><a className="transition-colors cursor-pointer text-orange-600 hover:text-slate-800">Populum</a></Link> product, and we'll ship it out to you right away. Our 30 day risk-free trial is available to every first-time buyer. 
+                                        Buy any <Link href="/"><a className="transition-colors cursor-pointer text-orange-600 hover:text-slate-800">Populum</a></Link> product, and we&apos;ll ship it out to you right away. Our 30 day risk-free trial is available to every first-time buyer. 
                                     </p>
                                 </li>
                                 <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
@@ -93,7 +93,7 @@ const Trial = () => {
                                 <motion.div className="flex flex-col gap-y-3 border-t py-8 h-full w-[25rem] min-w-[25rem] lg:w-[35rem] lg:min-w-[35rem] text-slate-800/90"> 
                                     <h2 className="font-serif text-2xl ">David H.</h2>
                                     <Stars filled={5}/>
-                                    <p className="font-medium">Who else offers a 30 Day Trial? The answer is no one else does. Not all supplements work for everyone, so allowing a trial period is a good business practice. I contacted Populum to inquire about taking advantage of the trial period. I was pleasantly surprised at the ease with which they honored the request. They simply confirmed my information the sent me a prepaid shipping label. I gave Populum five stars for honoring their promise to refund the cost if it didn't work. A rare practice these days!</p>
+                                    <p className="font-medium">Who else offers a 30 Day Trial? The answer is no one else does. Not all supplements work for everyone, so allowing a trial period is a good business practice. I contacted Populum to inquire about taking advantage of the trial period. I was pleasantly surprised at the ease with which they honored the request. They simply confirmed my information the sent me a prepaid shipping label. I gave Populum five stars for honoring their promise to refund the cost if it didn&apos;t work. A rare practice these days!</p>
                                 </motion.div>
                                 <motion.div className="flex flex-col gap-y-3 border-t py-8 h-full w-[25rem] min-w-[25rem] lg:w-[35rem] lg:min-w-[35rem] text-slate-800/90"> 
                                     <h2 className="font-serif text-2xl ">Sofie S.</h2>
@@ -108,12 +108,12 @@ const Trial = () => {
                                 <motion.div className="flex flex-col gap-y-3 border-t py-8 h-full w-[25rem] min-w-[25rem] lg:w-[35rem] lg:min-w-[35rem] text-slate-800/90"> 
                                     <h2 className="font-serif text-2xl ">Margie M.</h2>
                                     <Stars filled={5}/>
-                                    <p className="font-medium">I love my full spectrum oil. It tastes great and seems to kick in faster than the gel caps I was using form another company. I have waited to join the subscription feature until I knew if I liked the product and the dosage. I love it, and I'm sold!!!</p>
+                                    <p className="font-medium">I love my full spectrum oil. It tastes great and seems to kick in faster than the gel caps I was using form another company. I have waited to join the subscription feature until I knew if I liked the product and the dosage. I love it, and I&apos;m sold!!!</p>
                                 </motion.div>
                                 <motion.div className="flex flex-col gap-y-3 border-t py-8 h-full w-[25rem] min-w-[25rem] lg:w-[35rem] lg:min-w-[35rem] text-slate-800/90"> 
                                     <h2 className="font-serif text-2xl ">Jane S.</h2>
                                     <Stars filled={5}/>
-                                    <p className="font-medium">I've been using Populum Hemp Oil with CBD for about 3 weeks. I like the company, as well as the product. The packaging is attractive and substantial, there's a 30-day return policy (which I did not use), the on-line chat line is rapid and helpful, and you can talk to a real person, if needed. I feel generally better than I have in a long time.</p>
+                                    <p className="font-medium">I&apos;ve been using Populum Hemp Oil with CBD for about 3 weeks. I like the company, as well as the product. The packaging is attractive and substantial, there&apos;s a 30-day return policy (which I did not use), the on-line chat line is rapid and helpful, and you can talk to a real person, if needed. I feel generally better than I have in a long time.</p>
                                 </motion.div>
                                 <motion.div className="flex flex-col gap-y-3 border-t py-8 h-full w-[25rem] min-w-[25rem] lg:w-[35rem] lg:min-w-[35rem] text-slate-800/90"> 
                                     <h2 className="font-serif text-2xl ">Cloe R.</h2>
@@ -135,7 +135,7 @@ const Trial = () => {
                                         <p className="mt-5">
                                                 Not all bodies are the same. CBD oil is still a new product for most people, and first-timers will have no idea whether or not CBD oil can give them their desired results. We also know that our customers are putting a lot of faith in us. Our goal is to deliver on that faith through quality products, and we want to give you the chance to test that out before making a decision. 
                                                 <br/><br/>
-                                                One of the main tennants of Populum is that we're here to help people access and discover CBD without any strings attached. That's where the 30-day trial comes in. If you don't like it, you can return it - no questions asked
+                                                One of the main tennants of Populum is that we&apos;re here to help people access and discover CBD without any strings attached. That&apos;s where the 30-day trial comes in. If you don&apos;t like it, you can return it - no questions asked
                                             </p>
                                     </Dropdown>
                                     <Dropdown title="How do I return my order?">

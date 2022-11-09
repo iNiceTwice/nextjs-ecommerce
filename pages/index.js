@@ -26,6 +26,7 @@ const Home = () => {
             img="https://cdn.shopify.com/s/files/1/1737/2201/files/populum-orange_1400x.webp?v=1662465868"
             buttonText="SHOP CBD"
             buttonColor="primary"
+            buttonUrl="/shop/all"
             bgColor="bg-sky-50"
             text="We're on a mission to create high-quality, ethical, and honest CBD. Try us risk-free today."
           />

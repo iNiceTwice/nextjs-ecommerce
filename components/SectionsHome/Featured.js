@@ -12,7 +12,7 @@ const Featured = () => {
                             height={50} width={400} objectFit="contain"    
                         />
                         <p className="mt-4 text-center font-bold text-black/40 text-sm">
-                            "The Best Luxury CBD Products That Money Can Buy."
+                            &quot;The Best Luxury CBD Products That Money Can Buy.&quot;
                         </p>
                     </div>
                     <div className="px-4 py-6 flex flex-col items-center">
@@ -21,7 +21,7 @@ const Featured = () => {
                             height={50} width={400} objectFit="contain"    
                         />
                         <p className="mt-4 text-center font-bold text-black/40 text-sm">
-                            "The Most Calming CBD Products For Self-Care."
+                            &quot;The Most Calming CBD Products For Self-Care.&quot;
                         </p>
                     </div>
                     <div className="px-4 py-6 flex flex-col items-center">
@@ -30,7 +30,7 @@ const Featured = () => {
                             height={50} width={400} objectFit="contain"    
                         />
                         <p className="mt-4 text-center font-bold text-black/40 text-sm">
-                            "Best CBD Skin-Care Products to Try."
+                            &quot;Best CBD Skin-Care Products to Try.&quot;
                         </p>
                     </div>
                     <div className="px-4 py-6 flex flex-col items-center">
@@ -39,7 +39,7 @@ const Featured = () => {
                             height={50} width={400} objectFit="contain"    
                         />
                         <p className="mt-4 text-center font-bold text-black/40 text-sm">
-                            "They stand by their products through a 100% satisfaction guarantee."
+                            &quot;They stand by their products through a 100% satisfaction guarantee.&quot;
                         </p>
                     </div>
                 </div>

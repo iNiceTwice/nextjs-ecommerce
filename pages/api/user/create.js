@@ -1,16 +1,14 @@
-import USERS_DB from "../../models/users"
-import connectDB from "../../utils/dbConnection"
+import USERS_DB from "../../../models/users"
+import connectDB from "../../../utils/dbConnection"
 import bcrypt from "bcrypt-nodejs"
+
+const JWT_SECRET = process.env.JWT_SECRET
 
 const handler = async (req,res) => {
 
     connectDB()
 
     switch (req.method) {
-        case "GET":
-            const users = await USERS_DB.find()
-            res.send(users)
-            break;
         case "POST":
             createUser(req,res)
             break;

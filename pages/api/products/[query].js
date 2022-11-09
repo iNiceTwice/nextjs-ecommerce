@@ -17,12 +17,6 @@ const handler = async (req,res) => {
         case "POST":
             postProduct(req,res)
         break
-        case "PUT":
-            putProduct(req,res)
-            break;
-        case "DELETE":
-            deleteProduct(req,res)
-            break;
         default:
             break;
     }
@@ -42,12 +36,6 @@ const postProduct = async (req,res) => {
         console.log(error)
         return res.status(500).send({message:"Server error"})
     }
-}
-const putProduct = async (req,res) => {
-
-}
-const deleteProduct = async (req,res) => {
-
 }
 
 export default handler

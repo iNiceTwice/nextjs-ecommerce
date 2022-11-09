@@ -9,7 +9,7 @@ const Benefits = ({title, benefits}) => {
                     <ul className="text-slate-800/90 font-medium grid gap-x-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 lg:flex-row w-full mt-14">
                         {
                             benefits.map((benefit)=>(
-                                <li key={ benefit.text } className="p-2 border-t flex lg:justify-start justify-center items-center">
+                                <li key={ benefit.text } className="p-2 border-t flex lg:justify-start items-center">
                                     <Image src={ benefit.img } loading="lazy" height={70} width={70}/>   
                                     <p>{ benefit.text }</p>
                                 </li>

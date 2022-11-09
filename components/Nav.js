@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../redux/actions/userActions';
 import useMediaQuery from "../utils/useMediaQuery"
@@ -8,14 +8,14 @@ import Image from "next/image"
 import axios from "axios"
 import Logo from "./Logo"
 import CartItem from './CartItem';
-import { setCart } from '../redux/actions/cartActions';
+import { useRouter } from 'next/router';
 
 const ResponsiveMenu = ({ open }) => {
     return (
         <>
-            <div className="bg-zinc-100 w-screen h-screen fixed top-12 z-30">
+            <div className="bg-zinc-100 w-screen h-screen fixed top-14 z-40 overflow-auto">
                <div className='mt-20 pl-8'>
-                    <ul className='flex flex-col gap-y-4 font-medium text-lg opacity-80'>
+                    <ul className='flex flex-col gap-y-4 font-medium text-lg opacity-80 mb-20'>
                         <Link href='/shop/all'>
                             <a onClick={ open }>Shop</a>
                         </Link>
@@ -25,9 +25,18 @@ const ResponsiveMenu = ({ open }) => {
                         <Link href='/pages/riskfreetrial'>
                             <a onClick={ open }>30 Day Trial</a>
                         </Link>
-                        <a onClick={ open } href='/'>
-                            Reviews
-                        </a>
+                        <li className='mt-2 text-sm'>
+                            Support
+                        </li>
+                        <Link href='/pages/why'>
+                            <a onClick={ open }>Why Populum</a>
+                        </Link>
+                        <a>FAQ</a>
+                        <a onClick={ open }>Find Us</a>
+                        <Link href='/pages/contact'>
+                            <a onClick={ open }>Contact</a>
+                        </Link>
+                        <a href='https://m.facebook.com/groups/PopulumCommunity' target="_blank" rel="noreferrer" onClick={ open }>FB Community</a>
                     </ul>
                </div>
             </div>
@@ -36,7 +45,7 @@ const ResponsiveMenu = ({ open }) => {
 }
 
 
-const Nav = () => {
+const Nav = ({ refresh }) => {
     
     const [ showMenu, setShowMenu ] = useState(false)
     const [ isLogged, setIsLogged ] = useState(false)
@@ -44,9 +53,11 @@ const Nav = () => {
     const [ openSupMenu, setOpenSupMenu ] = useState(false)
     const [ imgSuppMenu, setImgSuppMenu ] = useState("https://cdn.shopify.com/s/files/1/1737/2201/files/populum-orange_1400x.webp?v=1662465868")
 
+    const router = useRouter()
     const matches = useMediaQuery('(min-width: 768px)')
     const dispatch = useDispatch()
     const cartItems = useSelector(state => state?.cart?.cartItems)
+    const user = useSelector(state => state.user)
     const totalItems = 0
     const totalPrice = 0
 
@@ -55,8 +66,7 @@ const Nav = () => {
         totalPrice = totalPrice + item.quantity * item.item.price
     })
     
-    useEffect(()=>{
-        
+    useEffect(()=>{  
         if(!isLogged){
             axios.get("http://localhost:3000/api/auth")
             .then(data => {
@@ -65,11 +75,7 @@ const Nav = () => {
             })
             .catch(err => console.log(err))
         }
-
-        
-
-    },[])
-    
+    },[refresh])
     
     const handleMenu = () => {
         if(!showMenu){
@@ -78,6 +84,7 @@ const Nav = () => {
             setShowMenu(false)
         }
     }
+
     const handleCart = () => {
         if(!openCart){
             setOpenCart(true)
@@ -85,12 +92,23 @@ const Nav = () => {
             setOpenCart(false)
         }
     }
+
     const handleSupportMenu = () => {
         if(!openSupMenu){
             setOpenSupMenu(true)
         }else{
             setOpenSupMenu(false)
         }
+    }
+
+    const handleLogout = () => {
+        axios.delete("http://localhost:3000/api/auth")
+            .then(() => {
+                router.push("/")
+                dispatch(userActions())
+                setIsLogged(false)
+            })
+            .catch((err)=> console.log(err))
     }
 
     return ( 
@@ -161,7 +179,7 @@ const Nav = () => {
                                                 onMouseEnter={() => setImgSuppMenu("https://cdn.shopify.com/s/files/1/1737/2201/files/Blog_feature_300x.jpg?v=14733919935349041970")}
                                                 className='w-fill p-1 rounded-sm hover:bg-sky-50 font-medium hover:text-orange-600 cursor-pointer'
                                             >
-                                                <a target="_blank" href='https://www.facebook.com/groups/PopulumCommunity'>
+                                                <a target="_blank" rel="noreferrer" href='https://www.facebook.com/groups/PopulumCommunity'>
                                                     FB Community
                                                 </a>
                                             </li>
@@ -186,26 +204,29 @@ const Nav = () => {
                         <p className="text-slate-900 text-opacity-60 text-lg italic">Call us:</p>
                         <span className="text-lg mr-2 text-orange-600">555-7777</span>
                     </div>
-                    <Suspense>
                         {
-                            isLogged
-                            ? <Link href="/account/profile">
-                                <button className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Account</button>
-                            </Link>
-                            : <Link href="/account/login">
+                            !isLogged &&
+                            <Link href="/account/login">
                                 <button className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Login</button>
                             </Link>
                         }
-                    </Suspense>
+                        {
+                            isLogged && router.pathname !== "/account/profile" &&
+                            <Link href="/account/profile">
+                                <button className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Account</button>
+                            </Link>
+                        }    
+                        {
+                            isLogged && router.pathname === "/account/profile" &&
+                            <button onClick={ handleLogout } className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Logout</button>
+                        }
                     <button>
                         <IoNotifications size="22" className="text-slate-800/90 text-xl hover:text-orange-600 transition-colors"/>
                     </button>
-                    <Suspense>
-                        <button className='flex' onClick={ handleCart }>
-                            <IoCart size="25" className="text-xl text-slate-800/90 hover:text-orange-600 transition-colors"/>
-                            <span className='ml-2 text-lg'>{ cartItems.length }</span>
-                        </button>
-                    </Suspense>
+                    <button className='flex' onClick={ handleCart }>
+                        <IoCart size="25" className="text-xl text-slate-800/90 hover:text-orange-600 transition-colors"/>
+                        <span className='ml-2 text-lg'>{ totalItems }</span>
+                    </button>
                 </div>
             </div>
             { ( showMenu && !matches ) && <ResponsiveMenu open={ handleMenu }/> }
@@ -215,13 +236,13 @@ const Nav = () => {
                     {
                     cartItems.length === 0 ?     
                     <>
-                        <div onClick={ handleCart } className='bg-gray-700 bg-opacity-20 fixed z-50 top-0 h-screen w-screen overflow-auto'>
+                        <div onClick={ handleCart } className='bg-gray-700/20 fixed z-50 top-0 h-screen w-screen overflow-auto'>
                             <div onClick={ e => e.stopPropagation() } className="bg-white h-full w-full md:w-3/4 lg:w-1/2 fixed overflow-auto right-0 z-30">
                                 <div className='p-6 h-full w-full flex flex-col'>
                                     <button onClick={ handleCart } className='absolute top-10 right-10 lg:right-20'><IoClose className='text-slate-800/90' size={25}/></button>
                                     <div className='text-center mt-16 lg:mt-28'>
                                         <h2 className='text-slate-800 text-2xl lg:text-4xl font-serif mb-2 lg:mb-4'>Your Cart is Empty!</h2>
-                                        <p className='text-slate-800/60 lg:text-lg font-medium'>There's no comparison in quality, strength, and care.</p>
+                                        <p className='text-slate-800/60 lg:text-lg font-medium'>There&apos;s no comparison in quality, strength, and care.</p>
                                     </div>
                                     <div className='text-center p-10 grid grid-cols-1 lg:grid-cols-3 lg:mt-16'>
                                         <div>
@@ -238,7 +259,7 @@ const Nav = () => {
                                                 height={90} width={90}     
                                             />
                                             <p className='text-black/80 font-serif text-2xl'>Shop Safely</p>
-                                            <p className='text-black/70 font-medium mt-3 text-lg'>We're PCI compliant & fully encrypted.</p>
+                                            <p className='text-black/70 font-medium mt-3 text-lg'>We&apos;re PCI compliant & fully encrypted.</p>
                                         </div>
                                         <div>
                                             <Image 
@@ -246,7 +267,7 @@ const Nav = () => {
                                                 height={90} width={90}     
                                             />
                                             <p className='text-black/80 font-serif text-2xl'>Personalized Support</p>
-                                            <p className='text-black/70 font-medium mt-3 text-lg'>We're committed to your satisfaction.</p>
+                                            <p className='text-black/70 font-medium mt-3 text-lg'>We&apos;re committed to your satisfaction.</p>
                                         </div>
                                     </div>
                                     <div className='h-full flex flex-col-reverse'>

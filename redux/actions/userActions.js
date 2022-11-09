@@ -8,12 +8,12 @@ export const userActions = (user) => {
         if(!user){
             dispatch({ type:LOGOUT })
         }else{
-            dispatch(updateUserData(user))
+            dispatch(loginUser(user))
         }
     }
 }
 
-const updateUserData = (user) => ({
+const loginUser = (user) => ({
     type:LOGIN,
     payload:user
 })

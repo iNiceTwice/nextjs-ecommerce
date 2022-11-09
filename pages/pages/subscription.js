@@ -28,6 +28,7 @@ const Subscription = ({ products }) => {
                     text="All your favorite CBD products, delivered to your door with 20% monthly savings. Customize your delivery or cancel anytime."
                     buttonText="SUBSCRIBE"
                     buttonColor="secondary"
+                    buttonUrl="/pages/subscription"
                     bgColor="bg-red-50"
                     img="https://cdn.shopify.com/s/files/1/1737/2201/files/Untitled_design_7_1400x.png?v=1613614110"
                 />
@@ -37,20 +38,20 @@ const Subscription = ({ products }) => {
                         <ul className="mt-8">
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
-                                    <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
+                                    <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Leaf_rgb_orangex2_e8a555ee-8a3c-43e5-a9d0-975daf2f11e8_small.png?v=1613584118" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
-                                    </spam>
+                                    </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">20% off all orders</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">
-                                   We'll reward your commitment to wellness with a 20% discount on all orders. 
+                                   We&apos;ll reward your commitment to wellness with a 20% discount on all orders. 
                                 </p>
                             </li>
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
-                                    <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
+                                    <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Cycle_rgb_orangex2_small.png?v=1613569550" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
-                                    </spam>
+                                    </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Cancel or skip anytime</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">
@@ -59,9 +60,9 @@ const Subscription = ({ products }) => {
                             </li>
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
-                                    <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
+                                    <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Thirty_rgb_orangex2_9b767b53-6442-4462-b54f-ea511c5fd010_small.png?v=1613583968" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
-                                    </spam>
+                                    </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Risk Free Trial</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">        
@@ -70,9 +71,9 @@ const Subscription = ({ products }) => {
                             </li>
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
-                                    <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
+                                    <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Wallet_rgb_orangex2_d2a8cc6b-955a-45cd-bb5a-d47fba3ede49_small.png?v=1613578195" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
-                                    </spam>
+                                    </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Free US shipping</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">
@@ -81,9 +82,9 @@ const Subscription = ({ products }) => {
                             </li>
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
-                                    <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
+                                    <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Leaf_rgb_orangex2_e8a555ee-8a3c-43e5-a9d0-975daf2f11e8_small.png?v=1613584118" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
-                                    </spam>
+                                    </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Quality guaranteed</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">
@@ -92,13 +93,13 @@ const Subscription = ({ products }) => {
                             </li>
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
-                                    <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
+                                    <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
                                         <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Parcel_rgb_orangex2_991c179c-21ed-4288-a0bd-66eca90330e9_small.png?v=1613578195" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
-                                    </spam>
+                                    </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Exclusive rewards</p>
                                 </span>
                                 <p className="w-full text-lg flex-grow flex-shrink">   
-                                  Your happiness is our priority which is why we'll send free products, gifts, and rewards to say thank you. 
+                                  Your happiness is our priority which is why we&apos;ll send free products, gifts, and rewards to say thank you. 
                                 </p>
                             </li>
                         </ul>
@@ -109,13 +110,13 @@ const Subscription = ({ products }) => {
                 </section>
                 <section className="mb-32 lg:px-16 xl:px-40">
                     <hr/>
-                    <h2 className="px-10 lg:px-32 xl:px-44 mt-28 text-2xl font-medium text-slate-800/90 font-serif text-center">Create your own subscription bundle. Choose as many products as you'd like. The more you choose, the more you save!</h2>
+                    <h2 className="px-10 lg:px-32 xl:px-44 mt-28 text-2xl font-medium text-slate-800/90 font-serif text-center">Create your own subscription bundle. Choose as many products as you&apos;d like. The more you choose, the more you save!</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-5 gap-x-6 gap-y-16 mt-32 w-full ">
                         {
                             withVariants.map((product)=>{
                                return product.price.map((variant,index)=>(
                                     <ShopItem 
-                                        key={index}
+                                        key={product.title + index}
                                         title={product.title}
                                         img={product.img[0]}
                                         subscription={true}
@@ -128,7 +129,7 @@ const Subscription = ({ products }) => {
                         {
                             withoutVariants.map((product,index)=>(
                                 <ShopItem
-                                    key={index}
+                                    key={product.title + index}
                                     title={product.title}
                                     img={product.img[0]}
                                     subscription={true}
@@ -149,9 +150,9 @@ const Subscription = ({ products }) => {
                                 </Link>
                                 <Dropdown title="How does your subscription service work?">
                                     <p className="mt-5">
-                                            Customers who use CBD on a regular basis can make it easier on themselves and subscribe to Populum. Subscribers save 20% on items they choose to have delivered, and we'll make sure your order is at your door every month. 
+                                            Customers who use CBD on a regular basis can make it easier on themselves and subscribe to Populum. Subscribers save 20% on items they choose to have delivered, and we&apos;ll make sure your order is at your door every month. 
                                             <br/><br/>
-                                            To sign up for a subscription, just seleted the products you'd like to subscribe to and go to your cart to checkout.
+                                            To sign up for a subscription, just seleted the products you&apos;d like to subscribe to and go to your cart to checkout.
                                         </p>
                                 </Dropdown>
                                 <Dropdown title="How do I manage my subscription?">
@@ -216,7 +217,7 @@ const Subscription = ({ products }) => {
                                 </Dropdown>
                                 <Dropdown title="How do I cancel my subscription?">
                                     <p className="  mt-5">
-                                        You may cancel or modify your Populum subscriptions at any time in your <Link href="/account/profile"><a className="text-orange-600/80 hover:text-slate-800">Account Dashboard</a></Link> or by contacting Populum's <Link href="/pages/contact"><a className="text-orange-600/80 hover:text-slate-800">Customer Service</a></Link>.
+                                        You may cancel or modify your Populum subscriptions at any time in your <Link href="/account/profile"><a className="text-orange-600/80 hover:text-slate-800">Account Dashboard</a></Link> or by contacting Populum&apos;s <Link href="/pages/contact"><a className="text-orange-600/80 hover:text-slate-800">Customer Service</a></Link>.
                                     </p>
                                 </Dropdown>
                             </div>

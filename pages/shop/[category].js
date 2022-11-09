@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5"
 import Dropdown from "../../components/Dropdown"
@@ -104,9 +104,8 @@ const Shop = ({ products }) => {
                                 />
                             )) 
                             : selectedCategory?.map((product)=>(
-                                <motion.div initial="out" animate="in" exit="out" variants={pageTransition}>
+                                <motion.div key={product._id} initial="out" animate="in" exit="out" variants={pageTransition}>
                                     <ShopItem 
-                                        key={product._id}
                                         title={product.title}
                                         img={product.img[0]}
                                         url={product.url}
@@ -133,19 +132,19 @@ const Shop = ({ products }) => {
                                             <br/><br/>
                                             All our <Link href="/shop/all"><a className="text-orange-600/80 hover:text-slate-800">CBD products</a></Link> are backed by an industry-leading 100% guarantee. We offer a very transparent <Link href="/shop/all"><a className="text-orange-600/80 hover:text-slate-800">30-day money-back risk free trial</a></Link>.
                                             <br/><br/>
-                                            We're also proud to have offer the best customer service in the industry, backed by 950+ verified customer reviews.
+                                            We&apos;re also proud to have offer the best customer service in the industry, backed by 950+ verified customer reviews.
                                         </p>
                                 </Dropdown>
                                 <Dropdown title="Which product is right for me?">
                                     <p className="mt-5">
-                                        We recommend first asking yourself why you're interested in taking CBD. Is it to improve your wellbeing and to supplement your endocannabinoid system? Or is it for your skin or muscles?
+                                        We recommend first asking yourself why you&apos;re interested in taking CBD. Is it to improve your wellbeing and to supplement your endocannabinoid system? Or is it for your skin or muscles?
                                         <br/><br/>
                                         Our team is also more than happy to answer any questions, so please <span className="text-orange-600/80 hover:text-slate-800">email us</span> or call us (855-872-2772)!
                                         <br/><br/>
                                         Overall, lot of reputable clinical publications have published their findings on the effects and benefits of CBD in the past couple years. We highly recommend that you also do your own research to learn more about the effects of CBD oil prior to your purchase.
                                     </p>
                                 </Dropdown>
-                                <Dropdown title="What's the highest concentration / strongest CBD oil for sale?">
+                                <Dropdown title="What&apos;s the highest concentration / strongest CBD oil for sale?">
                                     <p className="mt-5">
                                     Our 2000mg CBD Tincture is our highest concentration product.
                                     </p>
@@ -159,11 +158,11 @@ const Shop = ({ products }) => {
                                 </Dropdown>
                                 <Dropdown title="Which concentration should I take?">
                                     <p className="mt-5">
-                                        While there's no scientifically proven dosing regimen, you should approach hemp CBD oil step by step.
+                                        While there&apos;s no scientifically proven dosing regimen, you should approach hemp CBD oil step by step.
                                         <br/><br/>
-                                        Start at a smaller dosage, but gradually increase the concentration until you find what works best for you. If you're new to CBD, we encourage you to use the first month to build up a routine that best fits your schedule.
+                                        Start at a smaller dosage, but gradually increase the concentration until you find what works best for you. If you&apos;re new to CBD, we encourage you to use the first month to build up a routine that best fits your schedule.
                                         <br/><br/>
-                                        For our tinctures, please review <a className="text-orange-600/80 hover:text-slate-800" target="_blank" href="https://cdn.shopify.com/s/files/1/1737/2201/files/How_to_Use_Populum_Tincture.pdf?3301">this infographic</a> that shows the breakdown of dosage.
+                                        For our tinctures, please review <a className="text-orange-600/80 hover:text-slate-800" target="_blank" rel="noreferrer" href="https://cdn.shopify.com/s/files/1/1737/2201/files/How_to_Use_Populum_Tincture.pdf?3301">this infographic</a> that shows the breakdown of dosage.
                                     </p>
                                 </Dropdown>
                                 <Dropdown title="Why should I buy a CBD Set?">
@@ -217,7 +216,7 @@ const slider = [
         img:"https://cdn.shopify.com/s/files/1/1737/2201/files/Index_Page_Images_1300x.jpg?v=1621525173",
         imgCorner:"https://cdn.shopify.com/s/files/1/1737/2201/t/21/assets/sale.png?v=152661525501752001751630806362",
         title:"What CBD is best for me?",
-        description:"We'll tell you! And bonus—save 25% with purchases of $200."
+        description:"We&apos;ll tell you! And bonus—save 25% with purchases of $200."
     }
 ]
 

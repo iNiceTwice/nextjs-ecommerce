@@ -8,8 +8,9 @@ import { PersistGate } from "redux-persist/integration/react"
 import { ToastContainer } from 'react-toastify';
 import { AnimatePresence } from "framer-motion"
 import 'react-toastify/dist/ReactToastify.css';
-
+ 
 function MyApp({ Component, pageProps }) {
+
   return (
     <>
       <Provider store={ store }>
@@ -17,11 +18,9 @@ function MyApp({ Component, pageProps }) {
           <Head>
             <title>Populum</title>
           </Head>
-          <Nav/>
-          <AnimatePresence>
-            <Component {...pageProps} />
-            <Footer/>
-          </AnimatePresence>  
+          <Nav refresh={Component}/>
+          <Component {...pageProps} />
+          <Footer/>
           <ToastContainer />
         </PersistGate>
       </Provider>

@@ -20,6 +20,10 @@ const userSchema = new Schema({
         required:true,
         trim:true
     },
+    subscriptions: {
+        type:Array,
+        required:false
+    },
     createdAt:{
         type:Date,
         required:true,

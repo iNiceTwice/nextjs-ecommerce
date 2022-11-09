@@ -6,7 +6,7 @@ import { IoPlaySharp ,IoCloseSharp } from "react-icons/io5"
 import { motion } from "framer-motion"
 import Table from "../../components/Table"
 
-const whyPopulum = () => {
+const WhyPopulum = () => {
 
     const pageTransition = {
         in:{
@@ -36,6 +36,7 @@ const whyPopulum = () => {
                             layout="fill"
                             objectFit="cover"
                             objectPosition="center"
+                            alt="Two persons talking"
                             priority
                         />
                         <div className="w-full h-full flex items-center justify-center">
@@ -47,7 +48,7 @@ const whyPopulum = () => {
                         </div>
                     </div>
                     <div className="w-full text-center px-10 lg:px-52">
-                        <h3 className="mt-20 font-serif text-2xl lg:text-4xl text-slate-800/90">At Populum we believe in great experiences. That's why we rigourously focus on product quality and transparency, happiness, and your well-being.</h3>
+                        <h3 className="mt-20 font-serif text-2xl lg:text-4xl text-slate-800/90">At Populum we believe in great experiences. That&apos;s why we rigourously focus on product quality and transparency, happiness, and your well-being.</h3>
                     </div>
                     {
                         showVideo &&
@@ -61,7 +62,7 @@ const whyPopulum = () => {
                 </section>
                 <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 py-16 lg:py-32 px-8 lg:px-20 xl:px-52 mx-auto h-fit">
                     <div>
-                        <p className="text-lg text-slate-800/90">We believe you deserve better, and we're here to change the landscape of modern self-care. Populum is a collective of premium full spectrum CBD products designed to be a part of your daily wellness ritual.</p>
+                        <p className="text-lg text-slate-800/90">We believe you deserve better, and we&apos;re here to change the landscape of modern self-care. Populum is a collective of premium full spectrum CBD products designed to be a part of your daily wellness ritual.</p>
                         <div className="flex flex-col md:flex-row w-full gap-4 mt-8">
                             <Link href="/shop/all">
                                 <button className="py-5 px-9 transition-colors font-medium bg-slate-800 hover:bg-orange-600/80 text-white">SHOP NOW</button>
@@ -94,13 +95,13 @@ const whyPopulum = () => {
                     </div>
                     <div className={`relative px-8 lg:px-16 xl:px-32 w-full lg:w-1/2 text-slate-800/90 overflow-x-hidden ${readMore ? "overflow-y-hidden h-[40rem]" : "h-fit"}`}>
                         <p className="font-bold text-slate-800/80 mb-4 text-sm">OUR STORY</p>
-                        <h2 className="font-serif text-4xl">Hi, I'm Greg Parker.</h2>
+                        <h2 className="font-serif text-4xl">Hi, I&apos;m Greg Parker.</h2>
                         <p className="text-lg mt-4">
                             Growing up in South Korea, I was raised in a family that embraced the healing power of plants for everyday medicine. We used natural herbs to soothe and repair the skin, body, and mind. I had many health issues as a child and pure plant-based remedies proved to be the most effective treatment. As I grew older and my passion for plant-based supplements deepened, I discovered hemp CBD. The more I learned about CBD, the more passionate I felt about championing its benefits and making it accessible to everyone. Inspired, I launched <Link href="/"><a className="cursor-pointer text-orange-600 hover:text-slate-800/90">Populum</a></Link> in 2016. 
                             <br/><br/>
                             At the time, the CBD landscape was overcrowded and rampant with misinformation, exaggerated claims, and a lack of regulation. Naturally, I saw how harmful this was to the reputation of a plant that was already historically stigmatized. Through Populum, I was on a mission to educate people about CBD, create the highest quality products available, and, most importantly, establish a higher standard for the industry.
                             <br/><br/>
-                            “Ad Populum” translates to “for the people” in Latin. When I began Populum, I set out to create a brand that truly is for the people it serves. This value continues to be a driving force for us and is reflected in the <a className="cursor-pointer text-orange-600 hover:text-slate-800/90">hundreds of reviews</a> from loyal customers who have tried and continue to use our hemp CBD. It's reflected in the strict quality assurance standards that we adhere to. It's reflected in the person-to-person connection that our team has with our community. Today, we've served more than 25,000 customers, with that number growing every day. I am so proud of the brand we've built, the people we've helped, and look forward to continuing our mission.
+                            “Ad Populum” translates to “for the people” in Latin. When I began Populum, I set out to create a brand that truly is for the people it serves. This value continues to be a driving force for us and is reflected in the <a className="cursor-pointer text-orange-600 hover:text-slate-800/90">hundreds of reviews</a> from loyal customers who have tried and continue to use our hemp CBD. It&apos;s reflected in the strict quality assurance standards that we adhere to. It&apos;s reflected in the person-to-person connection that our team has with our community. Today, we&apos;ve served more than 25,000 customers, with that number growing every day. I am so proud of the brand we&apos;ve built, the people we&apos;ve helped, and look forward to continuing our mission.
                         </p>
                         <br/>
                         <div className={`${readMore && "bg-gradient-to-t from-white to-white/70"} w-full h-16 absolute z-10 bottom-0 flex flex-col-reverse items-start`}>
@@ -160,7 +161,7 @@ const whyPopulum = () => {
                                     </div>
                                 
                                 </div>
-                                <p className="font-medium">The hemp is harvested in the fall, where it's then cured and air dried.</p>
+                                <p className="font-medium">The hemp is harvested in the fall, where it&apos;s then cured and air dried.</p>
                             </motion.div>
                             <motion.div className="flex flex-col border-r pl-12 p-8 h-full w-[25rem] min-w-[25rem] lg:w-[30rem] lg:min-w-[30rem] text-slate-800/90">
                                 <div className="flex justify-between">
@@ -199,7 +200,7 @@ const whyPopulum = () => {
                                     </div>
                                 
                                 </div>
-                                <p className="font-medium">The extraction is sent to our CGMP certified facility, where it's formulated with other natural ingredients.</p>
+                                <p className="font-medium">The extraction is sent to our CGMP certified facility, where it&apos;s formulated with other natural ingredients.</p>
                             </motion.div>
                             <motion.div className="flex flex-col border-r pl-12 p-8 h-full w-[25rem] min-w-[25rem] lg:w-[30rem] lg:min-w-[30rem] text-slate-800/90">
                                 <div className="flex justify-between">
@@ -264,7 +265,7 @@ const whyPopulum = () => {
                                     </div>
                                 
                                 </div>
-                                <p className="font-medium">We make sure every package is handled with care, includes the third-party lab results, and delivered right to the customer's door.</p>
+                                <p className="font-medium">We make sure every package is handled with care, includes the third-party lab results, and delivered right to the customer&apos;s door.</p>
                             </motion.div>
                         </motion.div>
                     </motion.div>
@@ -285,22 +286,22 @@ const whyPopulum = () => {
                         </Dropdown>
                         <Dropdown title="We guarantee our CBD concentration.">
                             <p className="text-lg mt-4">
-                                According to an FDA report, more than 50% of CBD companies surveyed sold products that were mislabeled, containing either more or less CBD than advertised. As full-spectrum CBD oil is formulated using 100% naturally derived extracts, it is impossible to make the CBD potency exactly the same for each batch. At Populum, we guarantee we're always delivering on the labeled potency, while staying within a deviation of up to 10% more CBD than what is labeled. This is our CBD concentration promise.
+                                According to an FDA report, more than 50% of CBD companies surveyed sold products that were mislabeled, containing either more or less CBD than advertised. As full-spectrum CBD oil is formulated using 100% naturally derived extracts, it is impossible to make the CBD potency exactly the same for each batch. At Populum, we guarantee we&apos;re always delivering on the labeled potency, while staying within a deviation of up to 10% more CBD than what is labeled. This is our CBD concentration promise.
                             </p>
                         </Dropdown>
                         <Dropdown title="We believe in the facts.">
                             <p className="text-lg mt-4">
-                                There are all kinds of stories in the market, and it's difficult as a consumer to sort through fact versus fiction when it comes to navigating CBD. We started in 2016, making us one of the oldest companies in the CBD industry. We use our experience not only to provide you with trustworthy products, but also with factual education about CBD. Transparency is at the core of everything we do, so you can trust that we'll never issue false or exaggerated claims.
+                                There are all kinds of stories in the market, and it&apos;s difficult as a consumer to sort through fact versus fiction when it comes to navigating CBD. We started in 2016, making us one of the oldest companies in the CBD industry. We use our experience not only to provide you with trustworthy products, but also with factual education about CBD. Transparency is at the core of everything we do, so you can trust that we&apos;ll never issue false or exaggerated claims.
                             </p>
                         </Dropdown>
                         <Dropdown title="We lead with cutting-edge science.">
                             <p className="text-lg mt-4">
-                                There's so much more to CBD than just “CBD.” The hemp plant is made up of 100s of compounds. We work with leading chemists and scientists using proprietary technology to create the most effective form of full-spectrum CBD on the market. So in addition to CBD, you also get a healthy mix of CBC, CBG, CBN and terpenes in every bottle.
+                                There&apos;s so much more to CBD than just “CBD.” The hemp plant is made up of 100s of compounds. We work with leading chemists and scientists using proprietary technology to create the most effective form of full-spectrum CBD on the market. So in addition to CBD, you also get a healthy mix of CBC, CBG, CBN and terpenes in every bottle.
                             </p>
                         </Dropdown>
                         <Dropdown title="We are dedicated to our customers.">
                             <p className="text-lg mt-4">
-                                “Populum” translates to “for the people'' in Latin, so our goal is to always put our customers' needs first. At Populum, we embody this phrase, and it is (hopefully) apparent through our interactions with you. From the CEO to our interns, everyone at Populum is part of our customer service team (or a.k.a. “CBD Concierge”). And while we can surely answer any question you have about CBD, we are also friendly people who genuinely care and that you can reach out to just to say “hi.”
+                                “Populum” translates to “for the people&apos;&apos; in Latin, so our goal is to always put our customers&apos; needs first. At Populum, we embody this phrase, and it is (hopefully) apparent through our interactions with you. From the CEO to our interns, everyone at Populum is part of our customer service team (or a.k.a. “CBD Concierge”). And while we can surely answer any question you have about CBD, we are also friendly people who genuinely care and that you can reach out to just to say “hi.”
                             </p>
                         </Dropdown>
                         <Dropdown title="We believe in the power of community.">
@@ -331,9 +332,9 @@ const whyPopulum = () => {
                     </div>
                     <div className="w-full h-full my-auto p-[10vw] lg:p-0 lg:pl-[10vw] gap-y-4 flex flex-col justify-center">
                         <p className="text-slate-800/80 font-bold text-sm">COMPARISON CHART</p>
-                        <h2 className="text-2xl lg:text-4xl font-serif">There's no comparison in quality, strength, and care.</h2>
+                        <h2 className="text-2xl lg:text-4xl font-serif">There&apos;s no comparison in quality, strength, and care.</h2>
                         <p className="text-lg">
-                            There are all kinds of stories in the CBD market, but we are here with a promise to you that our ingredients are safe, tested, natural, and clean - with strong, full-spectrum concentrations. What's more, we make ourselves available to you. We have representatives standing by in case you want to chat, email, or speak to a human. We want you to be happy, and we'll help you through the experience. And if you aren't satisfied after we've given you time to give it a real, honest try, we'll take it back. That's a promise. We're not hiding anything, and you shouldn't have to settle for less.
+                            There are all kinds of stories in the CBD market, but we are here with a promise to you that our ingredients are safe, tested, natural, and clean - with strong, full-spectrum concentrations. What&apos;s more, we make ourselves available to you. We have representatives standing by in case you want to chat, email, or speak to a human. We want you to be happy, and we&apos;ll help you through the experience. And if you aren&apos;t satisfied after we&apos;ve given you time to give it a real, honest try, we&apos;ll take it back. That&apos;s a promise. We&apos;re not hiding anything, and you shouldn&apos;t have to settle for less.
                         </p>
                         <a className="font-mono text-lg text-orange-600/80 hover:text-slate-800/90 transition-colors cursor-pointer">View our comparison chart</a>
                     </div>
@@ -347,4 +348,4 @@ const whyPopulum = () => {
 }
 
 
-export default whyPopulum;
+export default WhyPopulum;

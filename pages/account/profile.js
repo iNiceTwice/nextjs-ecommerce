@@ -1,13 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { IoArrowBack, IoPersonAdd } from "react-icons/io5"
-import { GiOrange } from "react-icons/gi"
+import { IoArrowBack, IoFlowerOutline, IoMailOutline } from "react-icons/io5"
+import {VscSmiley} from "react-icons/vsc"
 import { motion } from "framer-motion";
+import Link from "next/link"
+import Image from "next/image"
+import { RiFacebookFill, RiMessengerFill, RiLink } from "react-icons/ri"
+import { useState } from "react";
 
 //konigit986@adroh.com
 
 const Profile = () => {
     const dispatch = useDispatch()
     const user = useSelector( state => state.user )
+    const [ showModal, setShowModal ] = useState(false)
+
     const pageTransition = {
         in:{
             opacity:1
@@ -19,32 +25,80 @@ const Profile = () => {
 
     return ( 
         <>
-            <motion.div initial="out" animate="in" exit="out" variants={pageTransition}>
+            <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
+                {
+                    showModal &&
+                    <div onClick={ () => setShowModal(false) } className="fixed z-10 flex justify-center items-center w-full h-screen bg-gray-700/30">
+                        <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
+                            <div onClick={ e => e.stopPropagation() } className="bg-white w-[60rem] h-[35rem] flex">
+                                <div className="flex flex-col w-5/12 text-slate-800">
+                                    <div className="bg-gray-100 w-full px-6 py-3">
+                                        REFER FRIENDS TO POPULUM
+                                    </div>
+                                    <div className="w-full mt-10 px-6">
+                                        <h2 className="font-bold text-4xl mb-4">GIVE $10, GET $10</h2>
+                                        <p>
+                                            Send a $10 coupon to your friends, and when they purchase, you&apos;ll get $10 off too!
+                                        </p>
+                                        <div className="flex flex-col gap-y-2 w-full mt-4">
+                                            <button className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-orange-600/80 hover:bg-orange-600/90">
+                                                <IoMailOutline className="mr-2" size={25}/>
+                                                Share via Email
+                                            </button>
+                                            <button className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-[#3b5998] hover:bg-[#385590]">
+                                                <RiFacebookFill className="mr-2" size={25}/>
+                                                Share on Facebook
+                                            </button>
+                                            <button className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-[#0084ff] hover:bg-[#007df2]">
+                                                <RiMessengerFill className="mr-2" size={25}/>
+                                                Send as Message
+                                            </button>
+                                            <button className="flex w-full justify-center items-center py-3 text-sm text-white font-medium bg-slate-800/90 hover:bg-slate-800">
+                                                <RiLink className="mr-2" size={25}/>
+                                                Share by Link
+                                            </button>
+                                            <p className="text-slate-800/40 text-center text-xs mt-8 px-[12%]">
+                                                By clicking &quot;Send Email&quot; and accepting this offer, you agree to the Terms of Service and Privacy Policy.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="relative w-7/12 h-full">
+                                    <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/populum-orange_1400x.webp?v=1662465868" layout="fill" objectFit="cover" alt="company logo" objectPosition="center" />
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                }
                 <div className="h-fit flex justify-center">
                     <div className="py-32 text-center">
-                        <h2 className="font-serif text-5xl">Welcome back, <span>{ user.name }!</span></h2>
-                        <p className="font-medium text-black/75">{ user.email }</p>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 mt-16">
-                            <div className="flex flex-col justify-end h-[35rem] bg-orange-600/80 text-white">
-                                <div className="flex w-full justify-center">
-                                    <GiOrange size="100"/>
+                        <h2 className="font-serif text-3xl lg:text-5xl">Welcome back, <span>{ user.name }!</span></h2>
+                        <p className="font-medium text-slate-800/90">{ user.email }</p>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 px-5 gap-8 mt-16">
+                            <Link href="/account/subscriptions">
+                                <div className="flex flex-col justify-end h-[30rem] lg:h-[35rem] cursor-pointer bg-orange-600/80 text-white">
+                                    <div className="flex w-full justify-center">
+                                        <IoFlowerOutline size="75"/>
+                                    </div>
+                                    <h3 className="text-4xl font-serif mt-6">Subscriptions</h3>
+                                    <p className="font-medium mb-4 mt-16 px-8">Manage your subscriptions in one place. You can even add new ones.</p>
+                                    <div className="w-full justify-center items-center flex pb-10">
+                                        <IoArrowBack size="25"/>
+                                    </div>
                                 </div>
-                                <h3 className="text-4xl font-serif mt-6">Subscription</h3>
-                                <p className="font-medium mb-4 mt-16 px-8">Manage your subscriptions in one place. You can even add new ones.</p>
-                                <div className="w-full justify-center items-center flex pb-10">
-                                    <IoArrowBack size="25"/>
+                            </Link>
+                            <button onClick={ () => setShowModal(true) }>
+                                <div className="flex flex-col text-slate-800 justify-end h-[30rem] lg:h-[35rem] bg-sky-200/90">
+                                    <div className="flex w-full justify-center">
+                                        <VscSmiley size="75"/>
+                                    </div>
+                                    <h3 className="text-4xl font-serif mt-6">Refer-a-Friend</h3>
+                                    <p className="font-medium mb-4 mt-16 px-8">Refer a friend to us, and you&apos;ll both receive $10 off on your next order.</p>
+                                    <div className="w-full justify-center flex pb-10">
+                                        <IoArrowBack size="25"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="flex flex-col text-slate-800 justify-end h-[35rem] bg-sky-200/90">
-                                <div className="flex w-full justify-center">
-                                    <IoPersonAdd size="100"/>
-                                </div>
-                                <h3 className="text-4xl font-serif mt-6">Refer-a-Friend</h3>
-                                <p className="font-medium mb-4 mt-16 px-8">Refer a friend to us, and you'll both receive $10 off on your next order.</p>
-                                <div className="w-full justify-center flex pb-10">
-                                    <IoArrowBack size="25"/>
-                                </div>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,4 @@
 import { 
-    SET_CART,
     CLEAR_CART,
     ADD_PRODUCT,
     INCREMENT_PRODUCT,

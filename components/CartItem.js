@@ -29,12 +29,12 @@ const CartItem = ({ product, quantity, index, checkout }) => {
                 <div className="flex flex-col justify-between flex-grow ml-8">
                     {
                         product.purchase === "subscription" 
-                        ?   <div>
-                                <h4 className="text-slate-800 text-lg mt-1">{ product.title } 20% Off - { product.size }</h4>
+                        ?   <div className="pr-4">
+                                <h4 className="text-slate-800 text-sm lg:text-lg mt-1">{ product.title } 20% Off - { product.size }</h4>
                                 <p className="font-medium text-slate-800/80">Every 1 Months</p>
                             </div> 
-                        :   <div>
-                                <h4 className="text-slate-800 text-lg mt-1">{ product.title } - { product.size }</h4>
+                        :   <div className="pr-4">
+                                <h4 className="text-slate-800 text-sm lg:text-lg mt-1">{ product.title } - { product.size }</h4>
                                 <p className="font-medium text-slate-800/80">One-time purchase</p>
                             </div> 
                     }
