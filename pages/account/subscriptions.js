@@ -100,7 +100,7 @@ const ManageSubscriptions = ({ user, host }) => {
                                         bundles[bundleKey].map((bundle,i)=>(
                                             <div key={ bundleKey + i }>
                                                 <div className="relative h-[10rem]">
-                                                    <Image layout="fill" objectFit="cover" objectPosition="center" src={ bundle.item.img }/>
+                                                    <Image alt={bundle.item.title  } layout="fill" objectFit="cover" objectPosition="center" src={ bundle.item.img }/>
                                                 </div>
                                                 <div className="mt-2">
                                                     <h4 className="font-medium text-sm">{ bundle.item.title } - { bundle.item.size } x{ bundle.quantity }</h4>

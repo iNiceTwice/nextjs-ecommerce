@@ -67,7 +67,7 @@ const Shop = ({ products }) => {
                     current === "all" &&
                         <>
                             <div className="relative flex flex-col items-center w-full md:w-4/6 lg:w-2/3 h-[18rem] md:h-[35rem] lg:h-[40rem] mr-0 md:mr-10 lg:mr-[13vw] mt-16">
-                                <Image className="z-10" src={ slider[count].img } layout="fill" loading="lazy" objectFit="cover" objectPosition="center"/>
+                                <Image alt="Populum products" className="z-10" src={ slider[count].img } layout="fill" loading="lazy" objectFit="cover" objectPosition="center"/>
                                 <div className="p-6 lg:p-8 w-11/12 mx-auto lg:w-[34rem] absolute bottom-0 lg:right-0 bg-red-50 z-20 -mb-40 lg:-mb-12 lg:-mr-12">
                                     <h3 className="text-center lg:text-left font-serif text-2xl text-black/80 mb-3">{ slider[count].title }</h3>
                                     <p className="text-center lg:text-justify font-medium text-black/80">{ slider[count].description }</p>
@@ -76,15 +76,15 @@ const Shop = ({ products }) => {
                                     </div>
                                 </div>
                                 <div className="flex justify-between w-full px-4 absolute top-1/2 z-20">
-                                    <button onClick={() => handleClickSlider(1)}>
+                                    <button alt="Previous image" onClick={() => handleClickSlider(1)}>
                                         <IoChevronBack size="30" className="text-gray-700 hover:text-white transition-colors"/>
                                     </button>
-                                    <button onClick={() => handleClickSlider(1)}>
+                                    <button alt="Next image" onClick={() => handleClickSlider(1)}>
                                         <IoChevronForward size="30" className="text-gray-700 hover:text-white transition-colors"/>
                                     </button>
                                 </div>
                                 <div className="absolute left-0 h-20 w-20 lg:h-28 lg:w-28 z-20 ml-4 lg:-ml-7 -mt-7">
-                                    <Image src={ slider[count].imgCorner } objectFit="cover" layout="fill"/>
+                                    <Image alt="Promotion badge" src={ slider[count].imgCorner } objectFit="cover" layout="fill"/>
                                 </div>
                             </div>
                         </>

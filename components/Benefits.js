@@ -10,7 +10,7 @@ const Benefits = ({title, benefits}) => {
                         {
                             benefits.map((benefit)=>(
                                 <li key={ benefit.text } className="p-2 border-t flex lg:justify-start items-center">
-                                    <Image src={ benefit.img } loading="lazy" height={70} width={70}/>   
+                                    <Image alt="" src={ benefit.img } loading="lazy" height={70} width={70}/>   
                                     <p>{ benefit.text }</p>
                                 </li>
                             ))

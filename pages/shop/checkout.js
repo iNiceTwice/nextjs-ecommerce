@@ -90,7 +90,6 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
         if(paymentResponse.status === "approved" && paymentResponse.external_reference === "once" ){
             dispatch(removeProducts("once"))
         }else if(paymentResponse.status === "authorized" && paymentResponse.external_reference === "subscription"){
-            console.log("put to sub", purchaseSub)
             const subsWithId = purchaseSub.map(sub=>{
                 return {
                     bundle_id:preapproval,
@@ -102,7 +101,6 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
                 try {
                     axios.put(`${host}/api/user/subscriptions/add`, subsWithId)
                         .then(data=> {
-                            console.log(data.data)
                             dispatch(removeProducts("subscription"))
                         })
                 } catch (error) {

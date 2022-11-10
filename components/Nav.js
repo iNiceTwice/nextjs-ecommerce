@@ -32,8 +32,12 @@ const ResponsiveMenu = ({ open }) => {
                         <Link href='/pages/why'>
                             <a onClick={ open }>Why Populum</a>
                         </Link>
-                        <a>FAQ</a>
-                        <a>Find Us</a>
+                        <Link href='/'>
+                            <a>FAQ</a>
+                        </Link>
+                        <Link href='/'>
+                            <a>Find Us</a>
+                        </Link>
                         <Link href='/pages/contact'>
                             <a onClick={ open }>Contact</a>
                         </Link>
@@ -76,7 +80,7 @@ const Nav = ({ refresh }) => {
             })
             .catch(err => console.log(err))
         }
-    },[refresh])
+    },[refresh, isLogged, dispatch])
     
     const handleMenu = () => {
         if(!showMenu){
@@ -116,7 +120,7 @@ const Nav = ({ refresh }) => {
         <>
             <div className={`flex fixed top-0 w-full py-8 px-3 lg:px-20 justify-between bg-white z-50`}>
                 <div className="flex gap-x-5">
-                    <button onClick={ handleMenu } className="md:hidden flex" >
+                    <button onClick={ handleMenu } aria-label="menu" className="md:hidden flex" >
                         <IoMenu className='text-slate-800/90' size="25"/>
                     </button>
                     <Logo/>
@@ -219,10 +223,10 @@ const Nav = ({ refresh }) => {
                             isLogged && router.pathname === "/account/profile" &&
                             <button onClick={ handleLogout } className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Logout</button>
                         }
-                    <button>
+                    <button title="notifications">
                         <IoNotifications size="22" className="text-slate-800/90 text-xl hover:text-orange-600 transition-colors"/>
                     </button>
-                    <button className='flex' onClick={ handleCart }>
+                    <button aria-label="shopping-cart" className='flex' onClick={ handleCart }>
                         <IoCart size="25" className="text-xl text-slate-800/90 hover:text-orange-600 transition-colors"/>
                         <span className='ml-2 text-lg'>{ totalItems }</span>
                     </button>

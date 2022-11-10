@@ -41,6 +41,7 @@ const WhyPopulum = () => {
                         />
                         <div className="w-full h-full flex items-center justify-center">
                             <button
+                                title="Show video"
                                 onClick={() => setShowVideo(true)}  
                                 className="group-hover:scale-125 z-10 transition-all shadow-md bg-white p-5 rounded-full">
                                 <IoPlaySharp className="text-slate-300" size={20} />
@@ -53,7 +54,7 @@ const WhyPopulum = () => {
                     {
                         showVideo &&
                         <div className="fixed z-50 top-0 w-full h-screen bg-slate-700 flex items-center justify-center">
-                            <button className="absolute top-10 right-10" onClick={() => setShowVideo(false)}>
+                            <button title="close video" className="absolute top-10 right-10" onClick={() => setShowVideo(false)}>
                                 <IoCloseSharp className="text-white hover:text-orange-600" size={40}/>
                             </button>
                             <iframe autoplay className="aspect-video w-full lg:w-7/12 h-auto" id="youtube-4034" frameBorder="0" allowFullScreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="Player for How Populum is Revolutionizing the CBD Industry" width="640" height="320" src="https://www.youtube-nocookie.com/embed/LJJNMZZ0C9I?autoplay=0&amp;controls=0&amp;disablekb=1&amp;playsinline=1&amp;cc_load_policy=0&amp;cc_lang_pref=auto&amp;widget_referrer=https%3A%2F%2Fpopulum.com%2Fpages%2Fwhy&amp;noCookie=true&amp;rel=0&amp;showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fpopulum.com&amp;widgetid=1" data-gtm-yt-inspected-6="true"></iframe>
@@ -72,26 +73,26 @@ const WhyPopulum = () => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 h-fit">
                         <div className="flex h-fit items-center py-2 border-t">
-                            <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/flag_small.png?v=1613531243" loading="lazy" objectFit="contain" objectPosition="center" height={60} width={60}/>
+                            <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/flag_small.png?v=1613531243" loading="lazy" objectFit="contain" objectPosition="center" height={60} width={60}/>
                             <p className="text-lg text-slate-900/90">Made in the USA</p>
                         </div>
                         <div className="flex h-fit items-center py-2 border-t">
-                            <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/snow_copy_small.png?v=1613531242" loading="lazy" objectFit="contain" objectPosition="center" height={60} width={60}/>
+                            <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/snow_copy_small.png?v=1613531242" loading="lazy" objectFit="contain" objectPosition="center" height={60} width={60}/>
                             <p className="text-lg text-slate-900/90">Full-spectrum</p>
                         </div>
                         <div className="flex h-fit items-center py-2 border-t border-b">
-                            <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/lightning_small.png?v=1613531242" loading="lazy" objectFit="contain" objectPosition="center" height={60} width={60}/>
+                            <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/lightning_small.png?v=1613531242" loading="lazy" objectFit="contain" objectPosition="center" height={60} width={60}/>
                             <p className="text-lg text-slate-900/90">Max potency</p>
                         </div>
                         <div className="flex h-fit items-center py-2 md:border-t border-b">
-                            <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/beaker_small.png?v=1613531242" loading="lazy" objectFit="contain" objectPosition="center" height={60} width={60}/>
+                            <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/beaker_small.png?v=1613531242" loading="lazy" objectFit="contain" objectPosition="center" height={60} width={60}/>
                             <p className="text-lg text-slate-900/90">Thoroughly tested</p>
                         </div>
                     </div>
                 </section>
                 <section className="flex flex-col lg:flex-row w-full gap-y-4">
                     <div className="relative w-full h-[35rem] lg:h-[55rem] lg:w-1/2">
-                        <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/populum-why_1400x.jpg?v=1656654819" layout="fill" objectFit="cover" objectPosition="center"/>
+                        <Image alt="Cold Therapy Hemp Rub" src="https://cdn.shopify.com/s/files/1/1737/2201/files/populum-why_1400x.jpg?v=1656654819" layout="fill" objectFit="cover" objectPosition="center"/>
                     </div>
                     <div className={`relative px-8 lg:px-16 xl:px-32 w-full lg:w-1/2 text-slate-800/90 overflow-x-hidden ${readMore ? "overflow-y-hidden h-[40rem]" : "h-fit"}`}>
                         <p className="font-bold text-slate-800/80 mb-4 text-sm">OUR STORY</p>
@@ -144,7 +145,7 @@ const WhyPopulum = () => {
                                         <h2 className="font-serif text-2xl ">Planted</h2>
                                     </div>
                                     <div>
-                                        <Image loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Planted_icon_4211e4a9-a9b7-4bd3-bb46-46b8b8ad9203_small.png?v=1616686499" height={100} width={100}/>
+                                        <Image alt="" loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Planted_icon_4211e4a9-a9b7-4bd3-bb46-46b8b8ad9203_small.png?v=1616686499" height={100} width={100}/>
                                     </div>
                                 
                                 </div>
@@ -157,7 +158,7 @@ const WhyPopulum = () => {
                                         <h2 className="font-serif text-2xl ">Harvested</h2>
                                     </div>
                                     <div>
-                                        <Image loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Harvested_icon_b202451c-b693-452f-aeff-3d275fc2c7d3_small.png?v=1616686703" height={100} width={100}/>
+                                        <Image alt="" loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Harvested_icon_b202451c-b693-452f-aeff-3d275fc2c7d3_small.png?v=1616686703" height={100} width={100}/>
                                     </div>
                                 
                                 </div>
@@ -170,7 +171,7 @@ const WhyPopulum = () => {
                                         <h2 className="font-serif text-2xl ">1st Lab Test Completed</h2>
                                     </div>
                                     <div>
-                                        <Image loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Labtested_icon_31981d9a-97ea-480b-b21a-6b1d78c19d6a_small.png?v=1616686703" height={100} width={100}/>
+                                        <Image alt="" loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Labtested_icon_31981d9a-97ea-480b-b21a-6b1d78c19d6a_small.png?v=1616686703" height={100} width={100}/>
                                     </div>
                                 
                                 </div>
@@ -183,7 +184,7 @@ const WhyPopulum = () => {
                                         <h2 className="font-serif text-2xl ">Extracted</h2>
                                     </div>
                                     <div>
-                                        <Image loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Extracted_icon_3f7fcd6e-163b-46f9-86d4-7164893aeec2_small.png?v=1616686703" height={100} width={100}/>
+                                        <Image alt="" loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Extracted_icon_3f7fcd6e-163b-46f9-86d4-7164893aeec2_small.png?v=1616686703" height={100} width={100}/>
                                     </div>
                                 
                                 </div>
@@ -196,7 +197,7 @@ const WhyPopulum = () => {
                                         <h2 className="font-serif text-2xl ">Formulated</h2>
                                     </div>
                                     <div>
-                                        <Image loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Formulated_icon_362c4623-84b5-4a79-8e60-896ed7edf731_small.png?v=1616686703" height={100} width={100}/>
+                                        <Image alt="" loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Formulated_icon_362c4623-84b5-4a79-8e60-896ed7edf731_small.png?v=1616686703" height={100} width={100}/>
                                     </div>
                                 
                                 </div>
@@ -209,7 +210,7 @@ const WhyPopulum = () => {
                                         <h2 className="font-serif text-2xl ">2nd Lab Test Completed</h2>
                                     </div>
                                     <div>
-                                        <Image loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Labtested_icon_31981d9a-97ea-480b-b21a-6b1d78c19d6a_small.png?v=1616686703" height={100} width={100}/>
+                                        <Image alt="" loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Labtested_icon_31981d9a-97ea-480b-b21a-6b1d78c19d6a_small.png?v=1616686703" height={100} width={100}/>
                                     </div>
                                 
                                 </div>
@@ -222,7 +223,7 @@ const WhyPopulum = () => {
                                         <h2 className="font-serif text-2xl ">Packaged</h2>
                                     </div>
                                     <div>
-                                        <Image loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Packaged_icon_bba6c1af-df97-47fd-8b53-8e364980a2ab_small.png?v=1616686703" height={100} width={100}/>
+                                        <Image alt="" loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Packaged_icon_bba6c1af-df97-47fd-8b53-8e364980a2ab_small.png?v=1616686703" height={100} width={100}/>
                                     </div>
                                 
                                 </div>
@@ -235,7 +236,7 @@ const WhyPopulum = () => {
                                         <h2 className="font-serif text-2xl ">3rd Lab Test Completed</h2>
                                     </div>
                                     <div>
-                                        <Image loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Labtested_icon_31981d9a-97ea-480b-b21a-6b1d78c19d6a_small.png?v=1616686703" height={100} width={100}/>
+                                        <Image alt="" loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Labtested_icon_31981d9a-97ea-480b-b21a-6b1d78c19d6a_small.png?v=1616686703" height={100} width={100}/>
                                     </div>
                                 
                                 </div>
@@ -248,7 +249,7 @@ const WhyPopulum = () => {
                                         <h2 className="font-serif text-2xl ">Lab Results Certified</h2>
                                     </div>
                                     <div>
-                                        <Image loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Certified_icon_f3405208-2afd-4406-b5b8-d35ea405a037_small.png?v=1616686703" height={100} width={100}/>
+                                        <Image alt="" loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Certified_icon_f3405208-2afd-4406-b5b8-d35ea405a037_small.png?v=1616686703" height={100} width={100}/>
                                     </div>
                                 
                                 </div>
@@ -261,7 +262,7 @@ const WhyPopulum = () => {
                                         <h2 className="font-serif text-2xl ">Delivered</h2>
                                     </div>
                                     <div>
-                                        <Image loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Delivered_icon_155a079b-36f7-450c-b961-0502cc77d60a_small.png?v=1616686703" height={100} width={100}/>
+                                        <Image alt="" loading="lazy" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Delivered_icon_155a079b-36f7-450c-b961-0502cc77d60a_small.png?v=1616686703" height={100} width={100}/>
                                     </div>
                                 
                                 </div>
@@ -312,6 +313,7 @@ const WhyPopulum = () => {
                     </div>
                     <div className="relative w-full lg:w-1/2 h-[35rem] lg:h-[45rem]">
                         <Image 
+                            alt="Populum values. Our pillars and what we stand for"
                             src="https://cdn.shopify.com/s/files/1/1737/2201/files/Populum-Values_707x.png?v=1616686409"
                             layout="fill"
                             loading="lazy"
@@ -322,7 +324,8 @@ const WhyPopulum = () => {
                 </section>
                 <section className="bg-sky-50 mt-32 lg:p-32 w-full h-fit flex lg:flex-row flex-col gap-y-8 text-slate-800/90">
                     <div className="relative w-full h-[25rem] lg:h-[35rem] lg:-mt-52">
-                        <Image 
+                        <Image
+                            alt="We're focused on quality, strength, and care" 
                             src="https://cdn.shopify.com/s/files/1/1737/2201/files/Populum-Apartment--2823_1400x.png?v=1613531243"
                             layout="fill"
                             loading="lazy"

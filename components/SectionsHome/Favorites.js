@@ -6,30 +6,27 @@ const shop = [
         title:"Full-Spectrum Hemp CBD Oil",
         img:"https://cdn.shopify.com/s/files/1/1737/2201/products/250mgnewfeaturev5_1300x.jpg?v=1661911210",
         rating:4,
-        totalRating:689,
-        price:"47.20",
+        price:"59.00",
         commentary:"Signature CBD drops with a delicious orange flavor",
-        url:"/"
+        url:"tincture"
     },
     {   
         id:2,
-        title:"Full-Spectrum Hemp CBD Oil",
-        img:"https://cdn.shopify.com/s/files/1/1737/2201/products/250mgnewfeaturev5_1300x.jpg?v=1661911210",
-        rating:4,
-        totalRating:689,
-        price:"47.20",
-        commentary:"Signature CBD drops with a delicious orange flavor",
-        url:"/"
+        title:"Full-Spectrum Hemp CBD Capsules",
+        img:"https://cdn.shopify.com/s/files/1/1737/2201/products/12_900x.webp?v=1663332108",
+        rating:5,
+        price:"79.00",
+        commentary:"Premium CBD in convenient, precisely dosed capsules",
+        url:"capsules"
     },
     {   
         id:3,  
-        title:"Full-Spectrum Hemp CBD Oil",
-        img:"https://cdn.shopify.com/s/files/1/1737/2201/products/250mgnewfeaturev5_1300x.jpg?v=1661911210",
-        rating:4,
-        totalRatings:689,
-        price:"47.20",
-        commentary:"Signature CBD drops with a delicious orange flavor",
-        url:"/"
+        title:"Lavender + CBD Face Oil",
+        img:"https://cdn.shopify.com/s/files/1/1737/2201/products/10_900x.png?v=1609965845",
+        rating:5,
+        price:"79.00",
+        commentary:"Clean beauty that leaves your skin with a healthy glow",
+        url:"lavender-cbd-face-oil"
     }
 ]
 const Favorites = () => {
@@ -49,7 +46,6 @@ const Favorites = () => {
                                 commentary={ product.commentary } 
                                 img={ product.img }
                                 url={product.url} 
-                                totalRatings={ product.totalRatings } 
                             />
                         ))
                     }

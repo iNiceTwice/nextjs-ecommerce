@@ -15,7 +15,7 @@ const Intro = ({ img, title, buttonText, buttonColor, buttonUrl, bgColor, text }
                     </div>
                 </div>
                 <div className="relative lg:absolute right-0 w-full lg:w-[54vw] h-[67vw] lg:h-[48vw] lg:mr-[3vw]">
-                    <Image src={ img } objectFit="cover" layout="fill" priority />
+                    <Image alt="Populum Products" src={ img } objectFit="cover" layout="fill" priority />
                 </div>
             </section>
         </>

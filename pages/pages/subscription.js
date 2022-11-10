@@ -39,7 +39,7 @@ const Subscription = ({ products }) => {
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
                                     <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
-                                        <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Leaf_rgb_orangex2_e8a555ee-8a3c-43e5-a9d0-975daf2f11e8_small.png?v=1613584118" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
+                                        <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Leaf_rgb_orangex2_e8a555ee-8a3c-43e5-a9d0-975daf2f11e8_small.png?v=1613584118" width={65} height={65} alt="Populum products" objectFit="contain" objectPosition="center" loading="lazy" />
                                     </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">20% off all orders</p>
                                 </span>
@@ -50,7 +50,7 @@ const Subscription = ({ products }) => {
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
                                     <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
-                                        <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Cycle_rgb_orangex2_small.png?v=1613569550" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
+                                        <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Cycle_rgb_orangex2_small.png?v=1613569550" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                     </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Cancel or skip anytime</p>
                                 </span>
@@ -61,7 +61,7 @@ const Subscription = ({ products }) => {
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
                                     <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
-                                        <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Thirty_rgb_orangex2_9b767b53-6442-4462-b54f-ea511c5fd010_small.png?v=1613583968" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
+                                        <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Thirty_rgb_orangex2_9b767b53-6442-4462-b54f-ea511c5fd010_small.png?v=1613583968" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                     </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Risk Free Trial</p>
                                 </span>
@@ -72,7 +72,7 @@ const Subscription = ({ products }) => {
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
                                     <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
-                                        <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Wallet_rgb_orangex2_d2a8cc6b-955a-45cd-bb5a-d47fba3ede49_small.png?v=1613578195" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
+                                        <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Wallet_rgb_orangex2_d2a8cc6b-955a-45cd-bb5a-d47fba3ede49_small.png?v=1613578195" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                     </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Free US shipping</p>
                                 </span>
@@ -83,7 +83,7 @@ const Subscription = ({ products }) => {
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
                                     <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
-                                        <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Leaf_rgb_orangex2_e8a555ee-8a3c-43e5-a9d0-975daf2f11e8_small.png?v=1613584118" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
+                                        <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Leaf_rgb_orangex2_e8a555ee-8a3c-43e5-a9d0-975daf2f11e8_small.png?v=1613584118" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                     </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Quality guaranteed</p>
                                 </span>
@@ -94,7 +94,7 @@ const Subscription = ({ products }) => {
                             <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                 <span className="flex items-center w-full">
                                     <span className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
-                                        <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Parcel_rgb_orangex2_991c179c-21ed-4288-a0bd-66eca90330e9_small.png?v=1613578195" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
+                                        <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Parcel_rgb_orangex2_991c179c-21ed-4288-a0bd-66eca90330e9_small.png?v=1613578195" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                     </span>
                                     <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Exclusive rewards</p>
                                 </span>
@@ -229,7 +229,7 @@ const Subscription = ({ products }) => {
      );
 }
 
-export const getStaticProps = async context => {
+export const getServerSideProps = async context => {
     const url = process.env.HOST
     const response = await axios.get(`${url}/api/products/all`)
 

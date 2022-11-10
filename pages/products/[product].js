@@ -78,7 +78,7 @@ const Product = ({ product }) => {
                     modal &&
                     <div className="overflow-auto fixed z-50 top-0 w-full h-screen text-slate-800/90 bg-slate-700 flex flex-col items-center lg:justify-center">
                         <div className="flex w-full flex-row-reverse">
-                            <button onClick={() => setModal(false)} className="m-4">
+                            <button title="Close modal" onClick={() => setModal(false)} className="m-4">
                                 <IoCloseSharp className="text-white hover:text-orange-600" size={40}/>
                             </button>
                         </div>
@@ -95,7 +95,7 @@ const Product = ({ product }) => {
                     <div className="flex flex-col lg:flex-row w-full h-full">
                         <div id="IMG" onClick={ handleClick } className="relative group w-full lg:w-1/2 h-full cursor-pointer right-0 lg:-right-10 xl:-right-16">
                             <div className="relative z-10 w-full h-full">
-                                <Image src={ product[0].img[imgCount] } priority layout="fill" objectFit="cover" objectPosition="center"/>
+                                <Image alt={ product[0].title } src={ product[0].img[imgCount] } priority layout="fill" objectFit="cover" objectPosition="center"/>
                             </div>
                             <div className="absolute hidden lg:block bg-red-400/60 w-full h-full top-0 group-hover:rotate-3 transition-all"></div>
                             <div className="absolute hidden lg:block bg-red-400/50 w-full h-full top-0 group-hover:-rotate-3 transition-all"></div>
@@ -118,6 +118,7 @@ const Product = ({ product }) => {
                                         <p className="mt-6 text-sm text-slate-800/90 font-medium">Purcharse</p>
                                         <div className="flex flex-col mt-2 gap-y-2">
                                             <button 
+                                                title="Purchase subscription"
                                                 onClick={ () => setPurchase("subscription") } 
                                                 className={`flex justify-between items-center p-5 rounded border group ${ purchase === "subscription" && "border-orange-600/80" }`}
                                             >
@@ -139,6 +140,7 @@ const Product = ({ product }) => {
                                                 </div>
                                             </button>
                                             <button 
+                                                title="Purchase once"
                                                 onClick={ () => setPurchase("once") } 
                                                 className={`flex justify-between items-center rounded p-5 border group ${ purchase === "once" && "border-orange-600/80"}` }
                                             >

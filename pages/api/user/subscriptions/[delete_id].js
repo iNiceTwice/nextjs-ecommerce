@@ -42,9 +42,9 @@ const deleteSubscription = async (req,res) => {
                 Authorization: `Bearer ${MP_TOKEN}` 
           }
         });
-    }catch(error){
+    }catch(err){
         return res.status(500).json({ message:"Error" })
-        console.log(error)
+        console.log(err)
     }
 
     await USERS_DB.findByIdAndUpdate(checkToken.id,{ $pull:{ subscriptions:{ bundle_id: subId } } },(err)=>{

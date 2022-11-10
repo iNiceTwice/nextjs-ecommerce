@@ -1,9 +1,9 @@
 import Intro from "../components/Intro"
-import Featured from "../components/SectionsHome/Featured"
-import Benefits from "../components/Benefits"
-import Favorites from "../components/SectionsHome/Favorites"
-import InteractivePref from "../components/SectionsHome/InteractivePref"
-import Footer from "../components/Footer"
+import Featured  from "../components/SectionsHome/Featured"
+import Benefits  from "../components/Benefits"
+import Favorites  from "../components/SectionsHome/Favorites"
+import InteractivePref  from "../components/SectionsHome/InteractivePref"
+import Footer  from "../components/Footer"
 import { motion } from "framer-motion"
 
 const Home = () => {

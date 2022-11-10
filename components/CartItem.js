@@ -25,7 +25,7 @@ const CartItem = ({ product, quantity, index, checkout }) => {
         <>
         {
             <div className="relative flex w-full h-fit mb-6">
-                <Image src={ product.img } width={150} height={120} objectFit="cover" objectPosition="center"/>
+                <Image alt={ product.title + product.size } src={ product.img } width={150} height={120} objectFit="cover" objectPosition="center"/>
                 <div className="flex flex-col justify-between flex-grow ml-8">
                     {
                         product.purchase === "subscription" 

@@ -54,7 +54,7 @@ const ShopItem = ({ id, title, rating, price, img, totalRatings, url, commentary
                 onMouseLeave={()=>setShowCommentary(false)}
             >
                 <div className="relative h-96 md:h-[20rem] lg:h-[28rem] w-full min-w-2xl">
-                    <Image src={ img } layout="fill" objectFit="cover" objectPosition="center" loading="lazy"/>
+                    <Image alt={ title } src={ img } layout="fill" objectFit="cover" objectPosition="center" loading="lazy"/>
                 </div>
                 {
                     subscription 

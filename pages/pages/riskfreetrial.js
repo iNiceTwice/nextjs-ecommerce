@@ -27,7 +27,8 @@ const Trial = () => {
             <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
                 <div className="w-full mt-24">
                     <div className="relative w-full lg:w-11/12 mx-auto h-[30rem] lg:h-[40rem]">
-                        <Image 
+                        <Image
+                            alt="Populum orange banner" 
                             src="https://cdn.shopify.com/s/files/1/1737/2201/files/Try_Populum_Risk_Free_1700x.jpg?v=1613585612"
                             layout="fill"
                             priority
@@ -42,7 +43,7 @@ const Trial = () => {
                                 <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                     <span className="flex items-center w-full">
                                         <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
-                                            <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Leaf_rgb_orangex2_e8a555ee-8a3c-43e5-a9d0-975daf2f11e8_small.png?v=1613584118" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
+                                            <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Leaf_rgb_orangex2_e8a555ee-8a3c-43e5-a9d0-975daf2f11e8_small.png?v=1613584118" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                         </spam>
                                         <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Place an order</p>
                                     </span>
@@ -53,7 +54,7 @@ const Trial = () => {
                                 <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                     <span className="flex items-center w-full">
                                         <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
-                                            <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Thirty_rgb_orangex2_9b767b53-6442-4462-b54f-ea511c5fd010_small.png?v=1613583968" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
+                                            <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Thirty_rgb_orangex2_9b767b53-6442-4462-b54f-ea511c5fd010_small.png?v=1613583968" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                         </spam>
                                         <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Try for 30 days</p>
                                     </span>
@@ -64,7 +65,7 @@ const Trial = () => {
                                 <li className="flex flex-col lg:flex-row lg:items-center border-t border-slate-300 pt-2 mb-4 ">
                                     <span className="flex items-center w-full">
                                         <spam className="flex -ml-4 lg:-ml-0 lg:pr-5 lg:flex-grow-[0.2] lg:flex-shrink">
-                                            <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/Cycle_rgb_orangex2_small.png?v=1613569550" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
+                                            <Image alt="" src="https://cdn.shopify.com/s/files/1/1737/2201/files/Cycle_rgb_orangex2_small.png?v=1613569550" width={65} height={65}  objectFit="contain" objectPosition="center" loading="lazy" />
                                         </spam>
                                         <p className="font-medium lg:px-5 lg:flex-grow-[0.5] flex-shrink font-serif text-xl">Option to return</p>
                                     </span>
