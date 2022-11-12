@@ -52,6 +52,7 @@ const ResponsiveMenu = ({ open }) => {
 
 const Nav = ({ refresh }) => {
     
+    const [ navPos, setNavPos ] = useState("top")
     const [ showMenu, setShowMenu ] = useState(false)
     const [ isLogged, setIsLogged ] = useState(false)
     const [ openCart, setOpenCart ] = useState(false)
@@ -70,18 +71,14 @@ const Nav = ({ refresh }) => {
         totalItems = item.quantity + totalItems
         totalPrice = totalPrice + item.quantity * item.item.price
     })
-    
-    useEffect(()=>{  
-        if(!isLogged){
-            axios.get("https://ecommerse-clone.netlify.app/api/auth")
-            .then(data => {
-                setIsLogged(data.data.auth)
-                dispatch(userActions(data.data.payload))
-            })
-            .catch(err => console.log(err))
+
+    const handleScroll = () => {
+        if(window.scrollY >= 60){
+            setNavPos("bellow")
+        }else{
+            setNavPos("top")
         }
-    },[refresh, isLogged, dispatch])
-    
+    }    
 
     const handleLogout = () => {
         axios.delete("https://ecommerse-clone.netlify.app/api/auth")
@@ -93,9 +90,23 @@ const Nav = ({ refresh }) => {
             .catch((err)=> console.log(err))
     }
 
+    useEffect(()=>{  
+        if(!isLogged){
+            axios.get("https://ecommerse-clone.netlify.app/api/auth")
+            .then(data => {
+                setIsLogged(data.data.auth)
+                dispatch(userActions(data.data.payload))
+            })
+            .catch(err => console.log(err))
+        }
+        window.addEventListener("scroll", handleScroll)
+    },[refresh, isLogged, dispatch])
+
     return ( 
         <>
-            <div className={`flex fixed top-0 w-full py-8 px-3 lg:px-20 justify-between bg-white z-50`}>
+            <div 
+                className={`flex fixed top-0 w-full py-8 px-3 lg:px-20 justify-between z-50 transition-all ${navPos === "top" ? "bg-transparent" : "bg-white border-b"}`}
+            >
                 <div className="flex gap-x-5">
                     <button onClick={ () => setShowMenu(showMenu => !showMenu) } aria-label="menu" className="md:hidden flex" >
                         <IoMenu className='text-slate-800/90' size="25"/>
@@ -203,7 +214,7 @@ const Nav = ({ refresh }) => {
                     <button title="notifications">
                         <IoNotifications size="22" className="text-slate-800/90 text-xl hover:text-orange-600 transition-colors"/>
                     </button>
-                    <button aria-label="shopping-cart" className='flex' onClick={ handleCart }>
+                    <button aria-label="shopping-cart" className='flex' onClick={ () => setOpenCart(openCart => !openCart) }>
                         <IoCart size="25" className="text-xl text-slate-800/90 hover:text-orange-600 transition-colors"/>
                         <span className='ml-2 text-lg'>{ totalItems }</span>
                     </button>

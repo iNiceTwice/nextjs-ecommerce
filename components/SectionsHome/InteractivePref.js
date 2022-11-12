@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react";
 
 const InteractivePref = () => {
@@ -17,7 +18,7 @@ const InteractivePref = () => {
     const [ product, setProduct ] = useState({
         name:"Full-Spectrum Hemp CBD Oil",
         size:"500mg",
-        mode:"Subscription"
+        purchase:"Subscription"
 
     })
 
@@ -37,8 +38,8 @@ const InteractivePref = () => {
                             <span className="text-2xl xl:text-4xl py-2 lg:py-5 mr-3 inline-flex">I am a</span>
                             <span className="cursor-pointer inline-flex flex-col">
                                 <div
-                                    onMouseEnter={() => setShowOptions({key:"first",isOpen:true})}  
-                                    onMouseLeave={() => setShowOptions({key:"",isOpen:false})}  
+                                    onMouseEnter={() => setShowOptions({ key:"first",isOpen:true })}  
+                                    onMouseLeave={() => setShowOptions({ key:"",isOpen:false })}  
                                     className="z-10 hover:-ml-4 hover:p-4 hover:border-transparent border-b-orange-600/80 border-b hover:bg-white"
                                 >
                                     <div className="text-orange-600/80 text-2xl xl:text-4xl">
@@ -96,12 +97,12 @@ const InteractivePref = () => {
                             <span className="py-2 lg:py-5 mr-3 inline-flex text-2xl xl:text-4xl">who has</span>
                             <span className="cursor-pointer inline-flex flex-col">
                                 <div
-                                    onMouseEnter={() => setShowOptions({key:"second",isOpen:true})}  
-                                    onMouseLeave={() => setShowOptions({key:"",isOpen:false})}  
+                                    onMouseEnter={() => setShowOptions({ key:"second", isOpen:true })}  
+                                    onMouseLeave={() => setShowOptions({ key:"", isOpen:false })}  
                                     className="mr-4 hover:mr-0 hover:-ml-4 hover:p-4 hover:border-transparent border-b-orange-600/80 border-b hover:bg-white"
                                 >
                                     <div className="text-orange-600/80 text-2xl xl:text-4xl">
-                                        {values.second}
+                                        { values.second }
                                     </div>
                                 {
                                     (showOptions.key === "second" && showOptions.isOpen) &&
@@ -157,7 +158,7 @@ const InteractivePref = () => {
                                     className="hover:-ml-4 hover:p-4 hover:border-transparent border-b-orange-600/80 border-b hover:bg-white"
                                 >
                                     <div className="text-orange-600/80 text-2xl xl:text-4xl">
-                                        {values.third}
+                                        { values.third }
                                     </div>
                                 {
                                     (showOptions.key === "third" && showOptions.isOpen) &&
@@ -171,7 +172,7 @@ const InteractivePref = () => {
                                                 })
                                                 setProduct({
                                                     ...product,
-                                                    mode:"Subscription"
+                                                    purchase:"Subscription"
                                                 })
                                             }}
                                         >
@@ -188,7 +189,7 @@ const InteractivePref = () => {
                                                 })
                                                 setProduct({
                                                     ...product,
-                                                    mode:"Once"
+                                                    purchase:"Once"
                                                 })
                                             }}
                                         >
@@ -203,12 +204,14 @@ const InteractivePref = () => {
                         </div>
                         <div className="mt-4 w-full flex justify-between border-black/20 py-4 border-t border-b">
                             <div>
-                                <p className="text-black/75 font-medium">{product.name}</p>
-                                <p>{product.size} / {product.mode}</p>                
+                                <p className="text-black/75 font-medium">{ product.name }</p>
+                                <p>{ product.size } / { product.purchase }</p>                
                             </div>
-                            <button className="font-medium hover:text-slate-800/80 text-orange-600/80 transition-colors">Add To Cart</button>
+                            <Link href="/shop/all">
+                                <button className="font-medium hover:text-slate-800/80 text-orange-600/80 transition-colors">GO TO SHOP</button>
+                            </Link>
                          </div>
-                        <button className="hover:bg-slate-800 hover:text-white mt-6 border border-black w-full md:w-2/5 py-4">LEARN MORE</button>
+                        <button className="hover:bg-slate-800 hover:text-white mt-6 border border-slate-800 w-full md:w-2/5 py-4">LEARN MORE</button>
                     </div>
                 </div>
             </section>
