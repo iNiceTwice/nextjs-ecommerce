@@ -35,7 +35,7 @@ const Login = ({ host }) => {
             email:values.email,
             password:values.password
         }).then(data=>{ 
-           router.push("/account/profile") 
+           router.push("https://ecommerse-clone.netlify.app/account/profile") 
         }).catch(err=>{
             console.log(err)
             if(err.response.status === 401){
