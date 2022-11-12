@@ -31,7 +31,7 @@ const Login = ({ host }) => {
         password:""
     },
     onSubmit:(values)=>{
-        axios.post(`${host}/api/auth`,{
+        axios.post(`https://ecommerse-clone.netlify.app/api/auth`,{
             email:values.email,
             password:values.password
         }).then(data=>{ 
