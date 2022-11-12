@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci"
+
 const Dropdown = ({ children, title }) => {
+    
     const [ open, setOpen ] = useState(false)
     
     const handleClickDropdown = (e) => {

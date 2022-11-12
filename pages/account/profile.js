@@ -1,16 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
-import { IoArrowBack, IoFlowerOutline, IoMailOutline } from "react-icons/io5"
-import { VscSmiley } from "react-icons/vsc"
-import { motion } from "framer-motion";
-import Link from "next/link"
-import Image from "next/image"
-import { toast } from "react-toastify"
-import { RiFacebookFill, RiMessengerFill, RiLink } from "react-icons/ri"
-import { useState } from "react";
 import { FacebookShareButton, FacebookMessengerShareButton, EmailShareButton } from "react-share"
-//konigit986@adroh.com
+import { IoArrowBack, IoFlowerOutline, IoMailOutline } from "react-icons/io5"
+import { RiFacebookFill, RiMessengerFill, RiLink } from "react-icons/ri"
+import { useDispatch, useSelector } from "react-redux";
+import { VscSmiley } from "react-icons/vsc"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify"
+import Image from "next/image"
+import Link from "next/link"
 
 const Profile = ({ host }) => {
+    
     const dispatch = useDispatch()
     const user = useSelector( state => state.user )
     const [ showModal, setShowModal ] = useState(false)

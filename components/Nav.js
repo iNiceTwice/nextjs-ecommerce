@@ -82,29 +82,6 @@ const Nav = ({ refresh }) => {
         }
     },[refresh, isLogged, dispatch])
     
-    const handleMenu = () => {
-        if(!showMenu){
-            setShowMenu(true)
-        }else{
-            setShowMenu(false)
-        }
-    }
-
-    const handleCart = () => {
-        if(!openCart){
-            setOpenCart(true)
-        }else{
-            setOpenCart(false)
-        }
-    }
-
-    const handleSupportMenu = () => {
-        if(!openSupMenu){
-            setOpenSupMenu(true)
-        }else{
-            setOpenSupMenu(false)
-        }
-    }
 
     const handleLogout = () => {
         axios.delete("http://localhost:3000/api/auth")
@@ -120,7 +97,7 @@ const Nav = ({ refresh }) => {
         <>
             <div className={`flex fixed top-0 w-full py-8 px-3 lg:px-20 justify-between bg-white z-50`}>
                 <div className="flex gap-x-5">
-                    <button onClick={ handleMenu } aria-label="menu" className="md:hidden flex" >
+                    <button onClick={ () => setShowMenu(showMenu => !showMenu) } aria-label="menu" className="md:hidden flex" >
                         <IoMenu className='text-slate-800/90' size="25"/>
                     </button>
                     <Logo/>
@@ -134,16 +111,16 @@ const Nav = ({ refresh }) => {
                         <Link href="/pages/riskfreetrial">
                              <a className="text-black hover:text-orange-600 text-opacity-60 text-lg transition-colors">30 Day Trial</a>
                         </Link>
-                        <div onMouseEnter={ handleSupportMenu }>
-                            <a className="cursor-pointer flex items-center text-black hover:text-orange-600 text-opacity-60 text-lg transition-colors">
+                        <div onMouseEnter={ () => setOpenSupMenu(openSupMenu => !openSupMenu) }>
+                            <span className="cursor-pointer flex items-center text-black hover:text-orange-600 text-opacity-60 text-lg transition-colors">
                                 Support
                                 <IoChevronDown className='ml-1' size={15}/>
-                            </a>
+                            </span>
                         </div>
                             { openSupMenu &&
                                 <div
                                     className='bg-white border absolute ml-28 shadow-md mt-10 flex w-96 rounded-sm h-fit' 
-                                    onMouseLeave={ handleSupportMenu }
+                                    onMouseLeave={ () => setOpenSupMenu(openSupMenu => !openSupMenu) }
                                 >
                                     <div className='bg-white border-t border-l p-1 -top-[5px] right-[49%] ml-2 absolute z-10 rotate-45'></div>
                                     <ul className='w-1/2 p-2 text-slate-800/90'>
@@ -232,17 +209,17 @@ const Nav = ({ refresh }) => {
                     </button>
                 </div>
             </div>
-            { ( showMenu && !matches ) && <ResponsiveMenu open={ handleMenu }/> }
+            { ( showMenu && !matches ) && <ResponsiveMenu open={ () => setShowMenu(showMenu => !showMenu) }/> }
             {
             openCart && 
                 <>
                     {
                     cartItems.length === 0 ?     
                     <>
-                        <div onClick={ handleCart } className='bg-gray-700/20 fixed z-50 top-0 h-screen w-screen overflow-auto'>
+                        <div onClick={ () => setOpenCart(openCart => !openCart) } className='bg-gray-700/20 fixed z-50 top-0 h-screen w-screen overflow-auto'>
                             <div onClick={ e => e.stopPropagation() } className="bg-white h-full w-full md:w-3/4 lg:w-1/2 fixed overflow-auto right-0 z-30">
                                 <div className='p-6 h-full w-full flex flex-col'>
-                                    <button onClick={ handleCart } className='absolute top-10 right-10 lg:right-20'><IoClose className='text-slate-800/90' size={25}/></button>
+                                    <button onClick={ () => setOpenCart(openCart => !openCart) } className='absolute top-10 right-10 lg:right-20'><IoClose className='text-slate-800/90' size={25}/></button>
                                     <div className='text-center mt-16 lg:mt-28'>
                                         <h2 className='text-slate-800 text-2xl lg:text-4xl font-serif mb-2 lg:mb-4'>Your Cart is Empty!</h2>
                                         <p className='text-slate-800/60 lg:text-lg font-medium'>There&apos;s no comparison in quality, strength, and care.</p>

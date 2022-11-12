@@ -12,6 +12,7 @@ const ShopItem = ({ id, title, rating, price, img, totalRatings, url, commentary
     const dispatch = useDispatch()
     const cartItems  = useSelector(state => state.cart.cartItems) 
     const [ showCommentary, setShowCommentary] = useState(false)
+    
     const notify = () => toast.success("Product added to cart",{
         position: "bottom-right"
     })

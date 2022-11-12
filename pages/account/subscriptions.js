@@ -9,13 +9,15 @@ import Intro from "../../components/Intro"
 
 const ManageSubscriptions = ({ user, host }) => {
 
+    const router = useRouter()
     const [ subId, setSubId ] = useState("")
     const [ modal, setModal ] = useState(false)
-    const router = useRouter()
+
     const bundles = user.subscriptions.reduce((dict, data) => {
         if (!dict[data.bundle_id]) dict[data.bundle_id] = []; dict[data.bundle_id].push(data);
         return dict;
     }, {});
+    
     const bundleKeys = Object.keys(bundles)
     const pageTransition = {
         in:{
