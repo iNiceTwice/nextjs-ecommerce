@@ -112,7 +112,7 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
 
     useEffect(()=>{
        addSubscription()
-    },[])
+    },[addSubscription])
 
     return ( 
         <>
