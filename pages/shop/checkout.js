@@ -111,7 +111,7 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
     }
 
     useEffect(()=>{
-       
+       addSubscription()
     },[])
 
     return ( 
@@ -122,7 +122,6 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
                         <div>
                             <Logo/>
                         </div>
-                        <button onClick={addSubscription}>TEST</button>
                         <form className="text-slate-800/90 text-sm">
                             <h3 className="text-lg my-4">Customer & shipping information</h3>
                             <div className="w-full border rounded-md flex flex-col justify-center">

@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { userActions } from '../redux/actions/userActions';
-import useMediaQuery from "../utils/useMediaQuery"
 import { IoCart, IoNotifications, IoMenu, IoClose, IoChevronDown } from "react-icons/io5"
-import Link from "next/link"
-import Image from "next/image"
-import axios from "axios"
-import Logo from "./Logo"
-import CartItem from './CartItem';
+import { userActions } from '../redux/actions/userActions';
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import useMediaQuery from "../utils/useMediaQuery";
 import { useRouter } from 'next/router';
+import CartItem from './CartItem';
+import Image from "next/image"
+import Link from "next/link"
+import Logo from "./Logo"
+import axios from "axios"
 
 const ResponsiveMenu = ({ open }) => {
 
@@ -73,7 +73,7 @@ const Nav = ({ refresh }) => {
     
     useEffect(()=>{  
         if(!isLogged){
-            axios.get("http://localhost:3000/api/auth")
+            axios.get("https://ecommerse-clone.netlify.app/api/auth")
             .then(data => {
                 setIsLogged(data.data.auth)
                 dispatch(userActions(data.data.payload))
@@ -84,7 +84,7 @@ const Nav = ({ refresh }) => {
     
 
     const handleLogout = () => {
-        axios.delete("http://localhost:3000/api/auth")
+        axios.delete("https://ecommerse-clone.netlify.app/api/auth")
             .then(() => {
                 router.push("/")
                 dispatch(userActions())

@@ -3,6 +3,7 @@ import axios from "axios"
 
 const MP_TOKEN = process.env.MP_TOKEN
 const JWT_SECRET = process.env.JWT_SECRET
+const HOST = process.env.HOST
 
 const handler = (req,res) => {
    
@@ -47,7 +48,7 @@ const monthlyPayment = async (req,res) => {
                 zip_code: zip
             }
     },
-        back_url: "https://google.com.ar",
+        back_url: `${HOST}/shop/checkout`,
         status:"pending",
         external_reference:"subscription",
         payer_email:"test_user_93452689@testuser.com",
