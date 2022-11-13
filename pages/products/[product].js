@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { addProduct, incrementProduct } from "../../redux/actions/cartActions";
 import Stars from "../../components/RatingStars";
 
-const Product = () => {
+const Product = ({ params }) => {
     
     const pageTransition = {
         in:{
@@ -73,9 +73,9 @@ const Product = () => {
     }
 
     useEffect(() => {
-        axios.get(`/api/products/${context.params.product}`)
+        axios.get(`/api/products/${params}`)
             .then(data => setProduct(data.data))
-            .catch(err => console.log())
+            .catch(err => console.log(err))
     })
 
     return ( 
@@ -206,6 +206,14 @@ const Product = () => {
             </motion.div>
         </>
      );
+}
+
+export const getServerSideProps = context => {
+    return {
+        props:{
+            params:context.params.product
+        }
+    }
 }
 
 export default Product;
