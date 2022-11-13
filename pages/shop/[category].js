@@ -1,16 +1,17 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5"
 import Dropdown from "../../components/Dropdown"
 import ShopItem from "../../components/ShopItem"
 import { motion } from "framer-motion";
 import axios from "axios"
 
-const Shop = ({ products }) => {
+const Shop = () => {
 
     const [ count, setCount ] = useState(0)
+    const [ products, setProducts ] = useState([])
     const pageTransition = {
         in:{
             opacity:1
@@ -32,6 +33,13 @@ const Shop = ({ products }) => {
             setCount(count => count + num)
         }
     }
+
+    useEffect(()=>{
+        (async()=>{
+            const response = await axios.get(`/api/products/all`)
+            setProducts(response.data)
+        })()
+    },[])
 
     return ( 
         <>
@@ -185,18 +193,6 @@ const Shop = ({ products }) => {
             </motion.div>
         </>
      );
-}
-
-export const getServerSideProps = async (context) => {
-    
-    const url = process.env.HOST
-    const products = await axios.get(`${url}/api/products/all`)
-    
-    return {
-        props:{
-            products: products.data
-        }
-    }
 }
 
 const slider = [

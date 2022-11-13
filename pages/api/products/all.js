@@ -17,7 +17,7 @@ const handler = async (req,res) => {
 
 const getProducts = async (req,res) => {
     const products = await PRODUCTS_DB.find()
-    return res.send(products)
+    return res.status(200).json(products)
 }
 
 export default handler

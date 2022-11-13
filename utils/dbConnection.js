@@ -1,24 +1,9 @@
-import { MongoClient } from "mongodb"
+import mongoose from "mongoose"
 
-let mongoClient = null
-
-if(!process.env.MONGO_PASS){
-    throw new Error("Please add your Mongo URI to .env.local")
-}
-
-const connectDB = async () => {
-    if(mongoClient){
-        return { mongoClient }
-    }
-    console.log(mongoClient)
-
-    try {
-        mongoClient = await (new MongoClient(process.env.MONGO_PASS, { useNewUrlParser: true }).connect())
-        console.log("-- Database Connected --")
-        return { mongoClient }
-    } catch (error) {
-        console.log(error)
-    }   
+const connectDB = () => {
+    mongoose.connect(process.env.MONGO_PASS, { useNewUrlParser: true })
+        .then(data=>console.log("- Database Online -"))
+        .catch(err=>console.log(err))
 } 
 
 export default connectDB
