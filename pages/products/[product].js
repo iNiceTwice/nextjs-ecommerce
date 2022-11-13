@@ -168,12 +168,12 @@ const Product = ({ params }) => {
                                                 </div>
                                             }
                                             {
-                                                product?.price?.size &&
+                                                product?.price[0]?.size &&
                                                 <>
                                                     <p className="mt-6 text-sm text-slate-800/90 font-medium">Concentration</p>
                                                     <div className={`grid ${product?.price?.length > 3 ? "grid-cols-4" : `grid-cols-${product?.price?.length}`} gap-x-2`}>
                                                         {
-                                                            product?.price?.map((item,index)=>(
+                                                            product?.price.map((item,index)=>(
                                                                 <button 
                                                                     key={item.size}
                                                                     onClick={()=> setPriceIndex(index)} 
@@ -191,7 +191,7 @@ const Product = ({ params }) => {
                                                 }} 
                                                 className="mt-4 py-4 w-full font-medium transition-colors text-white bg-orange-600/80 hover:bg-slate-800">ADD TO CART</button>
                                             {   
-                                                product?.price?.price > 10 &&
+                                                product?.price[0]?.price > 10 &&
                                                 <div className="flex items-center">
                                                     <IoMdGift size="20" className="-mb-1 text-slate-800/90"/>
                                                     <p className="mt-2 ml-2 text-sm text-slate-800/80 font-medium">Free shipping on all orders!</p>
