@@ -81,7 +81,7 @@ const Nav = ({ refresh }) => {
     }    
 
     const handleLogout = () => {
-        axios.delete("http://ecommerse-clone.vercel.app/api/auth")
+        axios.delete("https://ecommerse-clone.vercel.app/api/auth")
             .then(() => {
                 router.push("/")
                 dispatch(userActions())
@@ -92,7 +92,7 @@ const Nav = ({ refresh }) => {
 
     useEffect(()=>{  
         if(!isLogged){
-            axios.get("http://ecommerse-clone.vercel.app/api/auth")
+            axios.get("https://ecommerse-clone.vercel.app/api/auth")
             .then(data => {
                 setIsLogged(data.data.auth)
                 dispatch(userActions(data.data.payload))
