@@ -112,7 +112,7 @@ const Checkout = ({ preapproval, mpToken, query }) => {
     }
 
     useEffect(()=>{
-        axios.get(`https://api.mercadopago.com/preapproval/${context.query.preapproval_id}`,{
+        axios.get(`https://api.mercadopago.com/preapproval/${preapproval}`,{
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${mpToken}` 
@@ -126,7 +126,7 @@ const Checkout = ({ preapproval, mpToken, query }) => {
         }).catch(err => console.log(err))
 
        
-    },[addSubscription, query])
+    },[addSubscription, query, preapproval])
 
     return ( 
         <>
@@ -354,17 +354,8 @@ const Checkout = ({ preapproval, mpToken, query }) => {
 }
  
 export const getServerSideProps = async (context) => {
-    const url = process.env.HOST
     const MP_TOKEN = process.env.MP_TOKEN
-    let response
-    if(context.query.preapproval_id){
-        response = await axios.get(`https://api.mercadopago.com/preapproval/${context.query.preapproval_id}`,{
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${MP_TOKEN}` 
-            }
-        });
-    }
+
     return {
         props:{
             mpToken: MP_TOKEN,

@@ -46,7 +46,7 @@ const Product = ({ params }) => {
         let cartItem = {
             item: {
                 title:product?.title,
-                img:product?.img,
+                img:product?.img[0],
                 price: purchase === "subscription" && product?.price[priceIndex].price > 10 ? product?.price[priceIndex].price - product?.price[priceIndex].price *0.20 : product?.price[priceIndex].price, 
                 size:product?.price[priceIndex].size,
                 purchase 
