@@ -60,7 +60,7 @@ const Checkout = ({ preapproval, mpToken, query }) => {
     onSubmit:(values)=>{
         if(submitAction === "once"){
             try {
-                axios.post(`${host}/api/payments/one-purchase`, {
+                axios.post("/api/payments/one-purchase", {
                     products:purchaseOnce,
                     payerData:values
                 }).then(data => {
@@ -72,7 +72,7 @@ const Checkout = ({ preapproval, mpToken, query }) => {
             }   
         }else{
             try{
-                axios.post(`${host}/api/payments/subscription`, {
+                axios.post("/api/payments/subscription", {
                     totalCost:totalPriceSub,
                     payerData:values
                 }).then(data => {
@@ -100,7 +100,7 @@ const Checkout = ({ preapproval, mpToken, query }) => {
             }) 
             if(purchaseSub.length !== 0){
                 try {
-                    axios.put(`${host}/api/user/subscriptions/add`, subsWithId)
+                    axios.put("/api/user/subscriptions/add", subsWithId)
                         .then(data=> {
                             dispatch(removeProducts("subscription"))
                         })
@@ -112,21 +112,21 @@ const Checkout = ({ preapproval, mpToken, query }) => {
     }
 
     useEffect(()=>{
-        axios.get(`https://api.mercadopago.com/preapproval/${preapproval}`,{
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${mpToken}` 
-            }
-        }).then(data =>{
-            if(data.data){
-                addSubscription(data.data)
-            }else{
-                addSubscription(query)
-            }
-        }).catch(err => console.log(err))
-
-       
-    },[addSubscription, query, preapproval])
+        if(preapproval){
+            axios.get(`https://api.mercadopago.com/preapproval/${context.query.preapproval_id}`,{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${mpToken}` 
+                }
+            }).then(data =>{
+                if(data.data){
+                    addSubscription(data.data)
+                }else{
+                    addSubscription(query)
+                }
+            }).catch(err => console.log(err))
+        }
+    },[addSubscription, query])
 
     return ( 
         <>
@@ -355,7 +355,7 @@ const Checkout = ({ preapproval, mpToken, query }) => {
  
 export const getServerSideProps = async (context) => {
     const MP_TOKEN = process.env.MP_TOKEN
-
+    
     return {
         props:{
             mpToken: MP_TOKEN,

@@ -28,7 +28,7 @@ const WhyPopulum = () => {
     return ( 
         <>
             <motion.div initial="out" animate="in" exit="out" variants={pageTransition}>
-                <section className="w-full mt-16 bg-red-200/40 pb-16 min-h-screen">
+                <section className="w-full bg-red-200/40 pb-16 min-h-screen">
                     <div className="pt-32"></div>
                     <div className=" relative w-full lg:w-11/12 mx-auto h-[20rem] lg:h-[35rem] group">
                         <Image

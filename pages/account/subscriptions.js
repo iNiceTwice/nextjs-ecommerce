@@ -13,7 +13,9 @@ const ManageSubscriptions = ({ token }) => {
     const [ subId, setSubId ] = useState("")
     const [ user, setUser ] = useState()
     const [ modal, setModal ] = useState(false)
-    const bundles = user.subscriptions.reduce((dict, data) => {
+    //const [ bundles, setBundles ] = useState([])
+    //const [ bundleKeys, setBundleKeys ] = useState([])
+    const bundles = user?.subscriptions?.reduce((dict, data) => {
         if (!dict[data.bundle_id]) dict[data.bundle_id] = []; dict[data.bundle_id].push(data);
         return dict;
     }, {});
@@ -36,7 +38,7 @@ const ManageSubscriptions = ({ token }) => {
     }
 
     const handleCancelSub = async () => {
-        const res = await axios.delete(` /api/user/subscriptions/${subId}`)
+        const res = await axios.delete(` /api/user?/subscriptions/${subId}`)
         if(res.status < 300){
             setModal(false)
             refreshData()
@@ -45,7 +47,7 @@ const ManageSubscriptions = ({ token }) => {
     }
 
     useEffect(()=>{
-        axios.get("/api/user/find",{ withCredentials:true, headers:{ Cookie:token }})
+        axios.get("/api/user?/find",{ withCredentials:true, headers:{ Cookie:token }})
             .then(data => setUser(data.data))
             .catch(err => console.log(err))
     },[])
@@ -72,7 +74,7 @@ const ManageSubscriptions = ({ token }) => {
             }
             <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
                 {
-                user.subscriptions.length === 0 ?
+                user?.subscriptions.length === 0 ?
                 <section className="pb-32">
                     <Intro
                         title="Not subscribed yet?"
