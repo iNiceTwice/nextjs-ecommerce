@@ -5,5 +5,5 @@ const connectDB = () => {
         .then(data=>console.log("- Database Online -"))
         .catch(err=>console.log(err))
 } 
-
+//ss
 export default connectDB
