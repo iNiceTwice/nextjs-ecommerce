@@ -20,7 +20,7 @@ const shippingSchema = yup.object().shape({
     phone:yup.number().typeError("Only numbers allowed").min(8,"At least 8 characters.").required("This field is required."),
 })
 
-const Checkout = ({ host, paymentResponse, preapproval }) => {
+const Checkout = ({ preapproval, mpToken, query }) => {
     
     const pageTransition = {
         in:{
@@ -36,6 +36,7 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
     const purchaseOnce = cartItems.filter(product => product.item.purchase === "once")
     const purchaseSub = cartItems.filter(product => product.item.purchase === "subscription")
     const [ submitAction, setSubmitAction ] = useState("")
+
     let totalPriceOnce = 0
     let totalPriceSub = 0
 
@@ -86,7 +87,7 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
     validationSchema: shippingSchema
     })
     
-    const addSubscription = () => {
+    const addSubscription = (paymentResponse) => {
         if(paymentResponse.status === "approved" && paymentResponse.external_reference === "once" ){
             dispatch(removeProducts("once"))
         }else if(paymentResponse.status === "authorized" && paymentResponse.external_reference === "subscription"){
@@ -111,8 +112,21 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
     }
 
     useEffect(()=>{
-       addSubscription()
-    },[addSubscription])
+        axios.get(`https://api.mercadopago.com/preapproval/${context.query.preapproval_id}`,{
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${mpToken}` 
+            }
+        }).then(data =>{
+            if(data.data){
+                addSubscription(data.data)
+            }else{
+                addSubscription(query)
+            }
+        }).catch(err => console.log(err))
+
+       
+    },[addSubscription, query])
 
     return ( 
         <>
@@ -353,8 +367,8 @@ export const getServerSideProps = async (context) => {
     }
     return {
         props:{
-            host: url,
-            paymentResponse: response ? response.data : context.query,
+            mpToken: MP_TOKEN,
+            query: context.query,
             preapproval:context.query.preapproval_id ? context.query.preapproval_id : null
         }
     }

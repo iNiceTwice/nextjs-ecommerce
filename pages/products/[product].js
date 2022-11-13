@@ -1,7 +1,7 @@
 import axios from "axios"
 import Image from "next/image";
 import Link from "next/link"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify"
 import { IoMdGift } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { addProduct, incrementProduct } from "../../redux/actions/cartActions";
 import Stars from "../../components/RatingStars";
 
-const Product = ({ product }) => {
+const Product = () => {
     
     const pageTransition = {
         in:{
@@ -21,6 +21,7 @@ const Product = ({ product }) => {
         }
     }
     const dispatch = useDispatch()
+    const [ product, setProduct ] = useState()
     const [ priceIndex, setPriceIndex ] = useState(0)
     const [ purchase, setPurchase ] = useState("subscription")
     const [ imgCount, setImgCount ] = useState(0)
@@ -70,6 +71,12 @@ const Product = ({ product }) => {
             dispatch(addProduct(cartItem))
         }
     }
+
+    useEffect(() => {
+        axios.get(`/api/products/${context.params.product}`)
+            .then(data => setProduct(data.data))
+            .catch(err => console.log())
+    })
 
     return ( 
         <>
@@ -199,18 +206,6 @@ const Product = ({ product }) => {
             </motion.div>
         </>
      );
-}
-
-export const getServerSideProps = async (context) => {
-    
-    const url = process.env.HOST
-    const product = await axios.get(`${url}/api/products/${context.params.product}`)
-    
-    return {
-        props:{
-            product: product.data
-        }
-    }
 }
 
 export default Product;

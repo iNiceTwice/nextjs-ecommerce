@@ -12,7 +12,7 @@ const SignupSchema = object().shape({
     password: string().required("This field is required.")
 })
 
-const Login = ({ host }) => {
+const Login = () => {
 
     const router = useRouter()
     const [ passChange, setPassChange ] = useState(false)
@@ -31,7 +31,7 @@ const Login = ({ host }) => {
         password:""
     },
     onSubmit:(values)=>{
-        axios.post(`${host}/api/auth`,{
+        axios.post("/api/auth",{
             email:values.email,
             password:values.password
         }).then(data=>{ 
@@ -48,7 +48,7 @@ const Login = ({ host }) => {
 
     return ( 
         <>
-            <motion.div initial="out" animate="in" exit="out" variants={pageTransition}>
+            <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
                 {
                     passChange 
                     ?   <div className="flex justify-center w-full h-fit py-32 lg:py-48 bg-red-100/70">
@@ -108,15 +108,4 @@ const Login = ({ host }) => {
      );
 }
 
-export const getServerSideProps = context =>{
-
-    const url = process.env.HOST
-
-    return {
-        props:{
-            host:url
-        }
-    }
-}
- 
 export default Login;

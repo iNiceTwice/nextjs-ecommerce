@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion, useScroll } from "framer-motion";
 import { useRouter } from "next/router"
 import Image from "next/image"
@@ -7,17 +7,16 @@ import { IoCloseSharp } from "react-icons/io5"
 import { toast } from "react-toastify"
 import Intro from "../../components/Intro"
 
-const ManageSubscriptions = ({ user, host }) => {
+const ManageSubscriptions = ({ token }) => {
 
     const router = useRouter()
     const [ subId, setSubId ] = useState("")
+    const [ user, setUser ] = useState()
     const [ modal, setModal ] = useState(false)
-
     const bundles = user.subscriptions.reduce((dict, data) => {
         if (!dict[data.bundle_id]) dict[data.bundle_id] = []; dict[data.bundle_id].push(data);
         return dict;
     }, {});
-    
     const bundleKeys = Object.keys(bundles)
     const pageTransition = {
         in:{
@@ -37,13 +36,19 @@ const ManageSubscriptions = ({ user, host }) => {
     }
 
     const handleCancelSub = async () => {
-        const res = await axios.delete(`${host}/api/user/subscriptions/${subId}`)
+        const res = await axios.delete(` /api/user/subscriptions/${subId}`)
         if(res.status < 300){
             setModal(false)
             refreshData()
             notify()
         }
     }
+
+    useEffect(()=>{
+        axios.get("/api/user/find",{ withCredentials:true, headers:{ Cookie:token }})
+            .then(data => setUser(data.data))
+            .catch(err => console.log(err))
+    },[])
 
     return (
         <>
@@ -124,18 +129,9 @@ const ManageSubscriptions = ({ user, host }) => {
 
 export const getServerSideProps = async (context) => {
     
-    const url = process.env.HOST
-    const response = await axios.get(`${url}/api/user/find`,{
-        withCredentials:true,
-        headers:{
-            Cookie:context.req.cookies.token
-        }
-    })
-    
     return {
         props:{
-            user: response.data,
-            host:url
+            token: context.req.cookies.token,
         }
     }
 }
