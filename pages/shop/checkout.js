@@ -20,7 +20,7 @@ const shippingSchema = yup.object().shape({
     phone:yup.number().typeError("Only numbers allowed").min(8,"At least 8 characters.").required("This field is required."),
 })
 
-const Checkout = ({ preapproval, mpToken, query }) => {
+const Checkout = ({ preapproval, paymentResponse }) => {
     
     const pageTransition = {
         in:{
@@ -87,7 +87,7 @@ const Checkout = ({ preapproval, mpToken, query }) => {
     validationSchema: shippingSchema
     })
     
-    const addSubscription = (paymentResponse) => {
+    const addSubscription = () => {
         if(paymentResponse.status === "approved" && paymentResponse.external_reference === "once" ){
             dispatch(removeProducts("once"))
         }else if(paymentResponse.status === "authorized" && paymentResponse.external_reference === "subscription"){
@@ -112,21 +112,8 @@ const Checkout = ({ preapproval, mpToken, query }) => {
     }
 
     useEffect(()=>{
-        if(preapproval){
-            axios.get(`https://api.mercadopago.com/preapproval/${preapproval}`,{
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${mpToken}` 
-                }
-            }).then(data =>{
-                if(data.data){
-                    addSubscription(data.data)
-                }else{
-                    addSubscription(query)
-                }
-            }).catch(err => console.log(err))
-        }
-    },[addSubscription, query])
+        addSubscription()
+    },[addSubscription])
 
     return ( 
         <>
@@ -355,11 +342,18 @@ const Checkout = ({ preapproval, mpToken, query }) => {
  
 export const getServerSideProps = async (context) => {
     const MP_TOKEN = process.env.MP_TOKEN
-    
+    let response
+    if(context.query.preapproval_id){
+        response = await axios.get(`https://api.mercadopago.com/preapproval/${context.query.preapproval_id}`,{
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${MP_TOKEN}` 
+            }
+        });
+    }
     return {
         props:{
-            mpToken: MP_TOKEN,
-            query: context.query,
+            paymentResponse: response ? response.data : context.query,
             preapproval:context.query.preapproval_id ? context.query.preapproval_id : null
         }
     }

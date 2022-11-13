@@ -78,7 +78,6 @@ const Product = ({ params }) => {
         .catch(err => console.log(err))
     },[params])
     
-    console.log(product)
     return ( 
         <>
             <motion.div initial="out" animate="in" exit="out" variants={pageTransition}>
