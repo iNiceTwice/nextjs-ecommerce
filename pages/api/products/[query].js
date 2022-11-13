@@ -3,7 +3,7 @@ import connectDB from "../../../utils/dbConnection"
 
 const handler = async (req,res) => {
     
-    connectDB()
+    await connectDB()
 
      switch (req.method) {
         case "GET":

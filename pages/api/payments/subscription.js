@@ -5,9 +5,9 @@ const MP_TOKEN = process.env.MP_TOKEN
 const JWT_SECRET = process.env.JWT_SECRET
 const HOST = process.env.HOST
 
-const handler = (req,res) => {
+const handler = async (req,res) => {
    
-    connectDB()
+    await connectDB()
 
     switch (req.method) {
         case "POST":

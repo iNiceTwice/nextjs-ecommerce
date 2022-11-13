@@ -8,7 +8,7 @@ const MP_TOKEN = process.env.MP_TOKEN
 
 const handler = async (req,res) => {
 
-    connectDB()
+    await connectDB()
 
     switch (req.method) {
         case "DELETE":

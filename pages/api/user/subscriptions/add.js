@@ -6,7 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 const handler = async (req,res) => {
 
-    connectDB()
+    await connectDB()
 
     switch (req.method) {
         case "PUT":
