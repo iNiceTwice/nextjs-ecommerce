@@ -13,13 +13,9 @@ const ManageSubscriptions = ({ token }) => {
     const [ subId, setSubId ] = useState("")
     const [ user, setUser ] = useState()
     const [ modal, setModal ] = useState(false)
-    //const [ bundles, setBundles ] = useState([])
-    //const [ bundleKeys, setBundleKeys ] = useState([])
-    const bundles = user?.subscriptions?.reduce((dict, data) => {
-        if (!dict[data.bundle_id]) dict[data.bundle_id] = []; dict[data.bundle_id].push(data);
-        return dict;
-    }, {});
-    const bundleKeys = Object.keys(bundles)
+    const [ bundles, setBundles ] = useState([])
+    const [ bundleKeys, setBundleKeys ] = useState([])
+
     const pageTransition = {
         in:{
             opacity:1
@@ -38,7 +34,7 @@ const ManageSubscriptions = ({ token }) => {
     }
 
     const handleCancelSub = async () => {
-        const res = await axios.delete(` /api/user?/subscriptions/${subId}`)
+        const res = await axios.delete(` /api/user/subscriptions/${subId}`)
         if(res.status < 300){
             setModal(false)
             refreshData()
@@ -47,9 +43,15 @@ const ManageSubscriptions = ({ token }) => {
     }
 
     useEffect(()=>{
-        axios.get("/api/user?/find",{ withCredentials:true, headers:{ Cookie:token }})
+        axios.get("/api/user/find",{ withCredentials:true, headers:{ Cookie:token }})
             .then(data => setUser(data.data))
             .catch(err => console.log(err))
+
+        user?.subscriptions?.reduce((dict, data) => {
+            if (!dict[data.bundle_id]) dict[data.bundle_id] = []; dict[data.bundle_id].push(data);
+            setBundleKeys(Object.keys(dict))
+            setBundles(dict)
+        }, {});
     },[])
 
     return (

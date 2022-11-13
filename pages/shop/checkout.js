@@ -113,7 +113,7 @@ const Checkout = ({ preapproval, mpToken, query }) => {
 
     useEffect(()=>{
         if(preapproval){
-            axios.get(`https://api.mercadopago.com/preapproval/${context.query.preapproval_id}`,{
+            axios.get(`https://api.mercadopago.com/preapproval/${preapproval}`,{
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${mpToken}` 
