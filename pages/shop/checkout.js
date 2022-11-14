@@ -113,7 +113,7 @@ const Checkout = ({ preapproval, paymentResponse }) => {
 
     useEffect(()=>{
         addSubscription()
-    },[addSubscription])
+    },[])
 
     return ( 
         <>
