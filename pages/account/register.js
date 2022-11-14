@@ -13,7 +13,7 @@ const SignupSchema = yup.object().shape({
     password: yup.string().min(6,"At least 6 characters.").max(20,"Max 20 characters.").required("This field is required.")
 })
 
-const Register = ({ host }) => {
+const Register = () => {
 
     const router = useRouter()
     const [ emailInUse, setEmailInUse ] = useState(false)
@@ -35,7 +35,7 @@ const Register = ({ host }) => {
         password:""
     },
     onSubmit:(values)=>{
-        axios.post(`${host}/api/user/create`,{
+        axios.post("/api/user/create",{
             name:values.name,
             email:values.email,
             password:values.password
@@ -101,17 +101,6 @@ const Register = ({ host }) => {
             </motion.div>
         </>
      );
-}
-
-export const getServerSideProps = context =>{
-    
-    const url = process.env.HOST
-
-    return {
-        props:{
-            host:url
-        }
-    }
 }
 
 export default Register;

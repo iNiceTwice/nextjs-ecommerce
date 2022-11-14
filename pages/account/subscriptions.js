@@ -1,5 +1,6 @@
+
 import axios from "axios";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion, useScroll } from "framer-motion";
 import { useRouter } from "next/router"
 import Image from "next/image"
@@ -7,18 +8,16 @@ import { IoCloseSharp } from "react-icons/io5"
 import { toast } from "react-toastify"
 import Intro from "../../components/Intro"
 
-const ManageSubscriptions = ({ user, host }) => {
+const ManageSubscriptions = () => {
 
     const router = useRouter()
     const [ subId, setSubId ] = useState("")
     const [ modal, setModal ] = useState(false)
-
-    const bundles = user.subscriptions.reduce((dict, data) => {
-        if (!dict[data.bundle_id]) dict[data.bundle_id] = []; dict[data.bundle_id].push(data);
-        return dict;
-    }, {});
-    
-    const bundleKeys = Object.keys(bundles)
+    const [ user, setUser ] = useState({})
+    const [ bundles, setBundles ] = useState({
+        keys:[],
+        bundles:[]
+    })
     const pageTransition = {
         in:{
             opacity:1
@@ -33,17 +32,31 @@ const ManageSubscriptions = ({ user, host }) => {
     })
 
     const refreshData = () => {
-        router.replace(router.asPath)
+        router.reload()
     }
 
     const handleCancelSub = async () => {
-        const res = await axios.delete(`${host}/api/user/subscriptions/${subId}`)
+        const res = await axios.delete(`/api/user/subscriptions/${subId}`)
         if(res.status < 300){
             setModal(false)
             refreshData()
             notify()
         }
     }
+    useEffect(() => {
+        axios.get(`/api/user/find`)
+            .then(data => {
+                setUser(data.data)
+                let subs = data.data.subscriptions.reduce((dict, data) => {
+                    if (!dict[data.bundle_id]) dict[data.bundle_id] = []; dict[data.bundle_id].push(data);
+                    return dict;
+                }, {});
+                setBundles({
+                    keys:Object.keys(subs),
+                    bundles:subs
+                })
+            })
+    },[])
 
     return (
         <>
@@ -57,8 +70,8 @@ const ManageSubscriptions = ({ user, host }) => {
                                     <h3 className="text-center w-full text-slate-800/90 font-medium text-lg">Cancel subscription?</h3>
                                 </div>
                                 <div className="flex justify-center w-full">
-                                    <button className="rounded-bl-sm py-3 w-full bg-orange-600/80 text-white font-medium" onClick={ handleCancelSub }>Yes</button>
-                                    <button className="rounded-br-sm py-3 w-full bg-slate-800 text-white font-medium" onClick={() => setModal(false)}>No</button>
+                                    <button className="rounded-bl-sm py-3 w-full bg-orange-600/80 hover:bg-orange-600/70 text-white font-medium" onClick={ handleCancelSub }>Yes</button>
+                                    <button className="rounded-br-sm py-3 w-full bg-slate-800 hover:bg-slate-800/90 text-white font-medium" onClick={() => setModal(false)}>No</button>
                                 </div>
                             </div>
                         </motion.div>
@@ -67,7 +80,7 @@ const ManageSubscriptions = ({ user, host }) => {
             }
             <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
                 {
-                user.subscriptions.length === 0 ?
+                user?.subscriptions?.length === 0 ?
                 <section className="pb-32">
                     <Intro
                         title="Not subscribed yet?"
@@ -86,7 +99,7 @@ const ManageSubscriptions = ({ user, host }) => {
                     </div>
                     <div className="mt-16 w-full lg:w-11/12 flex flex-col gap-y-4">
                         {
-                            bundleKeys.map((bundleKey, i)=>(
+                            bundles.keys.map((bundleKey, i)=>(
                                 <div key={ bundleKey + i } className="border text-slate-800/90 flex flex-col flex-wrap">
                                     <div className="w-full bg-slate-800 flex justify-between">
                                         <h2 className="ml-6 py-2 text-lg text-white">Subscription Bundle #{ i + 1 }</h2>
@@ -99,7 +112,7 @@ const ManageSubscriptions = ({ user, host }) => {
                                     </div>
                                     <div className="w-full p-4 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2">
                                     {
-                                        bundles[bundleKey].map((bundle,i)=>(
+                                        bundles.bundles[bundleKey].map((bundle,i)=>(
                                             <div key={ bundleKey + i }>
                                                 <div className="relative h-[10rem]">
                                                     <Image alt={bundle.item.title  } layout="fill" objectFit="cover" objectPosition="center" src={ bundle.item.img }/>
@@ -120,24 +133,6 @@ const ManageSubscriptions = ({ user, host }) => {
             </motion.div>
         </>
     );
-}
-
-export const getServerSideProps = async (context) => {
-    
-    const url = process.env.HOST
-    const response = await axios.get(`${url}/api/user/find`,{
-        withCredentials:true,
-        headers:{
-            Cookie:context.req.cookies.token
-        }
-    })
-    
-    return {
-        props:{
-            user: response.data,
-            host:url
-        }
-    }
 }
 
 export default ManageSubscriptions;

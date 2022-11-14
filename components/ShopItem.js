@@ -1,17 +1,16 @@
 import Image from "next/image"
 import Link from "next/link"
 import Stars from "./RatingStars";
-import { useState } from "react"
+import { useState, memo } from "react"
 import { toast } from "react-toastify"
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct, incrementProduct } from "../redux/actions/cartActions";
 
-const ShopItem = ({ id, title, rating, price, img, totalRatings, url, commentary, concentration, subscription }) => {
+const ShopItem = ({ id, title, rating, price, img, totalRatings, url, concentration, subscription }) => {
 
     const itemIndex = 0
     const dispatch = useDispatch()
     const cartItems  = useSelector(state => state.cart.cartItems) 
-    const [ showCommentary, setShowCommentary] = useState(false)
     
     const notify = () => toast.success("Product added to cart",{
         position: "bottom-right"
@@ -50,10 +49,7 @@ const ShopItem = ({ id, title, rating, price, img, totalRatings, url, commentary
 
     return ( 
         <>
-            <div 
-                onMouseOver={()=>setShowCommentary(true)} 
-                onMouseLeave={()=>setShowCommentary(false)}
-            >
+            <div>
                 <div className="relative h-96 md:h-[20rem] lg:h-[28rem] w-full min-w-2xl">
                     <Image alt={ title } src={ img } layout="fill" objectFit="cover" objectPosition="center" loading="lazy"/>
                 </div>
@@ -106,14 +102,10 @@ const ShopItem = ({ id, title, rating, price, img, totalRatings, url, commentary
                                 </p>
                             </>
                     }
-                    {
-                      showCommentary && 
-                      <p className="mt-1 italic text-slate-800/80 font-medium">{ commentary }</p>  
-                    }
                 </div>
             </div>
         </>
      );
 }
  
-export default ShopItem;
+export default memo(ShopItem);

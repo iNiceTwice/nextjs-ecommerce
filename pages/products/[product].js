@@ -1,7 +1,7 @@
 import axios from "axios"
 import Image from "next/image";
 import Link from "next/link"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify"
 import { IoMdGift } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { addProduct, incrementProduct } from "../../redux/actions/cartActions";
 import Stars from "../../components/RatingStars";
 
-const Product = ({ product }) => {
+const Product = ({ params }) => {
     
     const pageTransition = {
         in:{
@@ -21,6 +21,7 @@ const Product = ({ product }) => {
         }
     }
     const dispatch = useDispatch()
+    const [ product, setProduct ] = useState()
     const [ priceIndex, setPriceIndex ] = useState(0)
     const [ purchase, setPurchase ] = useState("subscription")
     const [ imgCount, setImgCount ] = useState(0)
@@ -33,7 +34,7 @@ const Product = ({ product }) => {
     })
 
     const handleClick = () => {
-        if(imgCount < product[0].img.length -1){
+        if(imgCount < product?.img.length -1){
             setImgCount(imgCount => imgCount + 1)
         }else{
             setImgCount(0)
@@ -44,10 +45,10 @@ const Product = ({ product }) => {
 
         let cartItem = {
             item: {
-                title:product[0].title,
-                img:product[0].img[0],
-                price: purchase === "subscription" && product[0].price[priceIndex].price > 10 ? product[0].price[priceIndex].price - product[0].price[priceIndex].price *0.20 : product[0].price[priceIndex].price, 
-                size:product[0].price[priceIndex].size,
+                title:product?.title,
+                img:product?.img[0],
+                price: purchase === "subscription" && product?.price[priceIndex].price > 10 ? product?.price[priceIndex].price - product?.price[priceIndex].price *0.20 : product?.price[priceIndex].price, 
+                size:product?.price[priceIndex].size,
                 purchase 
             },
             quantity:1
@@ -71,6 +72,12 @@ const Product = ({ product }) => {
         }
     }
 
+    useEffect(() => {
+        axios.get(`/api/products/${params}`)
+        .then(data => setProduct(data.data))
+        .catch(err => console.log(err))
+    },[params])
+    
     return ( 
         <>
             <motion.div initial="out" animate="in" exit="out" variants={pageTransition}>
@@ -95,7 +102,7 @@ const Product = ({ product }) => {
                     <div className="flex flex-col lg:flex-row w-full h-full">
                         <div id="IMG" onClick={ handleClick } className="relative group w-full lg:w-1/2 h-full cursor-pointer right-0 lg:-right-10 xl:-right-16">
                             <div className="relative z-10 w-full h-full">
-                                <Image alt={ product[0].title } src={ product[0].img[imgCount] } priority layout="fill" objectFit="cover" objectPosition="center"/>
+                                <Image alt={ product?.title } src={ product?.img[imgCount] } priority layout="fill" objectFit="cover" objectPosition="center"/>
                             </div>
                             <div className="absolute hidden lg:block bg-red-400/60 w-full h-full top-0 group-hover:rotate-3 transition-all"></div>
                             <div className="absolute hidden lg:block bg-red-400/50 w-full h-full top-0 group-hover:-rotate-3 transition-all"></div>
@@ -104,12 +111,12 @@ const Product = ({ product }) => {
                             <div className=" z-20 bg-white w-full -mt-12 lg:-mt-0 lg:h-[83%]">
                                 <div className="w-full py-2 px-4 font-medium text-white text-center bg-slate-800">Try for 30 days & love it or send it back — no questions asked.</div>
                                 <div className="flex flex-col py-12 px-[5%] lg:px-[10%] w-full h-full">
-                                    <Stars filled={ product[0].rating } />
-                                    <h2 className="mt-4 text-3xl lg:text-4xl font-serif text-slate-800/90">{product[0].title}</h2>
-                                    <p className="mt-6 text-slate-800/90 font-medium">{product[0].description}</p>
+                                    <Stars filled={ product?.rating } />
+                                    <h2 className="mt-4 text-3xl lg:text-4xl font-serif text-slate-800/90">{product?.title}</h2>
+                                    <p className="mt-6 text-slate-800/90 font-medium">{product?.description}</p>
                                     <ul className="mt-6 text-slate-800 flex flex-col gap-1">
                                         {
-                                            product[0].bonuses.map((bonus)=>(
+                                            product?.bonuses?.map((bonus)=>(
                                                 <li key={ bonus }>- { bonus }</li>
                                             ))
                                         }
@@ -132,10 +139,10 @@ const Product = ({ product }) => {
                                                     </div>
                                                 </div>
                                                 <div className="flex flex-col lg:flex-row">
-                                                    <p className="-mt-2 line-through font-medium text-slate-800/30">${ product[0].price[priceIndex].price }</p>
+                                                    <p className="-mt-2 line-through font-medium text-slate-800/30">${ product?.price[priceIndex]?.price }</p>
                                                     {
-                                                        product[0].price[0].price > 10 &&
-                                                        <p className="text-xl font-medium text-slate-800">${ (product[0].price[priceIndex].price - product[0].price[priceIndex].price*0.20).toFixed(2).toLocaleString() }</p>
+                                                        product?.price?.price > 10 &&
+                                                        <p className="text-xl font-medium text-slate-800">${ (product?.price[priceIndex]?.price - product?.price[priceIndex]?.price*0.20).toFixed(2).toLocaleString() }</p>
                                                     }
                                                 </div>
                                             </button>
@@ -150,22 +157,22 @@ const Product = ({ product }) => {
                                                         <p className="font-medium text-lg text-slate-800">Get Once</p>
                                                     </div>
                                                 </div>
-                                                <p className="text-xl font-medium text-slate-800">${ product[0].price[priceIndex].price.toFixed(2).toLocaleString() }</p>
+                                                <p className="text-xl font-medium text-slate-800">${ product?.price[priceIndex]?.price?.toFixed(2).toLocaleString() }</p>
                                             </button>
                                             {   
-                                                product[0].price[0].price < 10 &&
+                                                product?.price?.price < 10 &&
                                                 <div className="flex items-center bg-slate-100 justify-between p-5">
                                                     <p className="font-medium">Just Pay For Shipping</p>
-                                                    <p className="text-xl font-medium text-slate-800">${ product[0].price[priceIndex].price.toFixed(2).toLocaleString() }</p>
+                                                    <p className="text-xl font-medium text-slate-800">${ product?.price[priceIndex]?.price.toFixed(2).toLocaleString() }</p>
                                                 </div>
                                             }
                                             {
-                                                product[0].price[0].size ?
+                                                product?.price[0]?.size &&
                                                 <>
                                                     <p className="mt-6 text-sm text-slate-800/90 font-medium">Concentration</p>
-                                                    <div className={`grid ${product[0].price.length > 3 ? "grid-cols-4" : `grid-cols-${product[0].price.length}`} gap-x-2`}>
+                                                    <div className={`grid ${product?.price?.length > 3 ? "grid-cols-4" : `grid-cols-${product?.price?.length}`} gap-x-2`}>
                                                         {
-                                                            product[0].price.map((item,index)=>(
+                                                            product?.price.map((item,index)=>(
                                                                 <button 
                                                                     key={item.size}
                                                                     onClick={()=> setPriceIndex(index)} 
@@ -174,7 +181,7 @@ const Product = ({ product }) => {
                                                             ))
                                                         }
                                                     </div> 
-                                                </> : null      
+                                                </>       
                                             }
                                             <button 
                                                 onClick={()=>{
@@ -183,7 +190,7 @@ const Product = ({ product }) => {
                                                 }} 
                                                 className="mt-4 py-4 w-full font-medium transition-colors text-white bg-orange-600/80 hover:bg-slate-800">ADD TO CART</button>
                                             {   
-                                                product[0].price[0].price > 10 &&
+                                                product?.price[0]?.price > 10 &&
                                                 <div className="flex items-center">
                                                     <IoMdGift size="20" className="-mb-1 text-slate-800/90"/>
                                                     <p className="mt-2 ml-2 text-sm text-slate-800/80 font-medium">Free shipping on all orders!</p>
@@ -201,14 +208,10 @@ const Product = ({ product }) => {
      );
 }
 
-export const getServerSideProps = async (context) => {
-    
-    const url = process.env.HOST
-    const product = await axios.get(`${url}/api/products/${context.params.product}`)
-    
+export const getServerSideProps = context => {
     return {
         props:{
-            product: product.data
+            params:context.params.product
         }
     }
 }

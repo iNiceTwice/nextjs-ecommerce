@@ -12,6 +12,9 @@ const Shop = () => {
 
     const [ count, setCount ] = useState(0)
     const [ products, setProducts ] = useState([])
+    const router = useRouter()
+    const current = router.query.category
+    const selectedCategory = products.filter(product => product.category === current )
     const pageTransition = {
         in:{
             opacity:1
@@ -20,9 +23,6 @@ const Shop = () => {
             opacity:0
         }
     }  
-    const router = useRouter()
-    const current = router.query.category
-    const selectedCategory = products.filter(product => product.category === current )
 
     const handleClickSlider = (num) => {
         if(count === 0 && num < 0){

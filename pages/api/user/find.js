@@ -20,9 +20,9 @@ const handler = async (req,res) => {
 
 const getUser = async (req,res) => {
 
-    const token = (req.headers.cookie)
+    const token = (req.cookies.token)
     const checkToken = verify(token, JWT_SECRET)
-
+    
     if(!checkToken){
         res.status(401).json({message: "Unauthorized"})
     }
@@ -30,12 +30,12 @@ const getUser = async (req,res) => {
         res.status(500).json({ message: "No token provided" })
     }
     const user = await USERS_DB.findById(checkToken.id) 
-
+    
     if(!user){
         res.status(404).json({ message: "User not found" })
     }
     
-    res.send(user)
+    res.status(200).json(user)
         
 }
 

@@ -20,7 +20,7 @@ const shippingSchema = yup.object().shape({
     phone:yup.number().typeError("Only numbers allowed").min(8,"At least 8 characters.").required("This field is required."),
 })
 
-const Checkout = ({ host, paymentResponse, preapproval }) => {
+const Checkout = ({ preapproval, paymentResponse }) => {
     
     const pageTransition = {
         in:{
@@ -36,6 +36,7 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
     const purchaseOnce = cartItems.filter(product => product.item.purchase === "once")
     const purchaseSub = cartItems.filter(product => product.item.purchase === "subscription")
     const [ submitAction, setSubmitAction ] = useState("")
+
     let totalPriceOnce = 0
     let totalPriceSub = 0
 
@@ -59,7 +60,7 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
     onSubmit:(values)=>{
         if(submitAction === "once"){
             try {
-                axios.post(`${host}/api/payments/one-purchase`, {
+                axios.post("/api/payments/one-purchase", {
                     products:purchaseOnce,
                     payerData:values
                 }).then(data => {
@@ -71,7 +72,7 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
             }   
         }else{
             try{
-                axios.post(`${host}/api/payments/subscription`, {
+                axios.post("/api/payments/subscription", {
                     totalCost:totalPriceSub,
                     payerData:values
                 }).then(data => {
@@ -99,7 +100,7 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
             }) 
             if(purchaseSub.length !== 0){
                 try {
-                    axios.put(`${host}/api/user/subscriptions/add`, subsWithId)
+                    axios.put("/api/user/subscriptions/add", subsWithId)
                         .then(data=> {
                             dispatch(removeProducts("subscription"))
                         })
@@ -111,7 +112,7 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
     }
 
     useEffect(()=>{
-       addSubscription()
+        addSubscription()
     },[addSubscription])
 
     return ( 
@@ -340,7 +341,6 @@ const Checkout = ({ host, paymentResponse, preapproval }) => {
 }
  
 export const getServerSideProps = async (context) => {
-    const url = process.env.HOST
     const MP_TOKEN = process.env.MP_TOKEN
     let response
     if(context.query.preapproval_id){
@@ -353,7 +353,6 @@ export const getServerSideProps = async (context) => {
     }
     return {
         props:{
-            host: url,
             paymentResponse: response ? response.data : context.query,
             preapproval:context.query.preapproval_id ? context.query.preapproval_id : null
         }

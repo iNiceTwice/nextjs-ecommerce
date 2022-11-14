@@ -6,9 +6,11 @@ import Link from "next/link";
 import ShopItem from "../../components/ShopItem";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-const Subscription = ({ products }) => {
+const Subscription = () => {
 
+    const [ products, setProducts ] = useState([])
     const withVariants = products.filter(product => product.price.length > 1 )
     const withoutVariants = products.filter(product => product.price.length === 1 )
     const pageTransition = {
@@ -20,9 +22,15 @@ const Subscription = ({ products }) => {
         }
     }
 
+    useEffect(()=>{
+        axios.get("/api/products/all")
+            .then(data => setProducts(data.data))
+            .catch(err => console.log(err))
+    },[])
+
     return ( 
         <>
-            <motion.div initial="out" animate="in" exit="out" variants={pageTransition}>
+            <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
                 <Intro
                     title="Wellness Made Easy"
                     text="All your favorite CBD products, delivered to your door with 20% monthly savings. Customize your delivery or cancel anytime."
@@ -227,17 +235,6 @@ const Subscription = ({ products }) => {
             </motion.div>
         </>
      );
-}
-
-export const getServerSideProps = async context => {
-    const url = process.env.HOST
-    const response = await axios.get(`${url}/api/products/all`)
-
-    return {
-        props:{
-            products:response.data
-        }
-    }
 }
 
 const benefitsItems = [
