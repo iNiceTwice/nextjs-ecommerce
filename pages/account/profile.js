@@ -93,7 +93,7 @@ const Profile = ({ host }) => {
                         <p className="font-medium text-slate-800/90">{ user.email }</p>
                         <div className="grid grid-cols-1 lg:grid-cols-2 px-5 gap-8 mt-16">
                             <Link href="/account/subscriptions">
-                                <div className="flex flex-col justify-end h-[30rem] lg:h-[35rem] cursor-pointer bg-orange-600/80 text-white">
+                                <div className="flex flex-col justify-end h-[30rem] lg:h-[35rem] cursor-pointer bg-orange-600/80 text-white hover:scale-[0.99]">
                                     <div className="flex w-full justify-center">
                                         <IoFlowerOutline size="75"/>
                                     </div>
@@ -105,7 +105,7 @@ const Profile = ({ host }) => {
                                 </div>
                             </Link>
                             <button onClick={ () => setShowModal(true) }>
-                                <div className="flex flex-col text-slate-800 justify-end h-[30rem] lg:h-[35rem] bg-sky-200/90">
+                                <div className="flex flex-col text-slate-800 justify-end h-[30rem] lg:h-[35rem] bg-sky-100 hover:scale-[0.99]">
                                     <div className="flex w-full justify-center">
                                         <VscSmiley size="75"/>
                                     </div>
