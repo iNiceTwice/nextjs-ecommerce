@@ -111,7 +111,9 @@ const Nav = ({ refresh }) => {
                     <button onClick={ () => setShowMenu(showMenu => !showMenu) } aria-label="menu" className="md:hidden flex" >
                         <IoMenu className='text-slate-800/90' size="25"/>
                     </button>
-                    <Logo/>
+                        <div className="w-[1rem] sm:w-full lg:flex lg:justify-center overflow-hidden">
+                            <Logo/>
+                        </div>
                     <div className="md:flex ml-5 gap-x-5 hidden ">
                         <Link href="/shop/all">
                             <a  className="text-black hover:text-orange-600 text-opacity-60 text-lg transition-colors">Shop</a>

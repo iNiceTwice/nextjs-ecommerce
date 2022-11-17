@@ -12,7 +12,7 @@ const Table = () => {
                             <th className="relative bg-red-50 ">
                                 <div className="absolute  bg-red-50 rounded-t-md -top-5 lg:-top-10 pt-5 lg:pt-10 w-full">
                                 </div>
-                                <div className=" w-full pt-10 flex justify-center">
+                                <div className="w-full pt-10 flex justify-center">
                                     <div className="w-[1rem] lg:w-full lg:flex lg:justify-center overflow-hidden">
                                         <Logo/>
                                     </div>
