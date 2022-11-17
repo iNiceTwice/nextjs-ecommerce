@@ -14,8 +14,8 @@ const ResponsiveMenu = ({ open }) => {
 
     return (
         <>
-            <div className="bg-zinc-100 w-screen h-screen fixed top-14 z-40 overflow-auto">
-               <div className='mt-20 pl-8'>
+            <div className="bg-zinc-100 w-screen h-screen fixed top-0 z-40 overflow-auto">
+               <div className='mt-32 pl-8'>
                     <ul className='flex flex-col gap-y-4 font-medium text-lg opacity-80 mb-20'>
                         <Link href='/shop/all'>
                             <a onClick={ open }>Shop</a>
@@ -111,7 +111,7 @@ const Nav = ({ refresh }) => {
                     <button onClick={ () => setShowMenu(showMenu => !showMenu) } aria-label="menu" className="md:hidden flex" >
                         <IoMenu className='text-slate-800/90' size="25"/>
                     </button>
-                        <div className="w-[1rem] sm:w-full lg:flex lg:justify-center overflow-hidden">
+                        <div className="w-[1rem] sm:w-fit overflow-hidden">
                             <Logo/>
                         </div>
                     <div className="md:flex ml-5 gap-x-5 hidden ">
