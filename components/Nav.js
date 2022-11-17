@@ -214,7 +214,7 @@ const Nav = ({ refresh }) => {
                     <button title="notifications">
                         <IoNotifications size="22" className="text-slate-800/90 text-xl hover:text-orange-600 transition-colors"/>
                     </button>
-                    <button aria-label="shopping-cart" className='flex' onClick={ () => setOpenCart(openCart => !openCart) }>
+                    <button title="shopping-cart" className='flex' onClick={ () => setOpenCart(openCart => !openCart) }>
                         <IoCart size="25" className="text-xl text-slate-800/90 hover:text-orange-600 transition-colors"/>
                         <span className='ml-2 text-lg'>{ totalItems }</span>
                     </button>

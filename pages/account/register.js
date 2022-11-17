@@ -6,9 +6,10 @@ import { useFormik } from "formik"
 import { toast } from "react-toastify"
 import * as yup from "yup"
 import axios from "axios"
+import Loader from "../../components/Loader"
 
 const SignupSchema = yup.object().shape({
-    name: yup.string().min(2,"At least 2 characters.").max(12,"Max 12 characters.").required("This field is required."),
+    name: yup.string().min(2,"At least 2 characters.").max(16,"Max 16 characters.").required("This field is required."),
     email:yup.string().email("Invalid Email.").required("This field is required."),
     password: yup.string().min(6,"At least 6 characters.").max(20,"Max 20 characters.").required("This field is required.")
 })
@@ -17,6 +18,7 @@ const Register = () => {
 
     const router = useRouter()
     const [ emailInUse, setEmailInUse ] = useState(false)
+    const [ isLoading, setIsloading ] = useState(false)
     const pageTransition = {
         in:{
             opacity:1
@@ -35,16 +37,20 @@ const Register = () => {
         password:""
     },
     onSubmit:(values)=>{
+        setIsloading(true)
         axios.post("/api/user/create",{
             name:values.name,
             email:values.email,
             password:values.password
         }).then(data=>{
+            setIsloading(false)
             notify() 
             router.push("/account/login") 
         }).catch(err=>{
+            setIsloading(false)
             console.log(err)
             if(err.response.status === 409){
+                setIsloading(false)
                 setEmailInUse(true)
             }
         })
@@ -54,6 +60,10 @@ const Register = () => {
     return ( 
         <>
             <motion.div initial="out" animate="in" exit="out" variants={pageTransition}>
+                {
+                    isLoading && <Loader/>
+
+                }
                 <div className="flex justify-center w-full h-fit py-32 lg:py-48 bg-red-100/70">
                     <div className=" w-11/12 lg:w-1/2 xl:w-1/3 h-fit bg-white border py-16 px-10 lg:px-16 border-red-200">
                         <h3 className="text-4xl text-center font-serif text-black/75 mb-2">Register</h3>

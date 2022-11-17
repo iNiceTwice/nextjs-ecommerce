@@ -14,6 +14,7 @@ const ManageSubscriptions = () => {
     const [ subId, setSubId ] = useState("")
     const [ modal, setModal ] = useState(false)
     const [ user, setUser ] = useState({})
+    const [ isLoading, setIsLoading ] = useState(true)
     const [ bundles, setBundles ] = useState({
         keys:[],
         bundles:[]
@@ -47,6 +48,7 @@ const ManageSubscriptions = () => {
         axios.get(`/api/user/find`)
             .then(data => {
                 setUser(data.data)
+                setIsLoading(false)
                 let subs = data.data.subscriptions.reduce((dict, data) => {
                     if (!dict[data.bundle_id]) dict[data.bundle_id] = []; dict[data.bundle_id].push(data);
                     return dict;
@@ -55,6 +57,10 @@ const ManageSubscriptions = () => {
                     keys:Object.keys(subs),
                     bundles:subs
                 })
+            })
+            .catch(error => {
+                setIsLoading(false)
+                console.log(error)
             })
     },[])
 
@@ -80,19 +86,7 @@ const ManageSubscriptions = () => {
             }
             <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
                 {
-                user?.subscriptions?.length === 0 ?
-                <section className="pb-32">
-                    <Intro
-                        title="Not subscribed yet?"
-                        text="All your favorite CBD products, delivered to your door with 20% monthly savings. Customize your delivery or cancel anytime."
-                        buttonText="SUBSCRIBE"
-                        buttonUrl="/pages/subscription"
-                        buttonColor="secondary"
-                        bgColor="bg-red-50"
-                        img="https://cdn.shopify.com/s/files/1/1737/2201/files/Untitled_design_7_1400x.png?v=1613614110"
-                    />
-                </section>
-                :
+                user?.subscriptions?.length > 0 ?
                 <section className="w-full px-10 lg:px-40 py-28">
                     <div className="w-full lg:w-11/12 py-20 bg-sky-50">
                         <h2 className="font-serif text-center w-full text-2xl text-slate-800/90 lg:text-4xl">Your Subscriptions</h2>
@@ -129,6 +123,19 @@ const ManageSubscriptions = () => {
                         }   
                     </div>
                 </section>
+                :
+                <section className="pb-32">
+                    <Intro
+                        title="Not subscribed yet?"
+                        text="All your favorite CBD products, delivered to your door with 20% monthly savings. Customize your delivery or cancel anytime."
+                        buttonText="SUBSCRIBE"
+                        buttonUrl="/pages/subscription"
+                        buttonColor="secondary"
+                        bgColor="bg-red-50"
+                        img="https://cdn.shopify.com/s/files/1/1737/2201/files/Untitled_design_7_1400x.png?v=1613614110"
+                    />
+                </section>
+                
                 }
             </motion.div>
         </>

@@ -5,6 +5,8 @@ import Link from "next/link"
 import { useFormik } from "formik"
 import { object, shape, string, email, required } from "yup"
 import axios from "axios"
+import Loader from "../../components/Loader"
+
 
 
 const SignupSchema = object().shape({
@@ -16,6 +18,7 @@ const Login = () => {
 
     const router = useRouter()
     const [ passChange, setPassChange ] = useState(false)
+    const [ isLoading, setIsLoading ] = useState(false)
     const [ badCredentials, setBadCredentials ] = useState(false)
     const pageTransition = {
         in:{
@@ -31,14 +34,17 @@ const Login = () => {
         password:""
     },
     onSubmit:(values)=>{
+        setIsLoading(true)
         axios.post("/api/auth",{
             email:values.email,
             password:values.password
         }).then(data=>{ 
-           router.push("/account/profile") 
+            router.push("/account/profile") 
         }).catch(err=>{
             console.log(err)
+            setIsLoading(false)
             if(err.response.status === 401){
+                setIsLoading(false)
                 setBadCredentials(true)
             }
         })
@@ -49,6 +55,9 @@ const Login = () => {
     return ( 
         <>
             <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
+                {
+                    isLoading && <Loader/>
+                }
                 {
                     passChange 
                     ?   <div className="flex justify-center w-full h-fit py-32 lg:py-48 bg-red-100/70">
