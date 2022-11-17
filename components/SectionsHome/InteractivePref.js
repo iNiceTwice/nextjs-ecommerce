@@ -27,9 +27,9 @@ const InteractivePref = () => {
 
     return ( 
         <>
-            <section className=" h-[35rem] pb-10 xl:h-[50rem] flex mt-60 bg-sky-100/60">
+            <section className=" h-fit pb-10 xl:h-[50rem] flex mt-60 bg-sky-100/60">
                 <div className="w-full flex flex-col md:flex-row">
-                    <div className="mx-auto xl:ml-40 -mt-20 relative w-11/12 md:w-5/12 h-full">
+                    <div className="mx-auto xl:ml-40 -mt-20 relative w-11/12 md:w-5/12 h-[15rem] md:h-full">
                         <Image alt="CBD owner" src={ img } layout="fill" objectPosition="center" objectFit="cover"/>
                     </div>
                     <div className="m-auto px-10 lg:px-2 xl:px-10 w-full md:w-6/12 lg:w-5/12 flex flex-col justify-center">
