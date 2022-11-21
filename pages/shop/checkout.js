@@ -108,6 +108,7 @@ const Checkout = ({ preapproval, paymentResponse }) => {
                     console.log(error)
                 }   
             }
+            dispatch(removeProducts("subscription"))
         }
     }
 

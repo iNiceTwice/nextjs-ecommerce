@@ -31,6 +31,9 @@ const addSubscriptions = async (req,res) => {
     }else{
         return res.status(500).json({message:"Bad Token"})
     }
+    if(!req.body){
+        return res.status(500).json({message:"No products provided"})
+    }
 
     const user = await USERS_DB.findById(decodeToken.id)
     const repeatedItems = req.body.filter(sub => user.subscriptions.some(newSub=>newSub.item.title === sub.item.title && newSub.item.size === sub.item.size))
