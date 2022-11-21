@@ -28,13 +28,17 @@ const deleteSubscription = async (req,res) => {
     const checkToken = verify(token, JWT_SECRET)
 
     if(!token){
-        res.status(500).json({ message: "No token provided" })
+        return res.status(500).json({ message: "No token provided" })
     }
     
     if(!checkToken){
-        res.status(401).json({message: "Unauthorized"})
+        return res.status(401).json({message: "Unauthorized"})
     }
     
+    if(!subId){
+        return res.status(500).json({message: "No bundle id provided"})
+    }
+
     try{
         const res = await axios.put(url, {status:"cancelled"},{
             headers: {
@@ -43,16 +47,16 @@ const deleteSubscription = async (req,res) => {
           }
         });
     }catch(err){
-        return res.status(500).json({ message:"Error" })
+        return res.status(500).json({ error:err })
         console.log(err)
     }
 
     await USERS_DB.findByIdAndUpdate(checkToken.id,{ $pull:{ subscriptions:{ bundle_id: subId } } },(err)=>{
         if(err){
-            res.status(500).json({error:err})
+            return res.status(500).json({error:err})
             console.log(err)
         }
-        res.status(200).json({ message:"Subscription bundle deleted" })
+        return res.status(200).json({ message:"Subscription bundle deleted" })
     }).clone()        
 
 }

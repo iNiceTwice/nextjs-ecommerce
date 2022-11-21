@@ -23,6 +23,14 @@ const monthlyPayment = async (req,res) => {
 
     const { firstName, lastName, id, address, zip, phone, email } = req.body.payerData
     const url = "https://api.mercadopago.com/preapproval";
+    
+    if(!firstName || !lastName || !id || !address || !zip || !phone || !email){
+      return res.status(500).json({message:"Missing payer data"})
+    }
+    if(!req.body.totalCost){
+      return req.status(500).json({message:"No totalCost provided"})
+    }
+
 
     const body = {
         reason: "Custom subscription bundle - Populum",

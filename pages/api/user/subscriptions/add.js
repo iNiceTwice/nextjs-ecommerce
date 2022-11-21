@@ -23,6 +23,9 @@ const addSubscriptions = async (req,res) => {
     let verifyToken = verify(req.cookies.token,JWT_SECRET)
     let decodeToken
     
+    if(!req.cookies.token){
+        return res.status(401).json({message:"Unauthorized, token is missing"})
+    }
     if(verifyToken){
         decodeToken = decode(req.cookies.token, JWT_SECRET)
     }else{

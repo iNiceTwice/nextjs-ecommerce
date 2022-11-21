@@ -18,6 +18,13 @@ const handler = (req,res) => {
 const oncePayment = async (req,res) => {
 
     const { firstName, lastName, id, address, zip, phone, email } = req.body.payerData
+  
+    if(!firstName || !lastName || !id || !address || !zip || !phone || !email){
+      return res.status(500).json({message:"Missing payer data"})
+    }
+    if(!req.body.products){
+      return req.status(500).json({message:"No products provided"})
+    }
 
     const products = req.body.products.map( product => ({
                 title: `${product.item.title} - ${product.item.size}`,
@@ -63,7 +70,7 @@ const oncePayment = async (req,res) => {
       }
     });
 
-    res.send(payment.data.init_point)
+    return res.send(payment.data.init_point)
 }
 
 export default handler
