@@ -19,7 +19,12 @@ const handler = async (req,res) => {
 }
 
 const createUser = async (req,res) => {
-    let { password, email } = req.body
+    let { password, email, name } = req.body
+
+    if(!password || !email || !name){
+        res.status(500).json({message:"Missing credentials"})
+    }
+
     const emailAlreadyExists = await USERS_DB.findOne({ email })
 
     if( emailAlreadyExists ){

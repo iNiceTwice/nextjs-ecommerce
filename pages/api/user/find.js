@@ -23,11 +23,11 @@ const getUser = async (req,res) => {
     const token = (req.cookies.token)
     const checkToken = verify(token, JWT_SECRET)
     
-    if(!checkToken){
-        res.status(401).json({message: "Unauthorized"})
-    }
     if(!token){
         res.status(500).json({ message: "No token provided" })
+    }
+    if(!checkToken){
+        res.status(401).json({message: "Unauthorized"})
     }
     const user = await USERS_DB.findById(checkToken.id) 
     
