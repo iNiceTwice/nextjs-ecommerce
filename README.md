@@ -16,7 +16,7 @@ I just cloned by my self the original page with a few fixes like performance and
 - Cart persist in time
 - Login in and Sign up system
 - Token-Cookie based authorization
-- Checkout with Mercado Pago SDK
+- Checkout with Mercado Pago
 - Customizable subscription bundle
 - Manage subscriptions in /profile (only with account)
 - One click sharing to facebook, email or messenger
