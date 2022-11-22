@@ -9,6 +9,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Logo from "./Logo"
 import axios from "axios"
+import Loader from "./Loader";
 
 const ResponsiveMenu = ({ open }) => {
 
@@ -55,6 +56,7 @@ const Nav = ({ refresh }) => {
     const [ navPos, setNavPos ] = useState("top")
     const [ showMenu, setShowMenu ] = useState(false)
     const [ isLogged, setIsLogged ] = useState(false)
+    const [ isLoading, setIsLoading ] = useState(false)
     const [ openCart, setOpenCart ] = useState(false)
     const [ openSupMenu, setOpenSupMenu ] = useState(false)
     const [ imgSuppMenu, setImgSuppMenu ] = useState("https://cdn.shopify.com/s/files/1/1737/2201/files/populum-orange_1400x.webp?v=1662465868")
@@ -91,6 +93,7 @@ const Nav = ({ refresh }) => {
     }
 
     useEffect(()=>{  
+        setIsLoading(false)
         if(!isLogged){
             axios.get("/api/auth")
             .then(data => {
@@ -104,6 +107,9 @@ const Nav = ({ refresh }) => {
 
     return ( 
         <>
+            {
+                isLoading && <Loader/>
+            }
             <div 
                 className={`flex fixed top-0 w-full py-8 px-3 lg:px-20 justify-between z-50 transition-all ${navPos === "top" ? "bg-transparent" : "bg-white border-b"}`}
             >
@@ -200,18 +206,36 @@ const Nav = ({ refresh }) => {
                         {
                             !isLogged &&
                             <Link href="/account/login">
-                                <button className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Login</button>
+                                <button
+                                    onClick={ () => setIsLoading(true) } 
+                                    className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg"
+                                >
+                                    Login
+                                </button>
                             </Link>
                         }
                         {
                             isLogged && router.pathname !== "/account/profile" &&
                             <Link href="/account/profile">
-                                <button className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Account</button>
+                                <button 
+                                    onClick={ () => setIsLoading(true) }  
+                                    className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg"
+                                >
+                                    Account
+                                </button>
                             </Link>
                         }    
                         {
                             isLogged && router.pathname === "/account/profile" &&
-                            <button onClick={ handleLogout } className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg">Logout</button>
+                            <button 
+                                onClick={ () => {
+                                    setIsLoading(true) 
+                                    handleLogout()
+                                }}  
+                                className="text-slate-900 text-opacity-60 hover:text-orange-600 transition-colors text-lg"
+                            >
+                                Logout
+                            </button>
                         }
                     <button title="notifications">
                         <IoNotifications size="22" className="text-slate-800/90 text-xl hover:text-orange-600 transition-colors"/>
