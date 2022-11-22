@@ -40,7 +40,7 @@ const Profile = ({ host }) => {
                                 <div className="flex flex-col w-full lg:w-5/12 text-slate-800">
                                     <div className="bg-gray-100 flex items-center justify-between w-full px-6 py-3">
                                         <span>REFER FRIENDS TO POPULUM</span>
-                                        <button onClick={ () => setShowModal(false) }><IoCloseSharp size={25}/></button>
+                                        <button className="inline-block lg:hidden" onClick={ () => setShowModal(false) }><IoCloseSharp size={25}/></button>
                                     </div>
                                     <div className="w-full mt-10 px-6">
                                         <h2 className="font-bold text-4xl mb-4">GIVE $10, GET $10</h2>
