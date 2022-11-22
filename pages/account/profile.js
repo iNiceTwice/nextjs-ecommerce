@@ -35,8 +35,8 @@ const Profile = ({ host }) => {
                     showModal &&
                     <div onClick={ () => setShowModal(false) } className="fixed z-10 flex justify-center items-center w-full h-screen bg-gray-700/30">
                         <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
-                            <div onClick={ e => e.stopPropagation() } className="bg-white w-[60rem] h-[35rem] flex">
-                                <div className="flex flex-col w-5/12 text-slate-800">
+                            <div onClick={ e => e.stopPropagation() } className="bg-white w-full lg:w-[60rem] h-[35rem] flex flex-col lg:flex-row">
+                                <div className="flex flex-col w-full lg:w-5/12 text-slate-800">
                                     <div className="bg-gray-100 w-full px-6 py-3">
                                         REFER FRIENDS TO POPULUM
                                     </div>
@@ -80,7 +80,7 @@ const Profile = ({ host }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="relative w-7/12 h-full">
+                                <div className="relative hidden lg:block w-7/12 h-full">
                                     <Image src="https://cdn.shopify.com/s/files/1/1737/2201/files/populum-orange_1400x.webp?v=1662465868" layout="fill" objectFit="cover" alt="company logo" objectPosition="center" />
                                 </div>
                             </div>
