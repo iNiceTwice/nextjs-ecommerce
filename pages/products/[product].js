@@ -139,9 +139,9 @@ const Product = ({ params }) => {
                                                     </div>
                                                 </div>
                                                 <div className="flex flex-col lg:flex-row">
-                                                    <p className="-mt-2 line-through font-medium text-slate-800/30">${ product?.price[priceIndex]?.price }</p>
+                                                    <p className="-mt-2 line-through font-medium text-slate-800/50">${ product?.price[priceIndex]?.price }</p>
                                                     {
-                                                        product?.price?.price > 10 &&
+                                                        product?.price[priceIndex]?.price > 10 &&
                                                         <p className="text-xl font-medium text-slate-800">${ (product?.price[priceIndex]?.price - product?.price[priceIndex]?.price*0.20).toFixed(2).toLocaleString() }</p>
                                                     }
                                                 </div>
