@@ -1,6 +1,7 @@
 import { FacebookShareButton, FacebookMessengerShareButton, EmailShareButton } from "react-share"
 import { IoArrowBack, IoFlowerOutline, IoMailOutline } from "react-icons/io5"
 import { RiFacebookFill, RiMessengerFill, RiLink } from "react-icons/ri"
+import { IoCloseSharp } from "react-icons/io5"
 import { useDispatch, useSelector } from "react-redux";
 import { VscSmiley } from "react-icons/vsc"
 import { useState } from "react";
@@ -33,12 +34,13 @@ const Profile = ({ host }) => {
             <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
                 {
                     showModal &&
-                    <div onClick={ () => setShowModal(false) } className="fixed z-10 flex justify-center items-center w-full h-screen bg-gray-700/30">
+                    <div onClick={ () => setShowModal(false) } className="overflow-auto fixed z-10 flex justify-center lg:items-center w-full h-screen bg-gray-700/30">
                         <motion.div initial="out" animate="in" exit="out" variants={ pageTransition }>
-                            <div onClick={ e => e.stopPropagation() } className="bg-white w-full lg:w-[60rem] h-[35rem] flex flex-col lg:flex-row">
+                            <div onClick={ e => e.stopPropagation() } className="mt-32 bg-white w-full lg:w-[60rem] h-[35rem] flex flex-col lg:flex-row">
                                 <div className="flex flex-col w-full lg:w-5/12 text-slate-800">
-                                    <div className="bg-gray-100 w-full px-6 py-3">
-                                        REFER FRIENDS TO POPULUM
+                                    <div className="bg-gray-100 flex items-center justify-between w-full px-6 py-3">
+                                        <span>REFER FRIENDS TO POPULUM</span>
+                                        <button onClick={ () => setShowModal(false) }><IoCloseSharp size={25}/></button>
                                     </div>
                                     <div className="w-full mt-10 px-6">
                                         <h2 className="font-bold text-4xl mb-4">GIVE $10, GET $10</h2>
