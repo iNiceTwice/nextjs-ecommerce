@@ -3,6 +3,7 @@ import Link from "next/link"
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5"
+import { PuffLoader } from "react-spinners"
 import Dropdown from "../../components/Dropdown"
 import ShopItem from "../../components/ShopItem"
 import { motion } from "framer-motion";
@@ -11,6 +12,7 @@ import axios from "axios"
 const Shop = () => {
 
     const [ count, setCount ] = useState(0)
+    const [ isLoading, setIsLoading ] = useState(true)
     const [ products, setProducts ] = useState([])
     const router = useRouter()
     const current = router.query.category
@@ -35,10 +37,12 @@ const Shop = () => {
     }
 
     useEffect(()=>{
-        (async()=>{
-            const response = await axios.get(`/api/products/all`)
-            setProducts(response.data)
-        })()
+        axios.get(`/api/products/all`)
+            .then(data => {
+                setProducts(data.data)
+                setIsLoading(false)
+            })
+            .catch(err => console.log(err))
     },[])
 
     return ( 
@@ -70,7 +74,7 @@ const Shop = () => {
                                 </Link>
                             </li>
                         </ul>
-                    </div>   
+                    </div>  
                     {   
                     current === "all" &&
                         <>
@@ -97,6 +101,14 @@ const Shop = () => {
                             </div>
                         </>
                     }
+                    {
+                        isLoading && 
+                        <>
+                            <div className="pt-52 w-full flex justify-center">
+                                <PuffLoader color="#f97316"/>
+                            </div>
+                        </>
+                    } 
                     <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-16 w-full md:w-4/6 lg:w-2/3 mr-0 md:mr-10 lg:mr-[13vw] px-5 lg:px-0 mb-16 mt-${current === "all" ? "60" : "16"}`}>
                         {
                             current === "all"
