@@ -33,7 +33,6 @@ const Checkout = ({ preapproval, paymentResponse }) => {
     const router = useRouter()
     const dispatch = useDispatch()
     const cartItems = useSelector(state => state.cart.cartItems)
-    const isLogged = useSelector(state => state.user.isLogged)
     const purchaseOnce = cartItems.filter(product => product.item.purchase === "once")
     const purchaseSub = cartItems.filter(product => product.item.purchase === "subscription")
     const [ submitAction, setSubmitAction ] = useState("")
@@ -99,20 +98,22 @@ const Checkout = ({ preapproval, paymentResponse }) => {
                     quantity:sub.quantity
                 }
             })
-            if(isLogged){
-                if(purchaseSub.length !== 0){
-                    try {
-                        axios.put("/api/user/subscriptions/add", subsWithId)
-                            .then(data=> {
-                                dispatch(removeProducts("subscription"))
-                            })
-                    } catch (error) {
-                        console.log(error)
-                    }   
-                }
-            }else{
-                dispatch(removeProducts("subscription"))
+        
+            if(purchaseSub.length !== 0){
+                try {
+                    axios.put("/api/user/subscriptions/add", subsWithId)
+                        .then(data=> {
+                            console.log(data.data)
+                            dispatch(removeProducts("subscription"))
+                        })
+                        .catch(err => console.log(err))
+                } catch (error) {
+                    console.log(error)
+                }   
             }
+        
+            dispatch(removeProducts("subscription"))
+        
         }
     }
 
